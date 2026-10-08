@@ -1,0 +1,20 @@
+{
+  "name": "the-coffee-party-coming-soon",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "check": "node --check dist/signup.js && node --check api/subscribe.js && node --check server/subscribe.mjs",
+    "test": "node --test tests/subscribe.test.mjs tests/signup.test.mjs",
+    "assets": "node scripts/assets.mjs",
+    "audit": "node scripts/audit.mjs"
+  },
+  "devDependencies": {
+    "lighthouse": "^12.8.2",
+    "sharp": "^0.35.5"
+  }
+}

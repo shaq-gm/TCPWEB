@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#e8e8db">
+  <title>The Coffee Party — Coming soon</title>
+  <meta name="description" content="The Coffee Party is coming soon. Be the first to know when we launch.">
+  <meta property="og:title" content="The Coffee Party — Coming soon">
+  <meta property="og:description" content="Be the first to know when we launch.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/signup.js" defer></script>
+</head>
+<body>
+  <main class="page">
+    <div class="scene" aria-hidden="true">
+      <div class="artwork">
+      <picture class="background">
+        <source type="image/avif" srcset="/assets/coffee-640.avif 640w, /assets/coffee-941.avif 941w" sizes="(min-width: 900px) 58vw, 100vw">
+        <source type="image/webp" srcset="/assets/coffee-640.webp 640w, /assets/coffee-941.webp 941w" sizes="(min-width: 900px) 58vw, 100vw">
+        <img class="coffee" src="/assets/coffee-941.jpg" srcset="/assets/coffee-640.jpg 640w, /assets/coffee-941.jpg 941w" sizes="(min-width: 900px) 58vw, 100vw" width="941" height="1671" alt="" fetchpriority="high" decoding="async">
+      </picture>
+      <picture class="overlay">
+        <source type="image/webp" srcset="/assets/mobile-overlay.webp">
+        <img src="/assets/mobile-overlay.png" width="1128" height="2000" alt="" decoding="async">
+      </picture>
+      </div>
+    </div>
+    <h1 class="sr-only">The Coffee Party — Coming soon.</h1>
+    <section class="signup-position" aria-label="Get launch updates">
+      <form class="signup" action="/api/subscribe" method="post" novalidate>
+        <div class="controls">
+          <label class="sr-only" for="email">Email address</label>
+          <input id="email" name="email" type="email" placeholder="Enter your email" autocomplete="email" inputmode="email" required maxlength="254" aria-describedby="signup-message" autocapitalize="none" spellcheck="false">
+          <button type="submit" aria-label="Notify me">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z"/><path d="M10 21h4M12 2V1"/></svg>
+          </button>
+        </div>
+        <div class="honeypot" aria-hidden="true"><label for="website">Leave this field empty</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+        <p class="message" id="signup-message" role="status" aria-live="polite" aria-atomic="true"></p>
+        <noscript><p class="no-script">Please enable JavaScript to sign up for launch updates.</p></noscript>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
