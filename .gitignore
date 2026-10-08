@@ -1,0 +1,7 @@
+site/node_modules/
+site/.env
+site/.dev.vars
+site/.wrangler/
+site/.vercel/
+site/reports/
+site/.sites-runtime/
