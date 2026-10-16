@@ -6,8 +6,21 @@
 <title>Brand Partnerships, Sampling &amp; Events — The Coffee Party</title>
 <link rel="icon" href="/assets/logo-black.svg" type="image/svg+xml" />
 <link rel="preload" href="/assets/fonts/chivo-mono-regular.ttf" as="font" type="font/ttf" crossorigin />
-<link rel="stylesheet" href="/styles.css" /><link rel="stylesheet" href="/partnerships.css" /><script type="module" src="/app.js"></script>
+<link rel="stylesheet" href="/styles.css" /><link rel="stylesheet" href="/partnerships.css" /><script>try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&sessionStorage.getItem("coffee-party:page-transition")==="1")document.documentElement.classList.add("page-enter");sessionStorage.removeItem("coffee-party:page-transition")}catch(e){}setTimeout(function(){document.documentElement.classList.remove("page-enter")},4000)</script><script type="module" src="/app.js"></script>
 </head><body class="partnerships-page">
+<div class="page-transition" aria-hidden="true">
+  <p class="page-transition-label">
+    <span class="square"></span><span class="page-transition-text"></span>
+  </p>
+</div>
+<script>
+  try {
+    var transitionLine = sessionStorage.getItem("coffee-party:page-transition-line");
+    if (transitionLine && document.documentElement.classList.contains("page-enter"))
+      document.querySelector(".page-transition-text").textContent = transitionLine;
+    sessionStorage.removeItem("coffee-party:page-transition-line");
+  } catch (e) {}
+</script>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header" id="site-header">
   <a class="header-logo" href="/" aria-label="Coffee Party home"
@@ -86,11 +99,38 @@
   </div>
   <button class="partner-video-toggle" type="button" aria-label="Play background video" aria-pressed="false" hidden>Play video <span aria-hidden="true">▷</span></button>
 </section>
-<section class="partner-intro" aria-label="Partner with The Coffee Party">
-  <p class="partner-lead">The Coffee Party brings brands and people together through coffee, music and daytime experiences.</p>
-  <p class="partner-intro-detail">From a first sip to a shared dance floor, we create space for people to connect. Explore brand partnerships, event sponsorships, product sampling and creative collaborations that become part of the experience.</p>
-  <a class="partner-button" href="#inquiry">Let’s get started <span aria-hidden="true">↗</span></a>
-  <nav class="partner-jump-links" aria-label="Partnership opportunities"><a href="#brand-partnerships">Brands</a><a href="#sampling">Product sampling</a><a href="#venues">Venues</a><a href="#artists">Artists</a><a href="#press">In the press</a></nav>
+<section class="partner-intro" id="partner-intro" aria-label="Partner with The Coffee Party">
+  <div class="partner-gallery" role="region" aria-roledescription="carousel" aria-label="Coffee, music and people" tabindex="0">
+    <div class="partner-gallery-thumbs" aria-label="Choose an image">
+      <button type="button" data-partner-slide="0" aria-label="Show coffee, 1 of 3" aria-controls="partner-gallery-display" aria-current="true"><img src="/assets/daylight.webp" alt="" loading="lazy" /></button>
+      <button type="button" data-partner-slide="1" aria-label="Show music, 2 of 3" aria-controls="partner-gallery-display" aria-current="false"><img src="/assets/movement.webp" alt="" loading="lazy" /></button>
+      <button type="button" data-partner-slide="2" aria-label="Show people, 3 of 3" aria-controls="partner-gallery-display" aria-current="false"><img src="/assets/gathering.webp" alt="" loading="lazy" /></button>
+    </div>
+    <div class="partner-gallery-display" id="partner-gallery-display">
+      <figure class="partner-gallery-slide" data-gallery-slide><figcaption><span>Coffee</span> <span>(1 of 3)</span></figcaption><div class="partner-gallery-frame"><img src="/assets/daylight.webp" alt="A daytime moment from the Coffee Party film" loading="lazy" /></div></figure>
+      <figure class="partner-gallery-slide" data-gallery-slide hidden><figcaption><span>Music</span> <span>(2 of 3)</span></figcaption><div class="partner-gallery-frame"><img src="/assets/movement.webp" alt="Music and movement from the Coffee Party film" loading="lazy" /></div></figure>
+      <figure class="partner-gallery-slide" data-gallery-slide hidden><figcaption><span>People</span> <span>(3 of 3)</span></figcaption><div class="partner-gallery-frame"><img src="/assets/gathering.webp" alt="A gathering from the Coffee Party film" loading="lazy" /></div></figure>
+    </div>
+    <div class="partner-gallery-copy">
+      <p data-gallery-copy>The Coffee Party brings brands and people together through coffee, music and daytime experiences.</p>
+      <p data-gallery-copy hidden>From a first sip to a shared dance floor, we create space for people to connect.</p>
+      <p data-gallery-copy hidden>Explore brand partnerships, event sponsorships, product sampling and creative collaborations that become part of the experience.</p>
+    </div>
+    <div class="partner-gallery-controls">
+      <button type="button" data-gallery-prev aria-label="Previous introduction image" aria-controls="partner-gallery-display">‹ Prev</button>
+      <div class="partner-gallery-pages" aria-label="Choose a slide">
+        <button type="button" data-partner-slide="0" aria-label="Go to coffee slide, 1 of 3" aria-controls="partner-gallery-display" aria-current="true"></button>
+        <button type="button" data-partner-slide="1" aria-label="Go to music slide, 2 of 3" aria-controls="partner-gallery-display" aria-current="false"></button>
+        <button type="button" data-partner-slide="2" aria-label="Go to people slide, 3 of 3" aria-controls="partner-gallery-display" aria-current="false"></button>
+      </div>
+      <button type="button" data-gallery-next aria-label="Next introduction image" aria-controls="partner-gallery-display">Next ›</button>
+    </div>
+    <p class="sr-only" data-gallery-status role="status" aria-live="polite"></p>
+  </div>
+  <div class="partner-intro-actions">
+    <a class="partner-button" href="#inquiry">Let’s get started <span aria-hidden="true">↗</span></a>
+    <nav class="partner-jump-links" aria-label="Partnership opportunities"><a href="#brand-partnerships">Brands</a><a href="#sampling">Product sampling</a><a href="#venues">Venues</a><a href="#artists">Artists</a><a href="#press">In the press</a></nav>
+  </div>
 </section>
 <section class="partner-split" id="brand-partnerships" aria-labelledby="brand-title">
   <div class="partner-editorial-image"><img src="/assets/gathering.webp" alt="A gathering from the Coffee Party film" loading="lazy" /></div>
@@ -103,7 +143,7 @@
 </section>
 <section class="partner-showcase " id="collaborations" data-showcase aria-labelledby="collaborations-title">
   <span class="eyebrow">Co-created moments</span><h2 id="collaborations-title">Recent brand collabs</h2>
-  <div class="showcase-track" id="collaborations-track" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Recent brand collabs. Use Left, Right, Home or End to browse."><article class="showcase-card"><div class="showcase-media" role="img" aria-label="F1 Paddock Club image placeholder"><!-- Replace the placeholder with an img.showcase-photo using the approved image and descriptive alt text. --><span class="showcase-image-note">Image to be added</span><img class="showcase-brand-mark" src="/assets/brand-logos/F1_RM_PaddockClub_Logo_Stk_Mono_Micro.png" alt="" loading="lazy" /></div><h3>F1 Paddock Club × The Coffee Party</h3><p>Collaboration story coming soon</p></article><article class="showcase-card"><div class="showcase-media" role="img" aria-label="World Baseball Classic image placeholder"><!-- Replace the placeholder with an img.showcase-photo using the approved image and descriptive alt text. --><span class="showcase-image-note">Image to be added</span><img class="showcase-brand-mark" src="/assets/brand-logos/world-baseball-classic.png" alt="" loading="lazy" /></div><h3>World Baseball Classic × The Coffee Party</h3><p>Collaboration story coming soon</p></article><article class="showcase-card"><div class="showcase-media" role="img" aria-label="Toronto Raptors image placeholder"><!-- Replace the placeholder with an img.showcase-photo using the approved image and descriptive alt text. --><span class="showcase-image-note">Image to be added</span><img class="showcase-brand-mark" src="/assets/brand-logos/toronto-raptors.png" alt="" loading="lazy" /></div><h3>Toronto Raptors × The Coffee Party</h3><p>Collaboration story coming soon</p></article></div>
+  <div class="showcase-track" id="collaborations-track" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Recent brand collabs. Use Left, Right, Home or End to browse."><article class="showcase-card"><div class="showcase-media" role="img" aria-label="F1 Paddock Club image placeholder"><!-- Replace the placeholder with an img.showcase-photo using the approved image and descriptive alt text. --><span class="showcase-image-note">Image to be added</span><img class="showcase-brand-mark" src="/assets/brand-logos/F1_RM_PaddockClub_Logo_Stk_Mono_Micro.png" alt="" loading="lazy" /></div><h3>F1 Paddock Club × The Coffee Party</h3><p>Collaboration story coming soon</p></article><article class="showcase-card"><div class="showcase-media" role="img" aria-label="World Baseball Classic image placeholder"><!-- Replace the placeholder with an img.showcase-photo using the approved image and descriptive alt text. --><span class="showcase-image-note">Image to be added</span><img class="showcase-brand-mark" src="/assets/brand-logos/world-baseball-classic.png" alt="" loading="lazy" /></div><h3>World Baseball Classic × The Coffee Party</h3><p>Collaboration story coming soon</p></article><article class="showcase-card"><div class="showcase-media" role="img" aria-label="Toronto Raptors image placeholder"><!-- Replace the placeholder with an img.showcase-photo using the approved image and descriptive alt text. --><span class="showcase-image-note">Image to be added</span><img class="showcase-brand-mark" src="/assets/brand-logos/toronto-raptors.png" alt="" loading="lazy" /></div><h3>Toronto Raptors × The Coffee Party</h3><p>Collaboration story coming soon</p></article><article class="showcase-card"><div class="showcase-media" role="img" aria-label="National Bank Open 2026 image placeholder"><!-- Replace the placeholder with an img.showcase-photo using the approved image and descriptive alt text. --><span class="showcase-image-note">Image to be added</span><img class="showcase-brand-mark" src="/assets/brand-logos/NBO-Light.png" alt="" loading="lazy" /></div><h3>National Bank Open × The Coffee Party</h3><p>2026</p></article><article class="showcase-card"><div class="showcase-media" role="img" aria-label="National Bank Open 2025 image placeholder"><!-- Replace the placeholder with an img.showcase-photo using the approved image and descriptive alt text. --><span class="showcase-image-note">Image to be added</span><img class="showcase-brand-mark" src="/assets/brand-logos/NBO-Light.png" alt="" loading="lazy" /></div><h3>National Bank Open × The Coffee Party</h3><p>2025</p></article></div>
   <div class="carousel-controls"><button class="text-link" type="button" data-showcase-prev aria-label="Previous recent brand collabs" aria-controls="collaborations-track" disabled>‹ Prev</button><div class="carousel-bars" aria-label="Choose a showcase position"></div><button class="text-link" type="button" data-showcase-next aria-label="Next recent brand collabs" aria-controls="collaborations-track" disabled>Next ›</button></div><p class="sr-only showcase-status" role="status" aria-live="polite"></p>
 </section>
 <section class="partner-split is-reversed" id="sampling" aria-labelledby="sampling-title">
@@ -134,13 +174,30 @@
 <li><img src="/assets/brand-logos/azur.png" alt="Azur" loading="lazy" /></li>
 <li><img src="/assets/brand-logos/coffee-meets-bagel.png" alt="Coffee Meets Bagel" loading="lazy" /></li>
 <li><img src="/assets/brand-logos/redtag.png" alt="redtag.ca" loading="lazy" /></li>
-<li><img src="/assets/brand-logos/ryde.png" alt="Ryde" loading="lazy" /></li></ul>
+<li><img src="/assets/brand-logos/ryde.png" alt="Ryde" loading="lazy" /></li>
+<li><img src="/assets/brand-logos/NBO-Light.png" alt="National Bank Open" loading="lazy" /></li></ul>
   <div class="partner-sponsor-cta"><a class="partner-button" href="#inquiry">Become a sponsor <span aria-hidden="true">↗</span></a></div>
   </div>
 </section>
 </div>
+<div class="partner-contact-panel">
+<section class="partner-start" aria-labelledby="start-title"><span class="eyebrow">Let’s get started</span><h2 id="start-title">Your idea.<br />Our next conversation.</h2><ol><li><span>[01]</span><h3>Say hello</h3><p>Leave your name, company and email below.</p></li><li><span>[02]</span><h3>Explore the fit</h3><p>We’ll discuss your idea, goals and the kind of experience you have in mind.</p></li><li><span>[03]</span><h3>Shape the plan</h3><p>If there’s a fit, we can work through the format, timing and next steps together.</p></li></ol></section>
+<section class="partner-inquiry" id="inquiry" aria-labelledby="inquiry-title">
+  <div class="partner-inquiry-heading"><span class="eyebrow">Let’s start a conversation</span><h2 id="inquiry-title">Get in touch.</h2><p>Have a partnership or sponsorship in mind? Leave a few details and we’ll reach out to explore it together.</p></div>
+  <form class="partner-form" data-partnership-preview aria-describedby="partner-preview-note">
+    <fieldset disabled><legend class="sr-only">Partnership callback request</legend>
+      <label for="partner-name">Full name<input id="partner-name" name="name" autocomplete="name" placeholder="Your name" required /></label>
+      <label for="partner-company">Company<input id="partner-company" name="company" autocomplete="organization" placeholder="Your company" required /></label>
+      <label for="partner-email">Email<input id="partner-email" name="email" type="email" autocomplete="email" placeholder="you@company.com" required /></label>
+      <div class="partner-form-action"><button class="partner-button" type="submit">Request a callback <span aria-hidden="true">↗</span></button><p id="partner-preview-note">UI preview only. Requests aren’t connected yet.</p></div>
+    </fieldset>
+    <p class="partner-feedback" role="status" aria-live="polite"></p>
+    <noscript><p>This form is a UI preview and requires JavaScript to try.</p></noscript>
+  </form>
+</section>
+</div>
 <section class="partner-split" id="venues" aria-labelledby="venues-title">
-  <div class="partner-editorial-image partner-feature-slot"><div class="showcase-media" role="img" aria-label="Venue feature image placeholder"><!-- Replace the placeholder with an img.showcase-photo using the approved image and descriptive alt text. --><span class="showcase-image-note">Image to be added</span></div></div>
+  <div class="partner-editorial-image partner-feature-slot"><div class="showcase-media"><video class="showcase-photo" muted loop playsinline preload="metadata" poster="/assets/location-toronto.webp" src="/assets/location-toronto.mp4" aria-label="Recap of Toronto’s first Coffee Party Festival"></video></div></div>
   <div class="partner-copy"><span class="eyebrow">Host us</span><h2 id="venues-title">Venues</h2><p>A great venue does more than hold an event. It shapes how people arrive, move, meet and remember the day. We’re open to conversations with cafés, hospitality spaces, cultural venues and distinctive locations that could host a Coffee Party experience.</p><p>Venue collaborations can begin with a single gathering or an idea for an ongoing relationship. We’ll discuss the character of your space, capacity, sound requirements, access, service and the guest experience to understand what’s possible.</p><p>If you’re looking to introduce your space to a daytime audience or bring a fresh format to an existing community, tell us about it. Share your venue and location when we connect, and we can explore the next steps together.</p><a class="partner-button" href="#inquiry">Explore a venue partnership <span aria-hidden="true">↗</span></a></div>
 </section>
 <section class="partner-showcase " id="venue-partnerships" data-showcase aria-labelledby="venue-partnerships-title">
@@ -325,20 +382,6 @@
   <details><summary>Can venues and artists collaborate with The Coffee Party?<span aria-hidden="true">+</span></summary><p>Yes. Venue operators, DJs, musicians, performers and their representatives can get in touch to explore a collaboration. Venue and artist opportunities depend on creative fit and the needs of each event.</p></details>
   <details><summary>What information is needed to start a partnership conversation?<span aria-hidden="true">+</span></summary><p>Start with your full name, company and email. The initial conversation can cover your goals, preferred timing, location and idea without asking you to complete a long proposal form.</p></details>
 </div></section>
-<section class="partner-start" aria-labelledby="start-title"><span class="eyebrow">Let’s get started</span><h2 id="start-title">Your idea.<br />Our next conversation.</h2><ol><li><span>[01]</span><h3>Say hello</h3><p>Leave your name, company and email below.</p></li><li><span>[02]</span><h3>Explore the fit</h3><p>We’ll discuss your idea, goals and the kind of experience you have in mind.</p></li><li><span>[03]</span><h3>Shape the plan</h3><p>If there’s a fit, we can work through the format, timing and next steps together.</p></li></ol></section>
-<section class="partner-inquiry" id="inquiry" aria-labelledby="inquiry-title">
-  <div class="partner-inquiry-heading"><span class="eyebrow">Let’s start a conversation</span><h2 id="inquiry-title">Get in touch.</h2><p>Have a partnership or sponsorship in mind? Leave a few details and we’ll reach out to explore it together.</p></div>
-  <form class="partner-form" data-partnership-preview aria-describedby="partner-preview-note">
-    <fieldset disabled><legend class="sr-only">Partnership callback request</legend>
-      <label for="partner-name">Full name<input id="partner-name" name="name" autocomplete="name" placeholder="Your name" required /></label>
-      <label for="partner-company">Company<input id="partner-company" name="company" autocomplete="organization" placeholder="Your company" required /></label>
-      <label for="partner-email">Email<input id="partner-email" name="email" type="email" autocomplete="email" placeholder="you@company.com" required /></label>
-      <div class="partner-form-action"><button class="partner-button" type="submit">Request a callback <span aria-hidden="true">↗</span></button><p id="partner-preview-note">UI preview only. Requests aren’t connected yet.</p></div>
-    </fieldset>
-    <p class="partner-feedback" role="status" aria-live="polite"></p>
-    <noscript><p>This form is a UI preview and requires JavaScript to try.</p></noscript>
-  </form>
-</section>
 </main>
 <footer class="site-footer" id="footer">
   <div class="footer-brand">

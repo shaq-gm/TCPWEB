@@ -665,12 +665,6 @@ canvas:focus-visible,
   gap: 14px;
   margin-bottom: 16px;
 }
-@media (min-width: 1200px) {
-  .signup-fields-pair {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 20px;
-  }
-}
 .signup-field {
   display: flex;
   flex-direction: column;
@@ -1767,5 +1761,11 @@ dialog::backdrop {
   .listing-caption > span:last-child { text-align: right; }
   .listing-preview { font-size: .85em; }
 }
+.page-transition { position: fixed; inset: 0; z-index: 80; display: grid; place-items: center; background: #080808; color: white; font: 400 calc(var(--header-unit, 1.1111vw) * .75)/1.2 var(--mono); pointer-events: none; transform: translateY(100%); will-change: transform; }
+.page-transition-label { display: flex; align-items: center; gap: .5em; margin: 0; white-space: nowrap; }
+html.page-enter .page-transition { transform: translateY(0); pointer-events: auto; }
+html.page-leave .page-transition { pointer-events: auto; }
+html.page-enter { background: #080808; }
+html.page-enter, html.page-enter body, html.page-leave, html.page-leave body { overflow: hidden; }
 .events-reveal { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; background: #080808; color: white; font: 400 calc(var(--header-unit) * .75)/1.2 var(--mono); pointer-events: none; }
 .events-reveal > span { display: flex; align-items: center; gap: .5em; }

@@ -1,6 +1,8 @@
 import { initCarousel } from "./carousel.js";
 export function initPartnershipPreview() {
   initPartnerHero();
+  initFeatureVideos();
+  initPartnerIntroGallery();
   document.querySelectorAll('[data-showcase]').forEach(section => {
     initCarousel({
       track: section.querySelector('.showcase-track'),
@@ -26,6 +28,29 @@ export function initPartnershipPreview() {
   form.querySelector('fieldset').disabled = false;
 }
 
+function initFeatureVideos() {
+  const videos = document.querySelectorAll('.partner-feature-slot video.showcase-photo');
+  if (!videos.length || !('IntersectionObserver' in window)) return;
+  const motion = matchMedia('(prefers-reduced-motion: reduce)');
+  const sync = (video, visible) => {
+    if (!visible || motion.matches || document.hidden) {
+      video.pause();
+      return;
+    }
+    video.play().catch(() => {});
+  };
+  videos.forEach((video) => {
+    video.muted = true;
+    let visible = false;
+    new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      sync(video, visible);
+    }, { threshold: 0.35 }).observe(video);
+    document.addEventListener('visibilitychange', () => sync(video, visible));
+    motion.addEventListener('change', () => sync(video, visible));
+  });
+}
+
 function initPartnerHero() {
   const hero = document.querySelector('.partner-hero');
   if (!hero) return;
@@ -40,7 +65,7 @@ function initPartnerHero() {
     const playing = !video.paused;
     toggle.setAttribute('aria-pressed', String(playing));
     toggle.setAttribute('aria-label', playing ? 'Pause background video' : 'Play background video');
-    toggle.innerHTML = playing ? 'Pause video <span aria-hidden="true">Ⅱ</span>' : 'Play video <span aria-hidden="true">▷</span>';
+    toggle.innerHTML = playing ? 'Pause video <span aria-hidden="true">â…¡</span>' : 'Play video <span aria-hidden="true">â–·</span>';
   }
   function sync() {
     if (!requested || !visible || document.hidden) { video.pause(); return; }
@@ -135,18 +160,19 @@ function initPartnerLogoWall() {
   schedule();
 }
 
-// Pin the visible tail of the whole sponsor section for one viewport of overlap.
-// Measuring on resize keeps the CTA in the same scene at every breakpoint.
+// Pin the sponsor composition for one viewport while the contact form scrolls over it.
+// The hold stays a full screen, independent of the form's height, so the logo section finishes first.
 function initSponsorOverlay() {
   const scene = document.querySelector('.partner-sponsor-scene');
   if (!scene || !('ResizeObserver' in window)) return;
   const section = scene.querySelector('.partner-brand-wall');
-  const venues = document.querySelector('#venues');
-  const gallery = document.querySelector('#venue-partnerships');
+  const panel = document.querySelector('.partner-contact-panel');
   const header = document.querySelector('.site-header');
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
   let frame = 0;
   function layout() {
+    const cta = section.querySelector('.partner-sponsor-cta');
+    scene.style.setProperty('--sponsor-cta-span', `${cta ? cta.getBoundingClientRect().height : 0}px`);
     scene.style.setProperty('--sponsor-height', `${section.getBoundingClientRect().height}px`);
     scene.classList.toggle('is-layered', !motion.matches);
   }
@@ -154,7 +180,8 @@ function initSponsorOverlay() {
     frame = 0;
     const nav = header.querySelector('.desktop-nav').getBoundingClientRect();
     const line = (nav.top + nav.bottom) / 2;
-    header.classList.toggle('is-over-venues', venues.getBoundingClientRect().top <= line && gallery.getBoundingClientRect().bottom > line);
+    const bounds = panel.getBoundingClientRect();
+    header.classList.toggle('is-over-contact', bounds.top <= line && bounds.bottom > line);
   }
   function schedule() { if (!frame) frame = requestAnimationFrame(paintHeader); }
   new ResizeObserver(() => { layout(); schedule(); }).observe(section);
@@ -163,4 +190,41 @@ function initSponsorOverlay() {
   motion.addEventListener('change', layout);
   layout();
   schedule();
+}
+
+// A discrete, looping three-image gallery; thumbnails and pagination stay in sync.
+function initPartnerIntroGallery() {
+  const gallery = document.querySelector('.partner-gallery');
+  if (!gallery) return;
+  const slides = [...gallery.querySelectorAll('[data-gallery-slide]')];
+  const copies = [...gallery.querySelectorAll('[data-gallery-copy]')];
+  const selectors = [...gallery.querySelectorAll('[data-partner-slide]')];
+  const status = gallery.querySelector('[data-gallery-status]');
+  let current = 0;
+  function show(index) {
+    current = (index + slides.length) % slides.length;
+    slides.forEach((slide, i) => { slide.hidden = i !== current; });
+    copies.forEach((copy, i) => { copy.hidden = i !== current; });
+    selectors.forEach(button => button.setAttribute('aria-current', String(Number(button.dataset.partnerSlide) === current)));
+    status.textContent = `${slides[current].querySelector('figcaption').textContent.trim()}`;
+  }
+  selectors.forEach(button => button.addEventListener('click', () => show(Number(button.dataset.partnerSlide))));
+  gallery.querySelector('[data-gallery-prev]').addEventListener('click', () => show(current - 1));
+  gallery.querySelector('[data-gallery-next]').addEventListener('click', () => show(current + 1));
+  gallery.addEventListener('keydown', event => {
+    if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+    event.preventDefault();
+    show(event.key === 'Home' ? 0 : event.key === 'End' ? slides.length - 1 : current + (event.key === 'ArrowLeft' ? -1 : 1));
+  });
+  let touchStart;
+  const display = gallery.querySelector('.partner-gallery-display');
+  display.addEventListener('touchstart', event => { touchStart = event.touches.length === 1 ? { x: event.touches[0].clientX, y: event.touches[0].clientY } : null; }, { passive: true });
+  display.addEventListener('touchend', event => {
+    if (!touchStart) return;
+    const dx = event.changedTouches[0].clientX - touchStart.x;
+    const dy = event.changedTouches[0].clientY - touchStart.y;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) show(current + (dx < 0 ? 1 : -1));
+    touchStart = null;
+  }, { passive: true });
+  display.addEventListener('touchcancel', () => { touchStart = null; }, { passive: true });
 }

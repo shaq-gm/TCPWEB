@@ -109,8 +109,8 @@ export function initEvents(reducedMotion) {
   new ResizeObserver(() => { settle(); paint(); }).observe(viewport);
   reducedMotion.addEventListener('change', settle);
   layout();
-  // Independent of the homepage's once-per-session video introduction.
-  if (!reducedMotion.matches) {
+  // Direct visits keep this cover. Arrivals from another page use the shared curtain.
+  if (!reducedMotion.matches && !document.documentElement.classList.contains("page-enter")) {
     const cover = document.createElement('div');
     cover.className = 'events-reveal';
     cover.innerHTML = '<span><span class="square"></span> Coffee. Music. People.</span>';

@@ -6,8 +6,21 @@
 <title>Events — The Coffee Party</title>
 <link rel="icon" href="/assets/logo-black.svg" type="image/svg+xml" />
 <link rel="preload" href="/assets/fonts/chivo-mono-regular.ttf" as="font" type="font/ttf" crossorigin />
-<link rel="stylesheet" href="/styles.css" /><script type="module" src="/app.js"></script>
+<link rel="stylesheet" href="/styles.css" /><script>try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&sessionStorage.getItem("coffee-party:page-transition")==="1")document.documentElement.classList.add("page-enter");sessionStorage.removeItem("coffee-party:page-transition")}catch(e){}setTimeout(function(){document.documentElement.classList.remove("page-enter")},4000)</script><script type="module" src="/app.js"></script>
 </head><body class="events-page">
+<div class="page-transition" aria-hidden="true">
+  <p class="page-transition-label">
+    <span class="square"></span><span class="page-transition-text"></span>
+  </p>
+</div>
+<script>
+  try {
+    var transitionLine = sessionStorage.getItem("coffee-party:page-transition-line");
+    if (transitionLine && document.documentElement.classList.contains("page-enter"))
+      document.querySelector(".page-transition-text").textContent = transitionLine;
+    sessionStorage.removeItem("coffee-party:page-transition-line");
+  } catch (e) {}
+</script>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header" id="site-header">
   <a class="header-logo" href="/" aria-label="Coffee Party home"

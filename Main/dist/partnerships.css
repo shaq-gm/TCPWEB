@@ -4,7 +4,7 @@
 .partnerships-page .site-header.is-over-content .desktop-nav { color: var(--ink); }
 .partnerships-page .desktop-nav a[href="/partnerships"]:before { background: #ff2b29; }
 .partnerships-page main { overflow: clip; }
-.partnerships-page main p { font: 400 17px/1.65 Arial, Helvetica, sans-serif; text-transform: none; }
+.partnerships-page main p { font: 400 var(--body)/1.22 var(--mono); }
 .partnerships-page main h2 { font-size: clamp(36px, 4.1vw, 66px); line-height: 1; }
 .partner-hero { position: relative; isolation: isolate; height: 90svh; min-height: 540px; display: grid; place-items: center; background: #222 url('/assets/hero-poster.webp') center/cover; color: white; padding: 115px var(--edge) 95px; }
 .partner-hero::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,.45); z-index: -1; }
@@ -48,13 +48,13 @@
 .partner-dance .partner-button { border-color: white; color: white; margin-top: 12px; }
 .partner-dance .partner-button:hover { background: white; color: black; }
 .partner-press-card { border-top: 1px solid var(--ink); padding-top: 24px; display: flex; flex-direction: column; align-items: start; }
-.partner-press-card h3 { font: 700 27px/1.15 Arial, Helvetica, sans-serif; letter-spacing: -.03em; text-transform: none; margin: 30px 0 20px; }
+.partner-press-card h3 { font: 700 27px/1.15 Arial, Helvetica, sans-serif; letter-spacing: -.03em; margin: 30px 0 20px; }
 .partner-press-card p { color: #555; margin-bottom: 24px; }
 .partner-press-card a { font-size: 11px; margin-top: auto; }
 .partner-faq { display: grid; grid-template-columns: 1fr 1fr; gap: 7%; }
 .partner-faq h2 { margin-top: 22px; }
 .partner-faq details { border-bottom: 1px solid var(--line); }
-.partner-faq summary { cursor: pointer; display: flex; justify-content: space-between; gap: 25px; padding: 23px 0; font-size: 14px; line-height: 1.5; text-transform: none; list-style: none; }
+.partner-faq summary { cursor: pointer; display: flex; justify-content: space-between; gap: 25px; padding: 23px 0; font: 400 14px/1.5 var(--mono); list-style: none; }
 .partner-faq summary::-webkit-details-marker { display: none; }
 .partner-faq summary span { font-size: 22px; }
 .partner-faq details[open] summary span { transform: rotate(45deg); }
@@ -72,17 +72,18 @@
 .partner-form, .partner-form fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 .partner-form fieldset { display: grid; gap: 26px; }
 .partner-form label { display: grid; gap: 12px; font-size: 12px; }
-.partner-form input { width: 100%; min-width: 0; border: 0; border-bottom: 1px solid #858585; border-radius: 0; background: white; color: var(--ink); padding: 8px 0 16px; font: 400 16px var(--mono); }
+.partner-form input { width: 100%; min-width: 0; border: 0; border-bottom: 1px solid #858585; border-radius: 0; background: white; color: var(--ink); padding: 8px 0 16px; font: 400 16px var(--mono); text-transform: none; }
 .partner-form input::placeholder { color: #777; }
 .partner-form input:focus-visible { outline: 2px solid var(--ink); outline-offset: 5px; }
 .partner-form-action { margin-top: 4px; }
-.partnerships-page main .partner-form-action p, .partnerships-page main .partner-feedback { font: 400 11px/1.5 var(--mono); color: #666; margin-top: 16px; }
+.partnerships-page main .partner-form-action p, .partnerships-page main .partner-feedback { font: 400 11px/1.5 var(--mono); text-transform: none; color: #666; margin-top: 16px; }
 @media (max-width: 991px) {
   .partner-split, .partner-fuel { gap: 5%; }
   .partner-collab-logo { height: 210px; }
 }
 @media (max-width: 700px) {
   .partnerships-page main h2 { font-size: clamp(30px, 8vw, 50px); overflow-wrap: anywhere; }
+  .partnerships-page main p { line-height: 1.3; }
   .partner-hero { height: 80svh; min-height: 520px; }
   .partner-hero h1 { font-size: clamp(36px, 8.8vw, 60px); }
   .partner-intro { padding-top: 55px; padding-bottom: 45px; }
@@ -123,12 +124,14 @@
 .showcase-image-note { position: absolute; bottom: 15px; left: 18px; color: #777; font: 400 10px/1.3 var(--mono); text-transform: uppercase; }
 .showcase-brand-mark { width: 58%; height: 90px; object-fit: contain; mix-blend-mode: multiply; }
 .showcase-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; }
-.showcase-outlet { font: 700 clamp(20px, 2.4vw, 36px)/1 Arial, Helvetica, sans-serif; text-align: center; letter-spacing: -.045em; text-transform: none; padding: 20px; }
+.partner-feature-slot .showcase-media video.showcase-photo { z-index: 0; }
+.showcase-outlet { font: 700 clamp(20px, 2.4vw, 36px)/1 Arial, Helvetica, sans-serif; text-align: center; letter-spacing: -.045em; padding: 20px; }
 .showcase-card h3 { font: 500 14px/1.4 var(--mono); margin: 13px 0 7px; }
-.partnerships-page main .showcase-card p { font: 400 14px/1.45 Arial, Helvetica, sans-serif; color: #777; }
+.partnerships-page main .showcase-card p { color: #777; }
+.partnerships-page main .showcase-card:not(.showcase-press-card) p { font: 400 14px/1.45 var(--mono); }
 .showcase-card .text-link { display: inline-flex; font-size: 11px; margin-top: 16px; }
 .showcase-press-card > .eyebrow { margin-top: 16px; }
-.showcase-press-card h3 { text-transform: none; font: 500 17px/1.35 Arial, Helvetica, sans-serif; }
+.showcase-press-card h3 { font: 500 17px/1.35 Arial, Helvetica, sans-serif; }
 .press-image-link { display: block; }
 .press-media .showcase-photo { z-index: 0; }
 .press-media::before, .press-media::after { display: none; }
@@ -155,8 +158,8 @@
   #venues, #artists { padding: 45px 0; }
 }
 
-/* Sponsor composition: one surface for logos, cup and CTA; Venues sits above it. */
-.partner-brand-wall { position: relative; z-index: 0; padding-bottom: 0; }
+/* Sponsor composition: one surface for logos, cup and CTA; the contact chapter sits above it. */
+.partner-brand-wall { position: relative; z-index: 0; padding-bottom: 0; --cup-size: min(360px, 38vw, 40svh); }
 .partner-wall-intro { max-width: 630px; color: #555; margin: -10px 0 40px; }
 .partner-logo-wall { position: relative; isolation: isolate; background: #fff; }
 .partner-logo-grid { position: relative; list-style: none; margin: 0; padding: 32px 0 100px; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); row-gap: 24px; align-items: center; }
@@ -166,33 +169,32 @@
 .partner-logo-grid li:nth-child(4n + 3) { grid-column: 6; }
 .partner-logo-grid li:nth-child(4n) { grid-column: 7; transform: translateY(64px); }
 .partner-logo-grid img { width: 100%; height: 76px; object-fit: contain; }
-/* Reference geometry: wrapper begins 175vh earlier; viewport-height sticky stage.
-   Ending the wrapper with the CTA lets the cup rise with that entire surface. */
+/* The lane starts 175vh above the wall and ends at the sponsor link.
+   The sticky box is only as tall as the cup, centered in the viewport,
+   so the cup keeps traveling until it sits on that link. */
 .partner-cup-lane { position: absolute; inset: 0; pointer-events: none; }
 .partner-cup-sticky { position: relative; top: 20px; display: flex; align-items: center; justify-content: center; }
-.has-cup-motion .partner-cup-lane { top: -175vh; }
-.has-cup-motion .partner-cup-sticky { position: sticky; top: 0; height: 100vh; }
-.partner-cup-stage { position: relative; width: min(360px, 38vw, 40svh); aspect-ratio: 1; transform-origin: 50% 50%; }
+.has-cup-motion .partner-cup-lane { top: -175vh; bottom: var(--sponsor-cta-span, 0px); }
+.has-cup-motion .partner-cup-sticky { position: sticky; top: calc(50svh - var(--cup-size) / 2); height: auto; }
+.partner-cup-stage { position: relative; width: var(--cup-size); aspect-ratio: 1; transform-origin: 50% 50%; }
 .partner-cup { display: block; width: 100%; height: 100%; object-fit: contain; transform-origin: 50% 50%; }
 .partner-sponsor-cta { position: relative; padding: 40px 0 85px; display: flex; justify-content: center; }
 .partner-sponsor-cta .partner-button { position: relative; z-index: 1; }
 
 @media (max-width: 991px) {
-  .partner-cup-stage { width: min(320px, 38vw, 40svh); }
+  .partner-brand-wall { --cup-size: min(320px, 38vw, 40svh); }
 }
 @media (max-width: 767px) {
   .partner-wall-intro { margin-bottom: 28px; }
-  .partner-cup-stage { width: min(260px, 52vw, 40svh); }
-  .partner-logo-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 8px 0 70px; row-gap: 22px; }
+  .partner-brand-wall { --cup-size: min(260px, 52vw, 40svh); }
+  .partner-logo-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 8px 0 56px; row-gap: 22px; }
   .partner-logo-grid li:nth-child(n) { grid-column: auto; transform: none; height: 100px; padding: 16px; }
   .partner-logo-grid li:nth-child(3n + 2) { transform: translateY(45px); }
   .partner-logo-grid img { height: 64px; }
-  .partner-sponsor-cta { padding: 40px 0 60px; }
+  .partner-sponsor-cta { padding: 12px 0 28px; }
 }
 @media (max-width: 479px) {
-  .partner-cup-stage { width: min(220px, 58vw, 36svh); }
-  /* Reference phone layout leaves a large open cup area before the CTA. */
-  .partner-sponsor-cta { padding-top: 300px; padding-bottom: 80px; }
+  .partner-brand-wall { --cup-size: min(220px, 58vw, 36svh); }
 }
 @media (prefers-reduced-motion: reduce) {
   .partner-cup-lane { inset: 0; }
@@ -200,20 +202,78 @@
   .partner-cup-stage { transform: none; }
   .partner-cup { transform: none; }
 }
+@media (max-width: 767px) {
+  /* Keep the phone ending in flow: logos, cup, sponsor link, then the contact chapter. */
+  .partner-logo-wall { display: flex; flex-direction: column; }
+  .partner-logo-grid { order: 1; padding-bottom: 12px; }
+  .partner-cup-lane,
+  .has-cup-motion .partner-cup-lane { order: 2; position: relative; inset: auto; top: auto; height: auto; display: flex; justify-content: center; }
+  .partner-cup-sticky,
+  .has-cup-motion .partner-cup-sticky { position: relative; top: auto; height: auto; }
+  .partner-sponsor-cta { order: 3; padding: 20px 0 24px; }
+}
 
-/* Hold the entire sponsor composition while the full-width venue surface covers it. */
-.partner-sponsor-scene { position: relative; z-index: 0; }
+/* Hold the sponsor composition while the contact chapter scrolls over it.
+   With cup motion, that hold waits until the cup has reached the sponsor link. */
+.partner-sponsor-scene { position: relative; z-index: 0; --sponsor-cta-span: 0px; }
 .partner-sponsor-scene.is-layered { --sponsor-overlap: 100svh; height: calc(var(--sponsor-height) + var(--sponsor-overlap)); }
 .is-layered .partner-brand-wall { position: sticky; top: min(0px, calc(100svh - var(--sponsor-height))); }
-.partner-sponsor-scene.is-layered + #venues { margin-top: calc(-1 * var(--sponsor-overlap, 100svh)); }
-#venues, #venue-partnerships { position: relative; z-index: 1; margin-left: 0; margin-right: 0; padding-left: var(--edge); padding-right: var(--edge); background: #101010; color: #fff; border-color: #383838; }
-#venues .partner-copy p, .partnerships-page main #venue-partnerships .showcase-card p { color: #c5c5c5; }
-#venues .partner-button { border-color: #fff; color: #fff; }
-#venues .partner-button:hover { background: #fff; color: #101010; }
-#venues .showcase-media, #venue-partnerships .showcase-media { background: #1d1d1d; border-color: #444; }
-#venues .showcase-media::before, #venues .showcase-media::after, #venue-partnerships .showcase-media::before, #venue-partnerships .showcase-media::after { border-color: #666; }
-#venues .showcase-image-note, #venue-partnerships .showcase-image-note { color: #aaa; }
-#venue-partnerships .carousel-bars button { background: #666; }
-#venue-partnerships .carousel-bars button[aria-current="true"] { background: #fff; }
-#artists { position: relative; z-index: 1; background: #fff; color: var(--ink); }
-.partnerships-page .site-header.is-over-venues .desktop-nav { color: #fff; }
+@media (min-width: 768px) {
+  .partner-sponsor-scene.is-layered:has(.has-cup-motion) .partner-brand-wall {
+    top: calc(50svh + var(--cup-size) / 2 + var(--sponsor-cta-span) - var(--sponsor-height));
+  }
+}
+.partner-sponsor-scene.is-layered + .partner-contact-panel { margin-top: calc(-1 * var(--sponsor-overlap, 100svh)); }
+.partner-contact-panel { position: relative; z-index: 1; margin: 0; padding: 0 var(--edge); background: #101010; color: #fff; }
+.partner-contact-panel .partner-start, .partner-contact-panel .partner-inquiry { margin-left: 0; margin-right: 0; }
+.partner-contact-panel .partner-start li, .partner-contact-panel .partner-inquiry { border-color: #383838; }
+.partner-contact-panel .partner-start li > span { color: #aaa; }
+.partner-contact-panel .partner-start p, .partner-contact-panel .partner-inquiry-heading p, .partnerships-page main .partner-contact-panel .partner-form-action p, .partnerships-page main .partner-contact-panel .partner-feedback { color: #c5c5c5; }
+.partner-contact-panel .partner-button { border-color: #fff; color: #fff; }
+.partner-contact-panel .partner-button:hover { background: #fff; color: #101010; }
+.partner-contact-panel .partner-form input { background: transparent; color: #fff; border-bottom-color: #858585; }
+.partner-contact-panel .partner-form input::placeholder { color: #9a9a9a; }
+.partner-contact-panel .partner-form input:focus-visible { outline-color: #fff; }
+#venues, #artists { position: relative; z-index: 1; background: #fff; color: var(--ink); }
+.partnerships-page .site-header.is-over-contact .desktop-nav { color: #fff; }
+
+/* Second-section gallery: the reference's twelve-column editorial composition. */
+.partner-intro { padding: 0; background: #fff; }
+.partner-gallery { position: relative; padding: 11.11vw 2.7778vw 0; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 1.3889vw; align-items: center; }
+.partner-gallery::before, .partner-gallery::after { content: '⊢'; position: absolute; top: 55%; left: 1.3889vw; font: 16px/1 var(--mono); color: #777; }
+.partner-gallery::after { content: '⊣'; left: auto; right: 1.3889vw; }
+.partner-gallery-thumbs { grid-column: 2; display: grid; gap: .6944vw; }
+.partner-gallery-thumbs button { position: relative; width: 100%; padding: 0; background: transparent; opacity: .4; border: 1px solid transparent; }
+.partner-gallery-thumbs button[aria-current="true"] { opacity: 1; border-color: #333; padding: 2px; }
+.partner-gallery-thumbs img { width: 100%; aspect-ratio: 1.2; object-fit: cover; display: block; }
+.partner-gallery-display { grid-column: 5 / 9; min-width: 0; }
+.partner-gallery-slide { margin: 0; }
+.partner-gallery-slide[hidden], .partner-gallery-copy p[hidden] { display: none; }
+.partner-gallery-slide figcaption { width: fit-content; display: flex; align-items: center; gap: .5em; padding: .6944vw; background: #333; color: white; font: 400 clamp(10px, .8333vw, 16px)/1.2 var(--mono); text-transform: uppercase; }
+.partner-gallery-slide figcaption span:first-child::before { content: ''; display: inline-block; width: .5em; height: .5em; background: white; margin-right: .5em; vertical-align: .1em; }
+.partner-gallery-slide figcaption span:last-child { color: #aaa; }
+.partner-gallery-frame { position: relative; padding: .5556vw; border: 1px solid #c6c6c6; background: linear-gradient(#333,#333) left top/7px 1px no-repeat, linear-gradient(#333,#333) left top/1px 7px no-repeat, linear-gradient(#333,#333) right top/7px 1px no-repeat, linear-gradient(#333,#333) right top/1px 7px no-repeat, linear-gradient(#333,#333) left bottom/7px 1px no-repeat, linear-gradient(#333,#333) left bottom/1px 7px no-repeat, linear-gradient(#333,#333) right bottom/7px 1px no-repeat, linear-gradient(#333,#333) right bottom/1px 7px no-repeat; }
+.partner-gallery-frame img { display: block; width: 100%; aspect-ratio: 1.2; object-fit: cover; }
+.partner-gallery-copy { grid-column: 10 / 12; text-align: justify; }
+.partnerships-page main .partner-gallery-copy p { margin: 0; font: 400 clamp(10px, .8333vw, 16px)/1.2 var(--mono); text-transform: uppercase; }
+.partner-gallery-controls { grid-column: 1 / -1; display: flex; justify-content: center; align-items: center; gap: 16px; margin-top: 20px; font: 400 clamp(10px, .8333vw, 16px)/1.2 var(--mono); text-transform: uppercase; }
+.partner-gallery-controls > button { padding: 2px 0; }
+.partner-gallery-pages { display: flex; gap: 3px; align-items: center; }
+.partner-gallery-pages button { width: 3px; height: 24px; padding: 0; position: relative; }
+.partner-gallery-pages button::before { content: ''; position: absolute; left: 1px; top: 7px; bottom: 7px; width: 1px; background: #999; }
+.partner-gallery-pages button[aria-current="true"]::before { top: 3px; bottom: 3px; background: #111; }
+.partner-intro-actions { padding: 16px var(--edge) 65px; }
+.partner-intro-actions .partner-jump-links { margin-top: 24px; }
+@media (max-width: 767px) {
+  .partner-intro { padding: 0; }
+  .partner-gallery { padding: 60px var(--edge) 0; grid-template-columns: 56px minmax(0, 1fr); gap: 28px 18px; }
+  .partner-gallery::before, .partner-gallery::after { display: none; }
+  .partner-gallery-thumbs { grid-column: 1; gap: 8px; }
+  .partner-gallery-display { grid-column: 2; }
+  .partner-gallery-slide figcaption { font-size: 10px; padding: 8px; }
+  .partner-gallery-frame { padding: 5px; }
+  .partner-gallery-copy { grid-column: 2; }
+  .partnerships-page main .partner-gallery-copy p { font-size: 11px; line-height: 1.4; }
+  .partner-gallery-controls { margin-top: 12px; gap: 20px; font-size: 11px; }
+  .partner-intro-actions { padding-top: 16px; padding-bottom: 45px; }
+}

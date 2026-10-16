@@ -2,6 +2,7 @@ import { initCommunity } from './community.js';
 import { initCarousel } from "./carousel.js";
 import { initGlobe } from "./globe.js";
 import { initIntro } from "./intro.js";
+import { initPageTransition } from "./page-transition.js";
 import { initSignupPreviews } from "./signup.js";
 import { initEvents } from "./events.js";
 import { initStoreLocator } from "./store-locator.js";
@@ -191,11 +192,13 @@ document.querySelectorAll("[data-planned]").forEach((link) =>
 );
 
 menu.querySelectorAll('a[href]:not([data-planned]):not([data-social-placeholder])').forEach((link) => {
-  link.addEventListener("click", async (event) => {
+  link.addEventListener("click", (event) => {
     if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    if (event.defaultPrevented) return;
     event.preventDefault();
-    await closeMenu();
-    location.href = link.href;
+    closeMenu({ immediate: true }).then(() => {
+      location.href = link.href;
+    });
   });
 });
 document
@@ -343,6 +346,7 @@ function initHomepage() {
   initGlobe(reducedMotion);
   initIntro(reducedMotion, mobile);
 }
+initPageTransition(reducedMotion);
 if (document.querySelector(".hero-video")) initHomepage();
 initSignupPreviews();
 initStoreLocator();

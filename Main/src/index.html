@@ -22,9 +22,14 @@
     <script>
       // Set the first frame before paint; keep the page usable if the module fails.
       try {
+        var reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (!reduceMotion && sessionStorage.getItem("coffee-party:page-transition") === "1")
+          document.documentElement.classList.add("page-enter");
+        sessionStorage.removeItem("coffee-party:page-transition");
         if (
+          !document.documentElement.classList.contains("page-enter") &&
           !location.hash &&
-          !matchMedia("(prefers-reduced-motion: reduce)").matches &&
+          !reduceMotion &&
           !sessionStorage.getItem("coffee-party:intro:v1")
         )
           document.documentElement.classList.add("intro-pending");
@@ -32,6 +37,7 @@
         if (!location.hash && !matchMedia("(prefers-reduced-motion: reduce)").matches)
           document.documentElement.classList.add("intro-pending");
       }
+      setTimeout(() => document.documentElement.classList.remove("page-enter"), 4000);
       setTimeout(() => {
         document.documentElement.classList.remove("intro-pending");
         document.querySelectorAll("[data-intro-inert]").forEach((el) => {
@@ -348,7 +354,7 @@
             >
               <fieldset disabled>
                 <legend class="sr-only">Newsletter signup preview</legend>
-                <div class="signup-fields signup-fields-pair">
+                <div class="signup-fields">
                   <label class="signup-field" for="signup-city"
                     >Your city
                     <input

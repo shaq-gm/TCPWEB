@@ -22,9 +22,14 @@
     <script>
       // Set the first frame before paint; keep the page usable if the module fails.
       try {
+        var reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (!reduceMotion && sessionStorage.getItem("coffee-party:page-transition") === "1")
+          document.documentElement.classList.add("page-enter");
+        sessionStorage.removeItem("coffee-party:page-transition");
         if (
+          !document.documentElement.classList.contains("page-enter") &&
           !location.hash &&
-          !matchMedia("(prefers-reduced-motion: reduce)").matches &&
+          !reduceMotion &&
           !sessionStorage.getItem("coffee-party:intro:v1")
         )
           document.documentElement.classList.add("intro-pending");
@@ -32,6 +37,7 @@
         if (!location.hash && !matchMedia("(prefers-reduced-motion: reduce)").matches)
           document.documentElement.classList.add("intro-pending");
       }
+      setTimeout(() => document.documentElement.classList.remove("page-enter"), 4000);
       setTimeout(() => {
         document.documentElement.classList.remove("intro-pending");
         document.querySelectorAll("[data-intro-inert]").forEach((el) => {
@@ -43,7 +49,20 @@
     <script type="module" src="/app.js"></script>
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="page-transition" aria-hidden="true">
+  <p class="page-transition-label">
+    <span class="square"></span><span class="page-transition-text"></span>
+  </p>
+</div>
+<script>
+  try {
+    var transitionLine = sessionStorage.getItem("coffee-party:page-transition-line");
+    if (transitionLine && document.documentElement.classList.contains("page-enter"))
+      document.querySelector(".page-transition-text").textContent = transitionLine;
+    sessionStorage.removeItem("coffee-party:page-transition-line");
+  } catch (e) {}
+</script>
+<a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header" id="site-header">
   <a class="header-logo" href="/" aria-label="Coffee Party home"
     ><img
@@ -417,7 +436,7 @@
             >
               <fieldset disabled>
                 <legend class="sr-only">Newsletter signup preview</legend>
-                <div class="signup-fields signup-fields-pair">
+                <div class="signup-fields">
                   <label class="signup-field" for="signup-city"
                     >Your city
                     <input

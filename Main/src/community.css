@@ -17,7 +17,7 @@
 .community-about-intro, .community-editorial { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 8%; }
 .community-about-intro { align-items: start; }
 .community-about-intro h2 { margin-top: 25px; }
-.community-copy p, .community-project-copy p, .community-ventures p, .community-partner-copy p { font: 400 17px/1.6 Arial, Helvetica, sans-serif; text-transform: none; margin-bottom: 20px; }
+.community-copy p, .community-project-copy p, .community-ventures p, .community-partner-copy p { font: 400 var(--body)/1.22 var(--mono); margin-bottom: 20px; }
 .community-copy .text-link { margin-top: 10px; }
 .community-editorial { margin-top: 100px; }
 .community-editorial > img { width: 100%; height: clamp(420px, 43vw, 650px); object-fit: cover; }
@@ -26,16 +26,16 @@
 .community-editorial.is-reversed > img { order: 2; }
 .community-projects { position: relative; background: white; }
 .community-projects-header { position: sticky; top: 65px; z-index: 6; display: flex; justify-content: space-between; align-items: center; gap: 30px; background: white; padding: 22px var(--edge); border-block: 1px solid #111; }
-.community-projects-header h2 { font: 700 clamp(20px,2vw,32px)/1.15 Arial, Helvetica, sans-serif; letter-spacing: -.035em; max-width: 70%; }
-.community-projects-note { padding: 24px var(--edge); font: 400 14px/1.6 Arial, Helvetica, sans-serif; text-transform: none; max-width: 850px; }
+.community-projects-header h2 { font: 700 clamp(20px,2vw,32px)/1.15 Arial, Helvetica, sans-serif; letter-spacing: -.035em; }
+.community-projects-note { padding: 24px var(--edge); font: 400 var(--body)/1.22 var(--mono); max-width: 850px; }
 .community-project-panel { position: sticky; top: 144px; display: grid; grid-template-columns: 1fr 1fr; min-height: min(660px, calc(100svh - 144px)); border-block: 1px solid #111; background: white; }
 .community-project-panel + .community-project-panel { margin-top: 60px; }
 .community-project-copy { display: flex; flex-direction: column; justify-content: center; align-items: start; padding: 50px clamp(25px,4vw,80px); border-right: 1px solid #111; }
 .community-project-copy h3 { font: 700 clamp(34px,3.7vw,60px)/1 Arial, Helvetica, sans-serif; letter-spacing: -.05em; margin: 24px 0; }
 .community-project-copy p { max-width: 440px; }
-.community-project-copy .community-pending { font: 400 11px/1.5 var(--mono); text-transform: uppercase; color: #666; }
 .community-project-panel figure { padding: clamp(25px,4vw,70px); margin: 0; display: flex; flex-direction: column; justify-content: center; }
-.community-project-panel img { width: 100%; height: min(430px, 48svh); object-fit: cover; }
+.community-project-panel img, .community-project-placeholder { width: 100%; height: min(430px, 48svh); object-fit: cover; }
+.community-project-placeholder { display: flex; align-items: flex-end; padding: 18px; background: #ecebe6; }
 .community-project-panel figcaption { margin-top: 12px; font-size: 10px; line-height: 1.5; }
 .community-ventures { position: relative; background: white; padding: 90px var(--edge) 80px; border-bottom: 1px solid var(--line); }
 .community-ventures-intro { max-width: 800px; }
@@ -48,12 +48,14 @@
 .community-venture-media > span { font: 700 clamp(28px,3vw,48px)/1 Arial, Helvetica, sans-serif; letter-spacing: -.05em; }
 .community-venture-media.is-inverted { background: #151515; color: white; }
 .community-venture-media.is-product { padding: 0; }
+.community-venture-media.is-placeholder { align-items: end; }
 .community-venture-media img { width: 100%; height: 100%; object-fit: contain; min-height: 0; }
+.community-venture-card .eyebrow { display: block; max-width: 100%; }
+.community-venture-card .eyebrow:before { margin-right: 0.6em; }
 .community-venture-card h3 { font: 700 27px/1.1 Arial, Helvetica, sans-serif; letter-spacing: -.04em; margin: 20px 0 15px; }
-.community-venture-card p { font-size: 16px; }
 .community-venture-card .text-link { margin-top: auto; }
 .community-page .signup { margin-top: 0; border-top: 0; margin-bottom: 50px; }
-.community-signup-note { margin-top: 18px; font-size: 12px; line-height: 1.6; text-transform: none; color: #555; }
+.community-signup-note { margin-top: 18px; font: 400 12px/1.5 var(--mono); text-transform: none; color: #555; }
 .community-noscript { margin: 0 var(--edge) 35px; font-size: 13px; }
 .community-partner-callout { min-height: 570px; height: 80svh; display: grid; place-items: center; padding: 90px var(--edge); text-align: center; }
 .community-partner-copy { max-width: 1100px; }
@@ -64,6 +66,7 @@
 @media (max-width: 700px) {
   .community-hero { height: 92svh; min-height: 620px; padding-top: 135px; }
   .community-hero h1 { font-size: clamp(38px,12.4vw,86px); margin: 35px 0; }
+  .community-copy p, .community-project-copy p, .community-ventures p, .community-partner-copy p, .community-projects-note { line-height: 1.3; }
   .community-video-toggle { top: 80px; font-size: 10px; }
   .community-hero-bottom { flex-direction: column; align-items: start; gap: 24px; }
   .community-about { padding-block: 60px; }
@@ -74,13 +77,12 @@
   .community-editorial > img { height: 360px; }
   .community-editorial.is-reversed > img { order: 0; }
   .community-projects-header { top: 0; padding-top: 70px; gap: 15px; align-items: end; }
-  .community-projects-header h2 { font-size: 20px; max-width: 65%; }
-  .community-projects-header .text-link { font-size: 10px; flex: 0 0 90px; }
+  .community-projects-header h2 { font-size: 20px; }
   .community-project-panel { position: relative; top: auto; grid-template-columns: 1fr; min-height: 0; }
   .community-project-copy { border-right: 0; padding: 32px 20px; }
   .community-project-copy h3 { font-size: 38px; margin: 20px 0; }
   .community-project-panel figure { padding: 0 20px 32px; }
-  .community-project-panel img { height: 300px; }
+  .community-project-panel img, .community-project-placeholder { height: 300px; }
   .community-project-panel + .community-project-panel { margin-top: 0; }
   .community-projects-header { position: relative; }
   .community-ventures { padding-block: 60px; }
@@ -97,3 +99,5 @@
   .community-project-panel { position: relative; top: auto; min-height: 600px; }
   .community-projects-header { position: relative; top: auto; }
 }
+.community-venture-media > span.community-image-note,
+.community-project-placeholder .community-image-note { font: 400 10px/1.3 var(--mono); letter-spacing: .04em; text-transform: uppercase; color: #777; }

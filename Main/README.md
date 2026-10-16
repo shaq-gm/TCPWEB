@@ -138,7 +138,7 @@ The page opens with a muted looping video and centered white headline. Existing 
 
 ### Sponsor-to-venue overlap
 
-`src/partnerships.js` measures `.partner-brand-wall` with ResizeObserver. Its `.partner-sponsor-scene` wrapper holds the entire visible sponsor composition while the black Venues panel scrolls over it, using CSS sticky positioning and an overlapping margin. This replaces the earlier approach where only the cup was sticky and the preceding section kept scrolling away. Reduced motion uses ordinary flow. Venues and Recent venue partnerships share a full-width black chapter with light text/controls; Artists is white again. Desktop nav stays legible over the black chapter. No scroll input is intercepted.
+`src/partnerships.js` measures `.partner-brand-wall` with ResizeObserver. Its `.partner-sponsor-scene` wrapper holds the entire visible sponsor composition while the black contact chapter scrolls over it, using CSS sticky positioning and an overlapping margin. That chapter is Let’s get started plus the Get in touch form. Reduced motion uses ordinary flow. Venues and Recent venue partnerships follow on white, matching Artists. Desktop nav stays legible over the black chapter. No scroll input is intercepted.
 
 ### Community video/scroll revision
 
