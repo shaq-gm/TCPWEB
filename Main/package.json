@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "npm run build && node scripts/serve.mjs",
     "build": "node scripts/build.mjs",
-    "check": "node --check src/app.js && node --check src/community.js && node --check src/store-locator.js && node --check src/events.js && node --check src/partnerships.js && node --check src/carousel.js && node --check src/intro.js && node --check src/page-transition.js && node --check src/signup.js && node --check src/globe.js && node --check scripts/build.mjs && node --check scripts/serve.mjs",
+    "check": "node --check src/about.js && node --check src/app.js && node --check src/community.js && node --check src/store-locator.js && node --check src/events.js && node --check src/partnerships.js && node --check src/carousel.js && node --check src/intro.js && node --check src/page-transition.js && node --check src/signup.js && node --check src/globe.js && node --check scripts/build.mjs && node --check scripts/serve.mjs",
     "assets": "node scripts/assets.mjs",
     "test": "node --test tests/store-locator.test.mjs"
   },

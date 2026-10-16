@@ -143,3 +143,7 @@ The page opens with a muted looping video and centered white headline. Existing 
 ### Community video/scroll revision
 
 Community now follows the annotated reference composition: full-height video hero, about section darkening on scroll with alternating images/text, sticky overlapping concept project rows, a Community Ventures carousel, signup previews and a full-width partnership video callout. Source behavior is in src/community.js, initialized only on Community. Both videos reuse supplied loops/posters and have independent controls and motion/data-saving defaults. Phones, short viewports and reduced motion use ordinary project flow; reduced motion has static black about styling. The project panels and two future venture directions are clearly concepts awaiting approved content. Cold brew is the existing real product. Shared carousel pagination and signup logic are reused. See WEBSITE-PLAN.md for QA and limits.
+
+## About page — October 16, 2026
+
+About is built at /our-story. It follows the No Art About layout with a Coffee Party introduction, wide moving photo carousel and the Coffee / Music / People gallery moved from Partnerships. The gallery supports thumbnails, previous/next and keyboard navigation. The photo strip includes pause/play and respects reduced motion/data saver. Restart the preview server after pulling route changes. See WEBSITE-PLAN.md for verification and deferred founder/history content.

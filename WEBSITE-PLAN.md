@@ -1,7 +1,7 @@
 # Coffee Party website: shared project brief
 
 Updated: October 16, 2026
-Status: homepage approved for progression; homepage, shared components, Events listing, Partnerships and Community pages are implemented in `Main/` as a local design preview. SMS/newsletter forms remain preview-only. Event slug/detail pages are explicitly deferred at the user’s request; other pages and provider integrations remain unbuilt.
+Status: homepage approved for progression; homepage, shared components, Events listing, Partnerships, Community and About pages are implemented in `Main/` as a local design preview. SMS/newsletter forms remain preview-only. Event slug/detail pages are explicitly deferred at the user’s request; other pages and provider integrations remain unbuilt.
 
 ## Start here in a new chat
 
@@ -91,15 +91,13 @@ These are content categories, not assertions that Coffee Party currently operate
 - Join / subscribe action.
 - Cross-link to Projects for initiative details rather than repeating full descriptions.
 
-### Our Story `/our-story`
+### About / Our Story `/our-story`
 
-- Founders' vision.
-- Coffee Party values and philosophy.
-- What to expect at an event.
-- History / milestones, with factual dates deferred until supplied.
-- Links to Community and Events.
-
-"About" in navigation points here; do not create a competing About page.
+- Implemented October 16, following https://www.noartmusic.com/about.
+- Opening About label and right-column headline/paragraph, followed by a wide continuous photo carousel.
+- Coffee / Music / People thumbnail gallery moved from Partnerships to this page, with Coffee Party copy and imagery.
+- Shared header/footer; About links now open this page. Keep the existing route; do not create a competing About page.
+- Founders, history and milestones remain deferred until approved facts and assets are supplied.
 
 ### Press `/press` — proposed supporting page
 
@@ -465,3 +463,17 @@ Three slides, Coffee / Music / People, reuse daylight.webp, movement.webp and ga
 Thumbnail buttons, position markers and looping Prev/Next update the image, caption, copy, aria-current and polite status together. Arrow keys and Home/End work within the gallery. Horizontal touch-swipe handling is included without preventing vertical scrolling; real touch hardware remains untested. There is no autoplay or animated transition. Phones keep the thumbnails beside the main image, move copy below it and wrap the action links.
 
 Verification: npm run check and npm run build passed. Browser reviewed desktop and 390px phone layouts; loaded gallery images confirmed. No horizontal overflow at 390px or 320px. Exercised thumbnails, pagination, next wraparound, previous, keyboard Home/End and the inquiry anchor. Checked browser warning/error logs were empty. Sources: Main/src/partnerships.html, partnerships.css and partnerships.js; generated output rebuilt. Screenshot: ignored Main/reports/partner-intro-gallery.png. No deployment. Exact pixel identity is not claimed across different artwork, text and viewports; other browsers, screen readers and physical touch devices remain untested.
+
+## About page — completed October 16, 2026
+
+Read the shared brief and README; inspected the live No Art About page. Recreated its opening twelve-column composition (small left label, right headline and compact monospaced paragraph), horizontal photo strip, and framed thumbnail gallery. Uses Coffee Party film stills and original temporary Coffee Party copy. No reference branding, imagery, founder history or achievements imported. Exact pixel identity is not claimed: artwork, content and the established Arial/Helvetica substitute differ.
+
+Built the page at the existing /our-story route, retaining the plan's single About destination. Activated About links throughout generated navigation, footer and homepage. Order: About introduction; wide photo carousel; Coffee / Music / People gallery; shared footer. The reference's founders chapter is outside this request and remains deferred pending approved facts.
+
+Moved the former Partnerships gallery HTML/CSS/JS to About. Partnerships retains a compact text introduction, Let's get started inquiry action and section links. Pre-existing venue/artist/collaboration edits were preserved. Gallery copy now describes Coffee Party's coffee, music and people rather than brand inquiry opportunities.
+
+The photo strip moves continuously with pause/play, previous/next, keyboard arrows and native horizontal touch scrolling. Hover/focus, hidden tabs and offscreen visibility suspend motion; reduced motion/data saver start paused. Duplicate visual slides are hidden from accessibility APIs. The three-image gallery retains synchronized thumbnails, caption, text, position markers, looping Prev/Next, arrow/Home/End keys and touch-swipe handling. Shared mobile menu and pending-page dialog are included.
+
+Implementation: Main/src/our-story.html, about.css and about.js; app initialization, build route/style copying, preview server route and syntax-check command updated. Generated output rebuilt. Preview currently runs at http://127.0.0.1:3101/our-story because port 3100 was already occupied by an older server; restart the usual server to load its new route handling.
+
+Verification: syntax/build passed. Desktop and 390px phone layouts visually reviewed; 320px checked for horizontal overflow (none). Exercised gallery thumbnails, looping next and keyboard End, photo Next (paused automatic motion and advanced the track), mobile menu opening/closing, and Partners inquiry CTA. A missing shared preview dialog found during QA was added, restoring initialization; a fresh final About tab had no warning/error logs. Motion/data-saver source paths reviewed; OS preferences, screen readers, other browsers and real touch hardware remain untested. No deployment.

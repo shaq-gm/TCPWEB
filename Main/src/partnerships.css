@@ -237,43 +237,5 @@
 #venues, #artists { position: relative; z-index: 1; background: #fff; color: var(--ink); }
 .partnerships-page .site-header.is-over-contact .desktop-nav { color: #fff; }
 
-/* Second-section gallery: the reference's twelve-column editorial composition. */
-.partner-intro { padding: 0; background: #fff; }
-.partner-gallery { position: relative; padding: 11.11vw 2.7778vw 0; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 1.3889vw; align-items: center; }
-.partner-gallery::before, .partner-gallery::after { content: '⊢'; position: absolute; top: 55%; left: 1.3889vw; font: 16px/1 var(--mono); color: #777; }
-.partner-gallery::after { content: '⊣'; left: auto; right: 1.3889vw; }
-.partner-gallery-thumbs { grid-column: 2; display: grid; gap: .6944vw; }
-.partner-gallery-thumbs button { position: relative; width: 100%; padding: 0; background: transparent; opacity: .4; border: 1px solid transparent; }
-.partner-gallery-thumbs button[aria-current="true"] { opacity: 1; border-color: #333; padding: 2px; }
-.partner-gallery-thumbs img { width: 100%; aspect-ratio: 1.2; object-fit: cover; display: block; }
-.partner-gallery-display { grid-column: 5 / 9; min-width: 0; }
-.partner-gallery-slide { margin: 0; }
-.partner-gallery-slide[hidden], .partner-gallery-copy p[hidden] { display: none; }
-.partner-gallery-slide figcaption { width: fit-content; display: flex; align-items: center; gap: .5em; padding: .6944vw; background: #333; color: white; font: 400 clamp(10px, .8333vw, 16px)/1.2 var(--mono); text-transform: uppercase; }
-.partner-gallery-slide figcaption span:first-child::before { content: ''; display: inline-block; width: .5em; height: .5em; background: white; margin-right: .5em; vertical-align: .1em; }
-.partner-gallery-slide figcaption span:last-child { color: #aaa; }
-.partner-gallery-frame { position: relative; padding: .5556vw; border: 1px solid #c6c6c6; background: linear-gradient(#333,#333) left top/7px 1px no-repeat, linear-gradient(#333,#333) left top/1px 7px no-repeat, linear-gradient(#333,#333) right top/7px 1px no-repeat, linear-gradient(#333,#333) right top/1px 7px no-repeat, linear-gradient(#333,#333) left bottom/7px 1px no-repeat, linear-gradient(#333,#333) left bottom/1px 7px no-repeat, linear-gradient(#333,#333) right bottom/7px 1px no-repeat, linear-gradient(#333,#333) right bottom/1px 7px no-repeat; }
-.partner-gallery-frame img { display: block; width: 100%; aspect-ratio: 1.2; object-fit: cover; }
-.partner-gallery-copy { grid-column: 10 / 12; text-align: justify; }
-.partnerships-page main .partner-gallery-copy p { margin: 0; font: 400 clamp(10px, .8333vw, 16px)/1.2 var(--mono); text-transform: uppercase; }
-.partner-gallery-controls { grid-column: 1 / -1; display: flex; justify-content: center; align-items: center; gap: 16px; margin-top: 20px; font: 400 clamp(10px, .8333vw, 16px)/1.2 var(--mono); text-transform: uppercase; }
-.partner-gallery-controls > button { padding: 2px 0; }
-.partner-gallery-pages { display: flex; gap: 3px; align-items: center; }
-.partner-gallery-pages button { width: 3px; height: 24px; padding: 0; position: relative; }
-.partner-gallery-pages button::before { content: ''; position: absolute; left: 1px; top: 7px; bottom: 7px; width: 1px; background: #999; }
-.partner-gallery-pages button[aria-current="true"]::before { top: 3px; bottom: 3px; background: #111; }
-.partner-intro-actions { padding: 16px var(--edge) 65px; }
-.partner-intro-actions .partner-jump-links { margin-top: 24px; }
-@media (max-width: 767px) {
-  .partner-intro { padding: 0; }
-  .partner-gallery { padding: 60px var(--edge) 0; grid-template-columns: 56px minmax(0, 1fr); gap: 28px 18px; }
-  .partner-gallery::before, .partner-gallery::after { display: none; }
-  .partner-gallery-thumbs { grid-column: 1; gap: 8px; }
-  .partner-gallery-display { grid-column: 2; }
-  .partner-gallery-slide figcaption { font-size: 10px; padding: 8px; }
-  .partner-gallery-frame { padding: 5px; }
-  .partner-gallery-copy { grid-column: 2; }
-  .partnerships-page main .partner-gallery-copy p { font-size: 11px; line-height: 1.4; }
-  .partner-gallery-controls { margin-top: 12px; gap: 20px; font-size: 11px; }
-  .partner-intro-actions { padding-top: 16px; padding-bottom: 45px; }
-}
+
+.partner-intro-actions { padding-top: 0; }

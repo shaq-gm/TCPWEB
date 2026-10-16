@@ -2,7 +2,6 @@ import { initCarousel } from "./carousel.js";
 export function initPartnershipPreview() {
   initPartnerHero();
   initFeatureVideos();
-  initPartnerIntroGallery();
   document.querySelectorAll('[data-showcase]').forEach(section => {
     initCarousel({
       track: section.querySelector('.showcase-track'),
@@ -190,41 +189,4 @@ function initSponsorOverlay() {
   motion.addEventListener('change', layout);
   layout();
   schedule();
-}
-
-// A discrete, looping three-image gallery; thumbnails and pagination stay in sync.
-function initPartnerIntroGallery() {
-  const gallery = document.querySelector('.partner-gallery');
-  if (!gallery) return;
-  const slides = [...gallery.querySelectorAll('[data-gallery-slide]')];
-  const copies = [...gallery.querySelectorAll('[data-gallery-copy]')];
-  const selectors = [...gallery.querySelectorAll('[data-partner-slide]')];
-  const status = gallery.querySelector('[data-gallery-status]');
-  let current = 0;
-  function show(index) {
-    current = (index + slides.length) % slides.length;
-    slides.forEach((slide, i) => { slide.hidden = i !== current; });
-    copies.forEach((copy, i) => { copy.hidden = i !== current; });
-    selectors.forEach(button => button.setAttribute('aria-current', String(Number(button.dataset.partnerSlide) === current)));
-    status.textContent = `${slides[current].querySelector('figcaption').textContent.trim()}`;
-  }
-  selectors.forEach(button => button.addEventListener('click', () => show(Number(button.dataset.partnerSlide))));
-  gallery.querySelector('[data-gallery-prev]').addEventListener('click', () => show(current - 1));
-  gallery.querySelector('[data-gallery-next]').addEventListener('click', () => show(current + 1));
-  gallery.addEventListener('keydown', event => {
-    if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
-    event.preventDefault();
-    show(event.key === 'Home' ? 0 : event.key === 'End' ? slides.length - 1 : current + (event.key === 'ArrowLeft' ? -1 : 1));
-  });
-  let touchStart;
-  const display = gallery.querySelector('.partner-gallery-display');
-  display.addEventListener('touchstart', event => { touchStart = event.touches.length === 1 ? { x: event.touches[0].clientX, y: event.touches[0].clientY } : null; }, { passive: true });
-  display.addEventListener('touchend', event => {
-    if (!touchStart) return;
-    const dx = event.changedTouches[0].clientX - touchStart.x;
-    const dy = event.changedTouches[0].clientY - touchStart.y;
-    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) show(current + (dx < 0 ? 1 : -1));
-    touchStart = null;
-  }, { passive: true });
-  display.addEventListener('touchcancel', () => { touchStart = null; }, { passive: true });
 }

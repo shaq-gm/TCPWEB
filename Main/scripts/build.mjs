@@ -47,7 +47,7 @@ for (const file of await readdir("../Assests/brand-logos")) {
   if (/\.png$/i.test(file))
     await copyFile(`../Assests/brand-logos/${file}`, `dist/assets/brand-logos/${file}`);
 }
-for (const page of ["index", "events", "partnerships", "community"]) {
+for (const page of ["index", "events", "partnerships", "community", "our-story"]) {
   let html = await readFile(`src/${page}.html`, "utf8");
   html = html.replace("<!-- press:cards -->", pressCards.join("\n"));
   for (const part of ["header", "footer", "community-signup"])
@@ -56,7 +56,8 @@ for (const page of ["index", "events", "partnerships", "community"]) {
       await readFile(`src/components/${part}.html`, "utf8"),
     );
   // Activate built routes in shared navigation and contextual links.
-  html = html.replace(/\sdata-planned="(?:Events|Tickets|Partnerships|Community)"/g, "");
+  html = html.replace(/\sdata-planned="(?:Events|Tickets|Partnerships|Community|Our Story)"/g, "");
+  if (page === "our-story") html = html.replaceAll('href="/our-story"', 'href="/our-story" aria-current="page"');
   if (page === "community") html = html.replaceAll('href="/community"', 'href="/community" aria-current="page"');
   if (page !== "index") {
     if (!["partnerships", "community"].includes(page)) html = html.replace('/assets/logo-white.svg', '/assets/logo-black.svg');
@@ -67,6 +68,7 @@ for (const page of ["index", "events", "partnerships", "community"]) {
 await copyFile("src/styles.css", "dist/styles.css");
 await copyFile("src/partnerships.css", "dist/partnerships.css");
 await copyFile("src/community.css", "dist/community.css");
+await copyFile("src/about.css", "dist/about.css");
 await build({
   entryPoints: ["src/app.js"],
   bundle: true,

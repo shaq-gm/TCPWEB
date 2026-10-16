@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#ffffff" /><meta name="robots" content="noindex, nofollow" />
+<meta name="description" content="Coffee, music and human connection. Discover The Coffee Party." />
+<title>About — The Coffee Party</title>
+<link rel="icon" href="/assets/logo-black.svg" type="image/svg+xml" />
+<link rel="preload" href="/assets/fonts/chivo-mono-regular.ttf" as="font" type="font/ttf" crossorigin />
+<link rel="stylesheet" href="/styles.css" /><link rel="stylesheet" href="/about.css" /><script>try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&sessionStorage.getItem("coffee-party:page-transition")==="1")document.documentElement.classList.add("page-enter");sessionStorage.removeItem("coffee-party:page-transition")}catch(e){}setTimeout(function(){document.documentElement.classList.remove("page-enter")},4000)</script><script type="module" src="/app.js"></script>
+</head><body class="about-page">
+<!-- shared:header -->
+<main id="main">
+<section class="about-intro" aria-labelledby="about-title">
+  <span class="about-tag">About The Coffee Party</span>
+  <div class="about-intro-copy"><h1 id="about-title">Connecting people with coffee, music &amp; human connection</h1>
+  <p>The Coffee Party brings people together through coffee, music and daytime experiences. We start with a familiar ritual and turn it into a shared dance floor. A place to discover a new sound, catch up with friends or strike up a conversation with someone you haven’t met yet. Coffee is the starting point. Connection is what stays with you.</p></div>
+</section>
+<section class="about-photos" aria-label="Coffee Party moments">
+  <div class="about-photo-track" id="about-photo-track" role="region" aria-roledescription="carousel" aria-label="Coffee Party photo carousel. Use Left and Right arrows to browse." tabindex="0"><figure><img src="/assets/gathering.webp" alt="A gathering from the Coffee Party film" width="800" height="600" loading="lazy" /></figure><figure><img src="/assets/movement.webp" alt="Music and movement at Coffee Party" width="800" height="600" loading="lazy" /></figure><figure><img src="/assets/daylight.webp" alt="A daytime moment from the Coffee Party film" width="800" height="600" loading="lazy" /></figure><figure><img src="/assets/morning.webp" alt="A morning from the Coffee Party film" width="800" height="600" loading="lazy" /></figure><figure><img src="/assets/location-toronto.webp" alt="A Coffee Party event scene" width="800" height="600" loading="lazy" /></figure><figure><img src="/assets/location-barcelona.webp" alt="A Coffee Party dance floor" width="800" height="600" loading="lazy" /></figure></div>
+  <div class="about-photo-controls"><button type="button" data-photo-prev aria-controls="about-photo-track" aria-label="Previous photos">‹ Prev</button><button type="button" data-photo-pause aria-controls="about-photo-track" aria-label="Pause photo carousel" aria-pressed="false" hidden>Pause</button><button type="button" data-photo-next aria-controls="about-photo-track" aria-label="Next photos">Next ›</button></div>
+</section>
+<section class="about-values" aria-label="Coffee, music and people">  <div class="about-gallery" role="region" aria-roledescription="carousel" aria-label="Coffee, music and people" tabindex="0">
+    <div class="about-gallery-thumbs" aria-label="Choose an image">
+      <button type="button" data-about-slide="0" aria-label="Show coffee, 1 of 3" aria-controls="about-gallery-display" aria-current="true"><img src="/assets/daylight.webp" alt="" loading="lazy" /></button>
+      <button type="button" data-about-slide="1" aria-label="Show music, 2 of 3" aria-controls="about-gallery-display" aria-current="false"><img src="/assets/movement.webp" alt="" loading="lazy" /></button>
+      <button type="button" data-about-slide="2" aria-label="Show people, 3 of 3" aria-controls="about-gallery-display" aria-current="false"><img src="/assets/gathering.webp" alt="" loading="lazy" /></button>
+    </div>
+    <div class="about-gallery-display" id="about-gallery-display">
+      <figure class="about-gallery-slide" data-gallery-slide><figcaption><span>Coffee</span> <span>(1 of 3)</span></figcaption><div class="about-gallery-frame"><img src="/assets/daylight.webp" alt="A daytime moment from the Coffee Party film" loading="lazy" /></div></figure>
+      <figure class="about-gallery-slide" data-gallery-slide hidden><figcaption><span>Music</span> <span>(2 of 3)</span></figcaption><div class="about-gallery-frame"><img src="/assets/movement.webp" alt="Music and movement from the Coffee Party film" loading="lazy" /></div></figure>
+      <figure class="about-gallery-slide" data-gallery-slide hidden><figcaption><span>People</span> <span>(3 of 3)</span></figcaption><div class="about-gallery-frame"><img src="/assets/gathering.webp" alt="A gathering from the Coffee Party film" loading="lazy" /></div></figure>
+    </div>
+    <div class="about-gallery-copy">
+      <p data-gallery-copy>Coffee is where we begin. A familiar ritual becomes a reason to step out, meet someone new and share a little more of the day.</p>
+      <p data-gallery-copy hidden>Music brings the room together. From the first track to the last dance, it gives every Coffee Party its energy and makes space for discovery.</p>
+      <p data-gallery-copy hidden>People make the party. Come with friends or arrive on your own: our gatherings are about shared moments, new conversations and feeling part of something.</p>
+    </div>
+    <div class="about-gallery-controls">
+      <button type="button" data-gallery-prev aria-label="Previous about image" aria-controls="about-gallery-display">‹ Prev</button>
+      <div class="about-gallery-pages" aria-label="Choose a slide">
+        <button type="button" data-about-slide="0" aria-label="Go to coffee slide, 1 of 3" aria-controls="about-gallery-display" aria-current="true"></button>
+        <button type="button" data-about-slide="1" aria-label="Go to music slide, 2 of 3" aria-controls="about-gallery-display" aria-current="false"></button>
+        <button type="button" data-about-slide="2" aria-label="Go to people slide, 3 of 3" aria-controls="about-gallery-display" aria-current="false"></button>
+      </div>
+      <button type="button" data-gallery-next aria-label="Next about image" aria-controls="about-gallery-display">Next ›</button>
+    </div>
+    <p class="sr-only" data-gallery-status role="status" aria-live="polite"></p>
+  </div>
+</section>
+</main>
+<!-- shared:footer -->
+<dialog class="preview-dialog" id="preview-dialog" aria-labelledby="dialog-heading"><button class="icon-button dialog-close" data-close-dialog aria-label="Close notice">×</button><span class="eyebrow">The Coffee Party</span><h2 id="dialog-heading">Good things are brewing.</h2><p id="dialog-copy"></p><button class="text-link" data-close-dialog>Back to the party <span aria-hidden="true">↳</span></button></dialog>
+</body></html>
