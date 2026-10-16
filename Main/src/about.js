@@ -4,8 +4,7 @@ export function initAbout() {
  initPhotoStrip();
 }
 // A discrete, looping three-image gallery; thumbnails and pagination stay in sync.
-function initAboutGallery() {
-  const gallery = document.querySelector('.about-gallery');
+export function initAboutGallery(gallery = document.querySelector('.about-gallery')) {
   if (!gallery) return;
   const slides = [...gallery.querySelectorAll('[data-gallery-slide]')];
   const copies = [...gallery.querySelectorAll('[data-gallery-copy]')];

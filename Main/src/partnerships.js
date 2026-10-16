@@ -1,7 +1,11 @@
+import { initAboutGallery } from "./about.js";
 import { initCarousel } from "./carousel.js";
 export function initPartnershipPreview() {
   initPartnerHero();
   initFeatureVideos();
+  const venueGallery = document.querySelector('.venue-gallery');
+  initAboutGallery(venueGallery);
+  initVenueAutoplay(venueGallery);
   document.querySelectorAll('[data-showcase]').forEach(section => {
     initCarousel({
       track: section.querySelector('.showcase-track'),
@@ -189,4 +193,43 @@ function initSponsorOverlay() {
   motion.addEventListener('change', layout);
   layout();
   schedule();
+}
+
+function initVenueAutoplay(gallery) {
+  if (!gallery) return;
+  const motion = matchMedia('(prefers-reduced-motion: reduce)');
+  const toggle = gallery.querySelector('[data-gallery-pause]');
+  let paused = motion.matches, visible = false, hovering = false, focused = false, timer;
+  function schedule() {
+    clearTimeout(timer);
+    if (paused || !visible || hovering || focused || document.hidden) return;
+    timer = setTimeout(() => {
+      gallery.querySelector('[data-gallery-next]').click();
+    }, Number(gallery.dataset.galleryAutoplay));
+  }
+  function update() {
+    toggle.querySelector('path').setAttribute('d', paused ? 'M4 2l9 6-9 6z' : 'M4 3h3v10H4zM9 3h3v10H9z');
+    toggle.setAttribute('aria-label', paused ? 'Play venue carousel' : 'Pause venue carousel');
+    toggle.setAttribute('aria-pressed', String(paused));
+    gallery.querySelector('[data-gallery-status]').setAttribute('aria-live', paused || focused ? 'polite' : 'off');
+    schedule();
+  }
+  toggle.addEventListener('click', () => { paused = !paused; update(); });
+  gallery.addEventListener('click', () => {
+    const thumbs = gallery.querySelector('.about-gallery-thumbs');
+    const active = thumbs.querySelector('[aria-current="true"]');
+    if (active.offsetTop < thumbs.scrollTop) thumbs.scrollTop = active.offsetTop;
+    else if (active.offsetTop + active.offsetHeight > thumbs.scrollTop + thumbs.clientHeight) thumbs.scrollTop = active.offsetTop + active.offsetHeight - thumbs.clientHeight;
+    schedule();
+  });
+  gallery.addEventListener('keydown', schedule);
+  gallery.addEventListener('pointerenter', () => { hovering = true; schedule(); });
+  gallery.addEventListener('pointerleave', () => { hovering = false; schedule(); });
+  gallery.addEventListener('focusin', () => { focused = true; update(); });
+  gallery.addEventListener('focusout', event => { if (!gallery.contains(event.relatedTarget)) { focused = false; update(); } });
+  document.addEventListener('visibilitychange', schedule);
+  motion.addEventListener('change', () => { if (motion.matches) paused = true; update(); });
+  new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; schedule(); }, { threshold: .35 }).observe(gallery);
+  window.addEventListener('pagehide', () => clearTimeout(timer), { once: true });
+  update();
 }

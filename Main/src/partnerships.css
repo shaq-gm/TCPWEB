@@ -239,3 +239,30 @@
 
 
 .partner-intro-actions { padding-top: 0; }
+
+/* Fit the About gallery into the venue section's media column. */
+.venue-gallery { min-width: 0; padding: 0; grid-template-columns: clamp(44px, 5.5vw, 76px) minmax(0, 1fr); gap: 0 clamp(12px, 2vw, 28px); }
+.venue-gallery::before, .venue-gallery::after { display: none; }
+.venue-gallery .about-gallery-thumbs { grid-column: 1; gap: 8px; }
+.venue-gallery .about-gallery-display { grid-column: 2; }
+.venue-gallery .about-gallery-slide figcaption { padding: 8px; font-size: 10px; }
+.venue-gallery .about-gallery-frame { padding: 5px; }
+.venue-gallery .about-gallery-controls { margin-top: 22px; font-size: 11px; }
+@media (max-width: 700px) {
+  .venue-gallery { grid-template-columns: 48px minmax(0, 1fr); column-gap: 14px; }
+}
+
+.venue-gallery .about-gallery-thumbs { position: relative; max-height: 300px; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; align-content: start; }
+.venue-gallery .about-gallery-thumbs button { min-height: 48px; opacity: .55; background: #f0f0ee; }
+.venue-gallery .about-gallery-thumbs button[aria-current="true"] { opacity: 1; }
+.venue-thumb-label { display: block; padding: 5px 2px; font: 400 8px/1.25 var(--mono); text-transform: uppercase; overflow-wrap: anywhere; }
+.venue-image-placeholder { aspect-ratio: 1.2; display: grid; place-items: center; background: #f3f3f1; color: #777; font: 400 11px/1.4 var(--mono); text-transform: uppercase; }
+.venue-gallery .about-gallery-controls { flex-wrap: wrap; gap: 12px; }
+.venue-gallery .about-gallery-pages { gap: 5px; }
+@media (max-width: 700px) {
+  .venue-gallery .about-gallery-thumbs { max-height: 200px; }
+  .venue-gallery .about-gallery-controls { column-gap: 10px; }
+}
+
+.venue-gallery .about-gallery-controls { grid-column: 2; }
+.venue-gallery [data-gallery-pause] { display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
