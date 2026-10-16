@@ -1,0 +1,310 @@
+[
+  {
+    "id": "summerhill-rosedale",
+    "brand": "Summerhill Market",
+    "branch": "Rosedale",
+    "address": "446 Summerhill Avenue",
+    "city": "Toronto",
+    "status": "confirmed",
+    "coordinates": [
+      -79.3753825,
+      43.6865067
+    ],
+    "geocodeLabel": "446 Summerhill Avenue Summerhill Market Toronto",
+    "coordinatePrecision": "address"
+  },
+  {
+    "id": "summerhill-sherwood",
+    "brand": "Summerhill Market",
+    "branch": "Sherwood",
+    "address": "1054 Mount Pleasant Road",
+    "city": "Toronto",
+    "status": "confirmed",
+    "coordinates": [
+      -79.39314,
+      43.71561
+    ],
+    "geocodeLabel": "1054 Mount Pleasant Road Toronto",
+    "coordinatePrecision": "address"
+  },
+  {
+    "id": "summerhill-annex",
+    "brand": "Summerhill Market",
+    "branch": "Annex",
+    "address": "1014 Bathurst Street",
+    "city": "Toronto",
+    "status": "confirmed",
+    "coordinates": [
+      -79.4138341,
+      43.6708623
+    ],
+    "geocodeLabel": "1014 Bathurst Street Summerhill Market Toronto",
+    "coordinatePrecision": "address"
+  },
+  {
+    "id": "summerhill-forest-hill",
+    "brand": "Summerhill Market",
+    "branch": "Forest Hill",
+    "address": "484 Eglinton Avenue West",
+    "city": "Toronto",
+    "status": "confirmed",
+    "coordinates": [
+      -79.4128295,
+      43.7039439
+    ],
+    "geocodeLabel": "484 Eglinton Avenue West Toronto",
+    "coordinatePrecision": "address"
+  },
+  {
+    "id": "summerhill-dundas",
+    "brand": "Summerhill Market",
+    "branch": "Dundas",
+    "address": "3609 Dundas Street West",
+    "city": "Toronto",
+    "status": "confirmed",
+    "coordinates": [
+      -79.49414,
+      43.66548
+    ],
+    "geocodeLabel": "3609 Dundas Street West Toronto",
+    "coordinatePrecision": "address"
+  },
+  {
+    "id": "summerhill-aurora",
+    "brand": "Summerhill Market",
+    "branch": "Aurora",
+    "address": "32 Wellington Street West",
+    "city": "Aurora",
+    "status": "confirmed",
+    "coordinates": [
+      -79.4696721,
+      43.9993327
+    ],
+    "geocodeLabel": "32 Wellington Street West Aurora",
+    "coordinatePrecision": "address"
+  },
+  {
+    "id": "life-time",
+    "brand": "Life Time",
+    "branch": "Woodbridge",
+    "address": "7405 Weston Road",
+    "city": "Vaughan",
+    "status": "active",
+    "coordinates": [
+      -79.5435438,
+      43.7790594
+    ],
+    "geocodeLabel": "7405 Weston Road Life Time Vaughan",
+    "coordinatePrecision": "address"
+  },
+  {
+    "id": "pure-athletic",
+    "brand": "Pure Athletic Club",
+    "branch": "Barrie",
+    "address": "204 Mapleview Drive West, Unit 8",
+    "city": "Barrie",
+    "status": "reported",
+    "coordinates": [
+      -79.703646,
+      44.3313241
+    ],
+    "geocodeLabel": "204 Mapleview Drive West Barrie",
+    "coordinatePrecision": "address"
+  },
+  {
+    "id": "pure-muscle",
+    "brand": "Pure Muscle + Fitness",
+    "branch": "Burlington",
+    "address": "5070 Benson Drive, Unit 105",
+    "city": "Burlington",
+    "status": "reported",
+    "coordinates": [
+      -79.7724211,
+      43.3856355
+    ],
+    "geocodeLabel": "5070 Benson Drive Burlington",
+    "coordinatePrecision": "address"
+  },
+  {
+    "id": "eagles-nest",
+    "brand": "Eagles Nest Golf Club",
+    "branch": "Maple",
+    "address": "10000 Dufferin Street",
+    "city": "Maple",
+    "status": "active",
+    "coordinates": [
+      -79.4909146,
+      43.8673095
+    ],
+    "geocodeLabel": "10000 Dufferin Street Eagles Nest Golf Club Vaughan",
+    "coordinatePrecision": "address"
+  },
+  {
+    "id": "roses",
+    "brand": "ROSES Social at Hotel X",
+    "branch": "Toronto",
+    "address": "111 Princes’ Boulevard, 2nd Floor",
+    "city": "Toronto",
+    "status": "active",
+    "coordinates": [
+      -79.411965,
+      43.6331836
+    ],
+    "geocodeLabel": "111 Princes' Boulevard Hotel X Toronto Toronto",
+    "coordinatePrecision": "address"
+  },
+  {
+    "id": "orangetheory",
+    "brand": "Orangetheory Fitness",
+    "branch": "Port Credit",
+    "address": "515 Lakeshore Road East, Unit 105",
+    "city": "Mississauga",
+    "status": "active",
+    "coordinates": [
+      -79.5708246,
+      43.5664831
+    ],
+    "geocodeLabel": "515 Lakeshore Road East Mississauga",
+    "coordinatePrecision": "address"
+  },
+  {
+    "id": "revitasize-midtown",
+    "brand": "Revitasize",
+    "branch": "Midtown",
+    "address": "2631 Yonge Street",
+    "city": "Toronto",
+    "status": "rollout",
+    "coordinates": [
+      -79.3998,
+      43.71528
+    ],
+    "geocodeLabel": "2631 Yonge Street Toronto",
+    "coordinatePrecision": "address"
+  },
+  {
+    "id": "revitasize-east-york",
+    "brand": "Revitasize",
+    "branch": "East York",
+    "address": "1012 Coxwell Avenue",
+    "city": "East York",
+    "status": "rollout",
+    "coordinates": [
+      -79.3292413,
+      43.6965509
+    ],
+    "geocodeLabel": "1012 Coxwell Avenue What's in Fashion Toronto",
+    "coordinatePrecision": "address"
+  },
+  {
+    "id": "revitasize-exchange",
+    "brand": "Revitasize",
+    "branch": "Exchange Tower",
+    "address": "130 King Street West, CU14, Concourse/PATH",
+    "city": "Toronto",
+    "status": "rollout",
+    "coordinates": [
+      -79.3832425,
+      43.6484179
+    ],
+    "geocodeLabel": "130 King Street West Exchange Tower Toronto",
+    "coordinatePrecision": "address"
+  },
+  {
+    "id": "revitasize-centre",
+    "brand": "Revitasize",
+    "branch": "Centre & Dufferin",
+    "address": "1470 Centre Street, Unit 15",
+    "city": "Thornhill",
+    "status": "rollout",
+    "coordinates": [
+      -79.474145,
+      43.8065666
+    ],
+    "geocodeLabel": "1470 Centre Street Tim Hortons Thornhill",
+    "coordinatePrecision": "address"
+  },
+  {
+    "id": "revitasize-bathurst",
+    "brand": "Revitasize",
+    "branch": "Bathurst & Rutherford",
+    "address": "9200 Bathurst Street, Unit C7",
+    "city": "Thornhill",
+    "status": "rollout",
+    "coordinates": [
+      -79.4597172,
+      43.8471045
+    ],
+    "geocodeLabel": "9200 Bathurst Street Thornhill",
+    "coordinatePrecision": "address"
+  },
+  {
+    "id": "revitasize-markham",
+    "brand": "Revitasize",
+    "branch": "Markham",
+    "address": "8570 Woodbine Avenue, Unit D-2",
+    "city": "Markham",
+    "status": "rollout",
+    "coordinates": [
+      -79.3589791,
+      43.8515078
+    ],
+    "geocodeLabel": "8570 Woodbine Avenue Revitasize Markham",
+    "coordinatePrecision": "address"
+  },
+  {
+    "id": "revitasize-aurora",
+    "brand": "Revitasize",
+    "branch": "Aurora",
+    "address": "15975 Bayview Avenue, Unit B2-A",
+    "city": "Aurora",
+    "status": "rollout",
+    "coordinates": [
+      -79.4472147,
+      44.0234374
+    ],
+    "geocodeLabel": "15975 Bayview Avenue Sunny Morning Breakfast & Lunch Aurora",
+    "coordinatePrecision": "address"
+  },
+  {
+    "id": "revitasize-woodbridge",
+    "brand": "Revitasize",
+    "branch": "Woodbridge",
+    "address": "3560 Major Mackenzie Drive West, Unit 8",
+    "city": "Woodbridge",
+    "status": "rollout",
+    "coordinates": [
+      -79.5533822,
+      43.8469017
+    ],
+    "geocodeLabel": "3560 Major MacKenzie Drive West Revitasize Vaughan",
+    "coordinatePrecision": "address"
+  },
+  {
+    "id": "revitasize-sudo",
+    "brand": "Revitasize",
+    "branch": "Club Sudo",
+    "address": "16 Famous Avenue, Unit 145",
+    "city": "Vaughan",
+    "status": "rollout",
+    "coordinates": [
+      -79.5448635,
+      43.7888766
+    ],
+    "geocodeLabel": "16 Famous Avenue Vaughan",
+    "coordinatePrecision": "address"
+  },
+  {
+    "id": "revitasize-one-health",
+    "brand": "Revitasize",
+    "branch": "One Health",
+    "address": "2021 Cliff Road",
+    "city": "Mississauga",
+    "status": "rollout",
+    "coordinates": [
+      -79.591884,
+      43.576153
+    ],
+    "geocodeLabel": "2021 Cliff Road Mississauga",
+    "coordinatePrecision": "address"
+  }
+]

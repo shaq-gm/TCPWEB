@@ -1,7 +1,7 @@
 # Coffee Party website: shared project brief
 
 Updated: October 15, 2026
-Status: homepage and shared header/menu/footer implemented in `Main/` as a local design preview. A two-column SMS/newsletter signup UI now sits below Upcoming Events. Forms are preview-only; SMS/email integrations and other pages remain unbuilt.
+Status: homepage approved for progression; homepage, shared components and the Events listing are implemented in `Main/` as a local design preview. SMS/newsletter forms remain preview-only. Event slug/detail pages are explicitly deferred at the user’s request; other pages and provider integrations remain unbuilt.
 
 ## Start here in a new chat
 
@@ -15,7 +15,7 @@ Build the public Coffee Party website first. Work page by page, reviewing the ho
 
 1. Establish sitemap, section outlines, navigation, and visitor journeys (this brief).
 2. Inspect No Art visually on desktop and mobile; record design values and actual interactions. Build shared header/menu/footer and the homepage with supplied Coffee Party assets and original placeholder copy. Review and finalize this stage.
-3. Build Events and its detail template using No Art's events reference. Decide real event content at this stage.
+3. Build Events using No Art’s events reference (listing implemented October 15). The user explicitly deferred event slug/detail pages. Confirm real event content before launch.
 4. Build Partnerships and its inquiry section; add detailed collaboration pages when approved material is available.
 5. Build Community, Our Story, and Projects individually.
 6. Add Press, general Contact, and legal/support content as needed; perform complete navigation, responsive, accessibility, search, and launch verification.
@@ -31,7 +31,7 @@ Build the public Coffee Party website first. Work page by page, reviewing the ho
 - Our Story sections: https://www.daybreaker.com/our-story/
 - Press sections: https://www.daybreaker.com/press/
 
-The user's requested direction is a close one-for-one recreation of No Art's homepage and events presentation: colors, typography, layout, header/menu behavior, footer composition, globe, and responsive behavior, adapted to Coffee Party branding. Do not substitute a generic event-site design. Omit the homepage shop section.
+The user's requested direction is a close one-for-one recreation of No Art's homepage and events presentation: colors, typography, layout, header/menu behavior, footer composition, globe, and responsive behavior, adapted to Coffee Party branding. Do not substitute a generic event-site design. Include the single-product homepage shop/stockist section requested October 15, superseding the earlier instruction to omit the shop.
 
 Daybreaker supplies the organizational model, not an alternative visual theme. Write original temporary Coffee Party copy with a similar purpose and approximate length. Do not import Daybreaker's names, achievements, founder history, program claims, event dates, or statistics as Coffee Party facts.
 
@@ -49,17 +49,18 @@ Requested order:
 3. Upcoming events preview, linking to Events. Use clearly identified design placeholders until event content is decided; do not publish fake events.
 4. Community signup section `#join`, explicitly added by the user after review: two columns for SMS invites and city-based newsletter updates. SMS has a phone input including country code; newsletter has a free-text city input followed by email. Use the existing Coffee Party visual language. Stack the forms on mobile.
 5. Globe/world section, matching the reference presentation and interactions. Coffee Party city names and any location data remain to be confirmed; do not inherit No Art destinations as real Coffee Party locations.
-6. Shared footer, matching reference composition with Coffee Party labels and destinations.
+6. Coffee shop and stockist section: one product on the left, store locator and eight supplied stockist logos on the right; no product pagination.
+7. Shared footer, matching reference composition with Coffee Party labels and destinations.
 
-No shop section. The user's approved two-column signup section supersedes the original footer-only signup proposal. The footer's Join the party link points to `/#join`. Final signup channels/providers are deferred; the existing Beehiiv integration remains untouched. Valid preview submissions must say “Signup isn’t connected yet. Nothing has been submitted.” No details are sent, stored or claimed as subscribed.
+The shop/stockist section was explicitly added by the user on October 15, superseding the earlier no-shop decision. The user's approved two-column signup section supersedes the original footer-only signup proposal. The footer's Join the party link points to `/#join`. Final signup channels/providers are deferred; the existing Beehiiv integration remains untouched. Valid preview submissions must say “Signup isn’t connected yet. Nothing has been submitted.” No details are sent, stored or claimed as subscribed.
 
 ### Events `/events`
 
 - Upcoming events listing.
-- Event detail route `/events/[slug]` when event content is ready.
+- Event detail route `/events/[slug]` is explicitly deferred by the user; do not build it during the listing stage.
 - Event details connect to external tickets or a clearly labeled pre-sale/waitlist destination.
 - Desktop and mobile presentation/interaction should follow the No Art events reference.
-- Do not populate with real-looking invented events in the homepage phase.
+- The listing currently reuses four clearly marked Coffee Party design previews with “To be announced” dates. No invented event dates, venues, ticket links or destinations.
 
 ### Partnerships `/partnerships`
 
@@ -114,7 +115,7 @@ The user provided this reference and screenshot sections; treat Press as a suppo
 - Direct partnership inquiries to `/partnerships#inquiry`.
 - Press inquiry destination as appropriate.
 
-Privacy and Terms should be footer destinations before launch, with supplied/approved content. No shop route is included in the initial build.
+Privacy and Terms should be footer destinations before launch, with supplied/approved content. Purchases link directly to the supplied Shopify product; no local shop route is needed. The store locator is a searchable homepage modal; no separate `/store-locator` route is planned.
 
 ## Navigation and shared elements
 
@@ -156,7 +157,7 @@ Choose white or black logo according to the reference surface. Prepare optimized
 
 ## Homepage review criteria
 
-- Requested order preserved, with no shop section.
+- Requested order preserved, including the single-product shop/stockist section directly before the footer.
 - Coffee Party logo and supplied `vid1.MP4` used correctly.
 - No Art visual values and interactions audited and reproduced closely on desktop/mobile.
 - Header/menu opening, closing, scroll behavior, and keyboard use verified.
@@ -173,13 +174,13 @@ Completed: planning, reference desktop/mobile audit, homepage implementation, sh
 ### What is built
 
 - Hero with the supplied Coffee Party SVG wordmark, video poster, silent looping footage and an accessible play/pause control.
-- Original temporary introduction, four clearly labeled event design previews in a responsive carousel, and an interactive country globe. No shop section.
+- Original temporary introduction, four clearly labeled event design previews in a responsive carousel, and an interactive country globe, plus the single-product coffee shop and stockist preview.
 - Shared six-link header: Event / Partner / About above Community / Projects / Tickets on desktop; the same labels vertically on mobile. An inset mobile menu uses a native modal dialog with Escape support and focus return, plus Instagram/YouTube/SoundCloud placeholders at its bottom.
 - Follow-up review fixes: staged first-visit video reveal with percentage/bar and delayed header/copy entrance; top-right scale animation on menu open and close; opaque dark Menu button with white text/square; solid white top-left logo anchored to the page top. Header blending and the dark logo backing are removed; the logo scrolls out of view while Menu stays pinned.
 - Shared outlined footer with desktop link groups and mobile accordions. Join the party links to the new homepage signup UI. No signup success is implied, and Beehiiv remains untouched.
 - Two independent signup preview forms below Upcoming Events: phone number for SMS, free-text city and email for newsletter. Visible labels, 16px inputs, keyboard focus, native required/email validation, a country-code/phone-format check and inline status messages are implemented. Forms are disabled until their local submit handler is attached so a missing script cannot accidentally submit details in a URL. No backend, storage, analytics or provider connection was added.
 - Local globe geography, drag/keyboard rotation, motion control, sample-marker information and All/Upcoming filters. Toronto, Barcelona and London are visibly labeled sample coordinates, not confirmed Coffee Party destinations. Upcoming correctly shows no announced locations.
-- Intended future URLs retained in links. Ordinary clicks open clear preview notices; no Events, Our Story, Partnerships, Projects, Community, Press, Contact or legal pages are implemented yet.
+- Events and Tickets links now open `/events` and `/events#upcoming`. Other future URLs retain preview notices; Our Story, Partnerships, Projects, Community, Press, Contact and legal pages remain unbuilt.
 - Reduced-motion defaults, poster/text fallbacks and offscreen/hidden-tab motion suspension.
 - The intro runs once per tab session, matching the reference; a fresh tab replays it. Its percentage tracks the sequence, not network bytes. Reduced motion skips the intro and menu scale animations. Escape, outside clicks and menu links wait for the animated menu exit before restoring focus or opening the preview notice.
 
@@ -213,8 +214,59 @@ The header now switches to the Menu button at 991px, and the desktop links fill 
 
 Signup UI checks: desktop at 1440px shows two equal columns with aligned input rows/buttons; 390px and 320px show stacked forms without horizontal overflow. Required phone, missing country code, whitespace-only city and invalid email cases were rejected. Valid SMS and newsletter entries produced their own explicit preview notices and left the URL unchanged. The footer anchor was exercised. Anchor entry points skip the hero intro so signup deep links are immediately usable. Syntax/build checks passed and browser error/warning logs were empty during checked interactions. Signup-specific behavior is in `Main/src/signup.js`; no real signup or delivery test was performed.
 
-Next: review and finalize the homepage and shared elements, including crop, typography substitution, spacing, placeholder artwork and globe. Confirm real event/city/contact/social content when available. Build Events and its detail template only after homepage review; preserve the reviewed shared components. No remaining page is complete merely because a footer link or preview notice exists.
+Next: review the Events listing and provide confirmed artwork, event names, dates, locations and ticket destinations. Individual event slug pages remain deferred. Proceed to Partnerships or another page when requested; preserve the completed homepage, shared components and coming-soon site.
 
-Suggested next-chat prompt:
+## Events listing — completed October 15, 2026
 
-"Read WEBSITE-PLAN.md, README.md, Main/README.md and Main/REFERENCE-AUDIT.md. Continue from the homepage preview in Main. Review/finalize the homepage and shared header/footer first, and preserve the coming-soon site. Do not develop other pages, replace the signup provider or deploy until that scope is requested. Update WEBSITE-PLAN.md after the next completed stage."
+The user confirmed the homepage is done and authorized the Events listing in Main. They requested the No Art events layout, animation, sizing, styling and typography; they explicitly excluded event slug/detail pages from this stage.
+
+- Added a real static /events route with a full-viewport vertical image gallery. Desktop uses a centered four-column image span within the reference’s 12-column geometry, faded neighboring artwork, corner registration marks, left event-name selectors and right date selectors. Mobile hides side lists and puts index/name/date beneath each image. No footer is added to this immersive page, matching the reference.
+- Reuses the existing shared header/menu with black Coffee Party artwork over the white events surface; homepage header behavior stays intact. Events and Tickets now navigate to the listing from the homepage, cards, footer and menu. Other unbuilt routes retain preview notices.
+- Uses the same self-hosted Chivo Mono as the reference. No large commercial heading font is needed on this listing. Artwork and branding use supplied Coffee Party assets; the reference’s event artwork, real dates and countries are not imported. Four clearly labeled design previews reuse the homepage titles/stills; dates say “To be announced.”
+- Vertical navigation supports wheel, pointer drag/swipe, Up/Down, Page Up/Down, Home/End and title/date selection. Desktop loops; mobile stops at first/last, following the reference. Selection updates both metadata lists and a live status announcement. Active artwork opens an honest details-coming-soon notice, with no slug route or ticket transaction.
+- A black entry panel lifts after 500ms over 800ms, reflecting the reference transition with Coffee Party copy. Reduced motion skips that transition and gallery easing. Timings use local CSS/WAAPI approximations.
+- Build writes dist/events/index.html; preview server resolves /events and /events/. PORT can override 3100; verification used 3101 because an existing preview occupied 3100. Restart an older server to load the updated route handling.
+
+Verification: syntax checks and production build passed. Browser checks covered desktop metadata selection and last-to-first looping, mobile captions, wheel/drag navigation, end stops, event preview notice, menu-to-Tickets navigation and Escape/focus behavior. Layout was checked at 320, 390, 768 and 1440px; no horizontal page overflow was found. At 390px, the layout area is 375px (reserved scrollbar gutter), gallery width is about 336.53px and active card starts around y=276.58px, closely matching the reference’s 336.56px and y=276.62px. Browser error/warning logs were empty during checked interactions. Real touch hardware, screen readers, other browsers and OS reduced-motion behavior remain untested. Exact pixel identity is not claimed: Coffee Party artwork, titles, entry copy and branding intentionally differ; motion is an independent approximation.
+
+Read Main/README.md and Main/REFERENCE-AUDIT.md for implementation and reference details. Update this file after the next completed stage.
+
+
+## Homepage coffee shop and stockists — completed October 15, 2026
+
+The user explicitly added a bottom-of-homepage section inspired by No Art’s shop. This supersedes all earlier no-shop guidance. It sits after the globe and before the footer, retaining the white surface, square eyebrow markers, Chivo Mono labels, large sans-serif stockist heading, fine rules and outlined button styling.
+
+- One product card on the left, using `Assests/can1.webp` as the main image. `can2.webp` reveals the pack on hover or keyboard focus within the same product link. No pagination, additional product, invented price or checkout was added. Product card and Shop coffee link both open the exact supplied URL: https://shop.thecoffeeparty.ca/products/coffee?variant=44435692421199.
+- Right side: Store locator button followed by eight supplied logos from `Assests/STORE-logos/`, replacing the initial nine Bloom placeholders. Four columns/two rows on desktop; two columns/four rows on mobile. Logos retain their supplied colors and proportions, with accessible stockist names. Placeholder copy is removed.
+- Store locator opens a dedicated searchable modal with 22 supplied locations, address/postal-code distance sorting and brand/availability filters. No separate page or map is needed. This supersedes the earlier coming-soon notice and deferred locator-route proposal.
+- Mobile stacks the product above the locator and logos. The locator spans the available width. Reduced motion disables new transitions.
+- Source: `Main/src/index.html`, the coffee-shop CSS block in `Main/src/styles.css`, and StoreLocator copy in `Main/src/app.js`. Build copies all three supplied image files into `Main/dist/assets/` without modifying originals.
+
+Verification: syntax checks and production build passed. Browser checked the desktop two-column presentation and stacked 390px mobile layout; no horizontal overflow at desktop, 390px or 320px. Both can images and all nine logo instances loaded. The exact product destinations were inspected; locator dialog, Escape and focus return were exercised. Browser warning/error logs were empty. Shopify checkout, real stockist data, touch hardware and cross-browser behavior were not tested. No deployment. Local verification used port 3102.
+
+
+### Supplied store logos — October 15, 2026
+
+Replaced all Bloom placeholders with the eight supplied STORE-logos assets: Eagles Nest Golf Club, Life Time, Orangetheory Fitness, Pure Athletic Club, Pure Muscle + Fitness, Revitasize Wellness Cafe, Roses Social and Summerhill Market. The counter now reads [01–08]. Build copies the PNG originals into `Main/dist/assets/store-logos/`; supplied originals remain unchanged. The locator still opens its coming-soon dialog, with outdated placeholder wording removed. Addresses and the locator page remain deferred.
+
+Verification: syntax/build passed; all eight logos loaded in the browser. Desktop and 390px mobile layouts visually reviewed; no horizontal overflow or browser warning/error logs. Locator dialog and Escape/focus return still work.
+
+
+### Product Shop now hover — October 15, 2026
+
+Added the missing Shop now cursor bubble over the product image, following No Art’s observed red (#ff2b29), white uppercase mono text and small corner radius. The label follows the pointer within the image bounds, fades on hover, and appears centered for keyboard focus. Pointer exit resets its position; touch does not track a cursor and reduced motion disables fading. The existing alternate pack image and exact Shopify variant link remain. Browser verified visible label on image hover and keyboard focus, updated pointer coordinates and unchanged product destination. Syntax/build checks passed.
+
+
+## Searchable stockist pop-up — completed October 15, 2026
+
+The user replaced the deferred locator-page concept with a searchable modal on the homepage. No separate route or map is built. The Store locator button opens a native dialog with the site’s white/black surfaces, Chivo Mono labels, large sans-serif heading, fine rules, black search action, brand and availability selects, and a scrollable results list. Escape, close button and backdrop dismissal restore focus. On small/short screens the modal remains scrollable.
+
+Data lives in `Main/src/stores.json`: 22 branches, including six Summerhill Market addresses with confirmed receipt; four other active stockists (Life Time, Eagles Nest, ROSES Social, Orangetheory); two reported deliveries still awaiting reconciliation (Pure Athletic and Pure Muscle + Fitness); and all ten Revitasize branches, whose individual receipts remain unverified. Public copy distinguishes confirmed stockists, delivery reported/availability to confirm, and rollout planned/branch availability unconfirmed. It does not claim live inventory. ROSES is one location. Full user-supplied unit/floor details are retained. Change data/statuses here as reconciliation progresses.
+
+All 22 store coordinates were looked up once through Photon/OpenStreetMap at the supplied street numbers; geocoder address labels and address-level precision are retained alongside coordinates. Raw lookup evidence is in ignored `Main/reports/store-geocoding.json`. Store addresses come from the user; coordinates are approximate geocoder points, not surveyed entrances.
+
+`Main/src/store-locator.js` filters locally and calculates Haversine/straight-line distance in the browser. Exact supplied store-address queries resolve locally. Other Canadian address/city/postal-code searches use Photon only after submitting; compact postal codes are normalized, exact postal matches checked, and ambiguous addresses offer a choice. The matched location and approximate (not driving) distances are displayed; the closest confirmed stockist is identified even when a nearer unconfirmed branch appears. No GPS prompt, database, API key, map, analytics, storage, or new backend was added. Search values stay out of the local page URL; external address lookups go to Photon as disclosed beside the form. Closing the dialog clears the search. OpenStreetMap attribution is present.
+
+Provider documentation: https://github.com/komoot/photon and https://github.com/komoot/photon/blob/master/docs/api-v1.md. The public demo permits reasonable use but offers no availability guarantee and may throttle. Review a production geocoding service before a public/high-traffic launch; the endpoint is isolated in the locator module. If an address cannot be matched or the service fails/times out, visitors can still browse/filter the full list. Requests are cancellable, search is submit-only, and stale responses cannot replace newer results.
+
+Verification: syntax checks, production build and four unit tests (`npm test`) passed. Tests cover independent reference distances, numeric ordering/missing coordinates, the real Annex/Barrie distance ordering and the 22-location/status/coordinate integrity. Browser verified all 22 results; live M5R 3G7 and lowercase/no-space m5r3g7 searches ranked Summerhill Annex first; an exact Rosedale address resolved locally; a Toronto City Hall address returned disambiguation choices; invalid text showed the no-match fallback. Revitasize filter returned ten branches and combining it with confirmed stockists showed an empty state. Reset, Escape/focus return, desktop and 390px mobile layout, plus 320px/short-height scroll behavior were checked without horizontal overflow. Browser error/warning logs were empty in checked live searches. Forced network outage, real mobile keyboard/touch hardware, screen reader and other browsers remain untested; failure/abort paths were reviewed in source. No deployment.

@@ -295,10 +295,6 @@
               <h3 id="sms-heading">
                 Community-first<br />invites and messages.
               </h3>
-              <p>
-                Be first to hear about the next gathering. Good things, straight
-                to your phone.
-              </p>
             </div>
             <form
               class="signup-form"
@@ -335,8 +331,7 @@
                   id="sms-feedback"
                   role="status"
                   aria-live="polite"
-                  aria-atomic="true"
-                ></p>
+                  aria-atomic="true"></p>
               </fieldset>
             </form>
           </div>
@@ -344,10 +339,6 @@
             <div class="signup-panel-header">
               <span class="signup-index">[02 / Newsletter]</span>
               <h3 id="newsletter-heading">Updates from<br />your city.</h3>
-              <p>
-                A little Coffee Party in your inbox. Local updates, new
-                gatherings and more.
-              </p>
             </div>
             <form
               class="signup-form"
@@ -357,7 +348,7 @@
             >
               <fieldset disabled>
                 <legend class="sr-only">Newsletter signup preview</legend>
-                <div class="signup-fields">
+                <div class="signup-fields signup-fields-pair">
                   <label class="signup-field" for="signup-city"
                     >Your city
                     <input
@@ -395,16 +386,11 @@
                   id="newsletter-feedback"
                   role="status"
                   aria-live="polite"
-                  aria-atomic="true"
-                ></p>
+                  aria-atomic="true"></p>
               </fieldset>
             </form>
           </div>
         </div>
-        <p class="signup-preview-note">
-          Preview only. Signup isn’t connected yet. No details are sent or
-          saved.
-        </p>
       </section>
       <section
         class="world section-inset"
@@ -507,8 +493,66 @@
           </p>
         </div>
       </section>
+      <section class="coffee-shop" id="shop" aria-labelledby="shop-heading">
+        <div class="shop-header">
+          <h2 class="eyebrow" id="shop-heading">The Coffee Party shop</h2>
+          <a class="text-link" href="https://shop.thecoffeeparty.ca/products/coffee?variant=44435692421199">Shop coffee <span aria-hidden="true">↳</span></a>
+        </div>
+        <div class="shop-grid">
+          <a class="coffee-product" href="https://shop.thecoffeeparty.ca/products/coffee?variant=44435692421199" aria-label="Shop The Coffee Party cold brew">
+            <div class="coffee-product-media">
+              <img class="coffee-can" src="/assets/can1.webp" width="1024" height="1536" alt="The Coffee Party Superior Black Coffee cold brew can" loading="lazy" />
+              <img class="coffee-pack" src="/assets/can2.webp" width="1024" height="1536" alt="" aria-hidden="true" loading="lazy" />
+              <span class="coffee-shop-cursor" aria-hidden="true">Shop now</span>
+              <span class="coffee-image-note" aria-hidden="true">Coffee, music, community.</span>
+            </div>
+            <div class="coffee-product-caption">
+              <span aria-hidden="true">+</span>
+              <div><h3>Superior black coffee</h3><p>Cold brew · 220 mL</p></div>
+              <span aria-hidden="true">↗</span>
+            </div>
+          </a>
+          <div class="coffee-stockists">
+            <span class="eyebrow">Find us in store</span>
+            <h3>Good coffee.<br />Closer to you.</h3>
+            <p class="stockist-copy">Pick up a can. Keep the party going.</p>
+            <button class="store-locator" type="button" data-open-stores aria-haspopup="dialog" aria-controls="store-dialog" disabled>Store locator <span aria-hidden="true">↗</span></button>
+            <div class="stockist-header"><span>On the shelves</span><span>[01–08]</span></div>
+            <ul class="stockist-logos" aria-label="Available at these stockists">
+              <li><img src="/assets/store-logos/eagles-nest-golf-club.png" alt="Eagles Nest Golf Club" width="1000" height="1021" loading="lazy" /></li>
+              <li><img src="/assets/store-logos/life-time.png" alt="Life Time" width="1000" height="213" loading="lazy" /></li>
+              <li><img src="/assets/store-logos/orangetheory-fitness.png" alt="Orangetheory Fitness" width="1000" height="240" loading="lazy" /></li>
+              <li><img src="/assets/store-logos/pure-athletic-club.png" alt="Pure Athletic Club" width="1000" height="403" loading="lazy" /></li>
+              <li><img src="/assets/store-logos/pure-muscle-fitness.png" alt="Pure Muscle + Fitness" width="1000" height="404" loading="lazy" /></li>
+              <li><img src="/assets/store-logos/revitasize.png" alt="Revitasize Wellness Cafe" width="1000" height="207" loading="lazy" /></li>
+              <li><img src="/assets/store-logos/roses-social.png" alt="Roses Social" width="1000" height="365" loading="lazy" /></li>
+              <li><img src="/assets/store-logos/summerhill-market.png" alt="Summerhill Market" width="1000" height="397" loading="lazy" /></li>
+            </ul>
+          </div>
+        </div>
+      </section>
     </main>
     <!-- shared:footer -->
+    <dialog class="store-dialog" id="store-dialog" aria-labelledby="store-dialog-heading" aria-describedby="store-dialog-intro">
+      <div class="store-dialog-top">
+        <div class="store-dialog-eyebrow"><span class="eyebrow">The Coffee Party / Stockists</span><button class="icon-button" type="button" data-close-stores aria-label="Close store locator">×</button></div>
+        <h2 id="store-dialog-heading">Find your local.</h2>
+        <p id="store-dialog-intro">Good coffee, closer to you. Find a stockist near your address or postal code.</p>
+        <form class="store-search-form" role="search" aria-label="Find nearby stockists">
+          <label for="store-search">Your address, city or Canadian postal code</label>
+          <div class="store-search-row"><input id="store-search" type="search" placeholder="e.g. M5R 3G7 or 1014 Bathurst St, Toronto" maxlength="180" autocomplete="off" required autofocus /><button type="submit">Find closest <span aria-hidden="true">↗</span></button></div>
+        </form>
+        <p class="store-search-note">Address searches are sent to Photon. We don’t save your search. Distances are approximate, not driving distances.</p>
+        <p id="store-search-status" class="store-search-status" role="status" aria-live="polite"></p>
+        <div id="store-matches" class="store-matches" aria-label="Matching locations"></div>
+        <div class="store-filters">
+          <label for="store-brand">Brand<select id="store-brand"><option value="">All brands</option></select></label>
+        </div>
+        <div class="store-results-toolbar"><p id="store-result-summary" role="status" aria-live="polite">10 locations · A–Z</p><button id="store-reset" class="text-link" type="button" hidden>Reset search ↺</button></div>
+      </div>
+      <ul class="store-results" id="store-results" aria-label="Stockist locations"></ul>
+     
+    </dialog>
     <dialog
       class="info-dialog corner-frame"
       id="preview-dialog"

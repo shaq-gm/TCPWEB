@@ -100,3 +100,45 @@ Verified in the browser:
 - Syntax checks and bundling passed; browser error/warning logs were empty during checked interactions.
 
 Screenshots are in ignored `reports/community-signup-desktop.jpg` and `reports/community-signup-mobile.jpg`. Provider connections, real delivery, OS-level assistive technology and touch hardware remain untested/deferred.
+
+## Events listing — October 15, 2026
+
+Reference: https://www.noartmusic.com/events, visually inspected live on desktop and at 390 × 844. Its Events page has no footer: it is a 100dvh vertical gallery, with a centered image column and small title/date lists. At a 1200px reference width, the column is x=416.66, width=366.67; the image frame is 4:3, centered at y=442, with a 20px gap to adjacent slides. Inactive cards and metadata are at 20% opacity. Desktop loops; mobile does not loop. Mobile hides both side lists and places an index, title and date below each image. At 390px with a 375px layout area, the reference column is x=19.22, width=336.56; the first card starts around y=276.62 and its image is 252.42px high. Typography is Chivo Mono at .75 of the responsive body unit, about 11.54px on this mobile view. Active artwork has small corner marks. The reference's black entry panel lifts after 500ms over 800ms.
+
+Implementation: `src/events.html`, `src/events.js` and the Events block in `src/styles.css`; built to `dist/events/index.html`. Original implementation uses CSS transforms and WAAPI, with approximate easing rather than reference application code. The same self-hosted Chivo Mono is already available. Branding, supplied Coffee Party film stills, four generic design-preview titles, unannounced dates and entry-panel copy are intentional adaptations. No reference commercial font, event art, dates, country flags or event details are imported. Cursor copy is “Details soon” because tickets/details are not built. The shared header uses black artwork and black desktop links on this white page; the homepage retains its reviewed white logo. No footer is added to the Events page, following the reference.
+
+Behavior: wheel and pointer dragging/swiping change the active card, with 300ms slide motion and 200ms opacity changes. Title/date buttons synchronize selection, with a live status announcement. The gallery supports Up/Down, Page Up/Down, Home and End; desktop loops and mobile clamps at either end. Reduced motion skips the cover/slide easing. Artwork opens an honest preview dialog; no event slug page was created. Events/Tickets links now navigate normally from the homepage, footer and animated mobile menu. Other planned routes retain their preview notices. Build insertion activates these two destinations; shared partials stay reusable.
+
+Verification:
+- `npm run check` (including events.js) and `npm run build` passed.
+- Browser layouts checked at 320, 390, 768 and 1440px; no horizontal page overflow found. The 390px gallery measured x≈19.23, width≈336.53; the active card starts at y≈276.58, closely matching the reference geometry.
+- Desktop title selection synchronized name/date state; End then ArrowDown looped to the first card.
+- Mobile wheel and pointer drag advanced cards. End then ArrowDown stayed at the last card. This uses browser pointer emulation, not real touch hardware.
+- Artwork preview dialog content, closing by Escape and focus return to its artwork button checked. Mobile menu Tickets closed the menu and landed on `/events#upcoming`.
+- Homepage return and homepage Event link checked after sharing app.js initialization. Existing source edits in the homepage and styles were preserved.
+- Browser warning/error logs were empty during checked interactions.
+- Both `/events` and `/events/` are served by the updated preview server. Verification used port 3101 because 3100 had an existing server. Restart an older server to pick up the new route handler; PORT optionally selects another port.
+
+Limits: no real events/tickets, detail routes, deployment, screen-reader session, real touch hardware, OS reduced-motion session or cross-browser checks. Artwork/content differences are intentional; motion easing is approximate and exact pixel identity is not claimed.
+
+
+## Homepage shop and stockists — October 15, 2026
+
+The user’s No Art shop screenshot and live reference supplied the small square section marker, product-image/caption presentation, whitespace and footer placement. Coffee Party adapts the multi-product carousel into a single product at left and a stockist panel at right; no carousel pagination. Existing site type, black/white palette, outline controls and fine rules are reused. Supplied can1 is primary; can2 is a hover/keyboard-focus alternate of the same product. Nine Bloom logos are explicitly marked placeholders. The locator route/page is deferred and uses the existing honest preview dialog.
+
+Syntax/build passed. Desktop screenshot reviewed at the browser’s default viewport; mobile product/stockist screenshots reviewed at 390 × 844. No horizontal overflow at desktop, 390px or 320px; mobile columns measured 335px and 265px respectively. Both can images and all nine logos loaded. The exact Shopify variant link was inspected in the rendered DOM. Locator click opened the expected notice; Escape restored focus to Store locator. Browser warning/error logs were empty. Reduced-motion CSS reviewed but OS preference switching, real touch, cross-browser behavior, real stockist locations and checkout remain untested.
+
+
+### Store logo replacement — October 15, 2026
+
+Replaced nine Bloom placeholders with all eight PNG logos supplied in `Assests/STORE-logos/`. Four desktop columns/two mobile columns, equal-height image boxes with contain fitting preserve each artwork’s proportions and original colors. Removed placeholder text from the section and locator notice; locator page remains deferred. Syntax/build passed. Desktop and 390px mobile screenshots visually inspected; all eight images loaded, no horizontal overflow or console warnings/errors. Locator click, Escape and focus return checked.
+
+
+### Product hover label
+
+Live No Art inspection confirmed a product data-cursor-text of shop now and a #ff2b29 bubble with white Chivo Mono text and about 2px corner radius. Added an independent local pointer-following label with image-bound clamping and keyboard-focus fallback. Verified in browser: hover selector active, label opacity 1, pointer position variables updated, keyboard focus reveals label, and exact Shopify URL preserved. Syntax/build passed.
+
+
+## Searchable locator modal — October 15, 2026
+
+Added a dedicated native dialog using existing typography, white/black surfaces, fine borders, square label marker and outlined/solid controls. All 22 user-supplied addresses are in src/stores.json, with explicit pending delivery/rollout states. Store coordinates are Photon/OpenStreetMap address-level matches; there is no map. Public geocoder API documentation and demo usage terms were checked. Browser search of M5R 3G7 and m5r3g7 ranked Summerhill Annex closest; local exact Rosedale address resolved at zero distance; ambiguous City Hall query offered choices. Invalid input showed a no-match message without removing browsing. Brand/availability intersection, empty state, reset and Escape focus restoration checked. Desktop and 390px mobile layouts visually reviewed, 320px short-height modal checked for overflow/scrolling. Syntax/build and four meaningful distance/ranking/data tests passed; checked browser warning/error logs were empty. Forced outages, real touch/keyboard hardware, screen reader and other browsers remain untested. Photon public demo availability is not guaranteed; review provider before public launch.

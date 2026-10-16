@@ -1,8 +1,26 @@
 import { initGlobe } from "./globe.js";
 import { initIntro } from "./intro.js";
 import { initSignupPreviews } from "./signup.js";
+import { initEvents } from "./events.js";
+import { initStoreLocator } from "./store-locator.js";
 
 const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+const coffeeMedia = document.querySelector(".coffee-product-media");
+if (coffeeMedia) {
+  const shopCursor = coffeeMedia.querySelector(".coffee-shop-cursor");
+  coffeeMedia.addEventListener("pointermove", (event) => {
+    if (event.pointerType === "touch") return;
+    const box = coffeeMedia.getBoundingClientRect();
+    const insetX = shopCursor.offsetWidth / 2 + 8;
+    const insetY = shopCursor.offsetHeight / 2 + 8;
+    coffeeMedia.style.setProperty("--shop-cursor-x", `${Math.max(insetX, Math.min(box.width - insetX, event.clientX - box.left))}px`);
+    coffeeMedia.style.setProperty("--shop-cursor-y", `${Math.max(insetY, Math.min(box.height - insetY, event.clientY - box.top))}px`);
+  });
+  coffeeMedia.addEventListener("pointerleave", () => {
+    coffeeMedia.style.removeProperty("--shop-cursor-x");
+    coffeeMedia.style.removeProperty("--shop-cursor-y");
+  });
+}
 const mobile = matchMedia("(max-width: 700px)");
 const headerMenu = matchMedia("(max-width: 991px)");
 const headerDesktopLock = matchMedia("(min-width: 1921px)");
@@ -107,6 +125,10 @@ for (const dialog of [menu, preview])
   });
 
 const messages = {
+  EventDetails: [
+    "See you soon.",
+    "This is an event design preview. Dates, locations and tickets are still to be announced. Individual event pages will be added in a later stage.",
+  ],
   Events: [
     "The next gathering.",
     "Event dates, locations and lineups are still to be announced. The cards on this homepage are design previews. The Events page will be built in the next stage.",
@@ -164,6 +186,15 @@ document.querySelectorAll("[data-planned]").forEach((link) =>
     openPreview(link.dataset.planned, link);
   }),
 );
+
+menu.querySelectorAll('a[href]:not([data-planned]):not([data-social-placeholder])').forEach((link) => {
+  link.addEventListener("click", async (event) => {
+    if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    await closeMenu();
+    location.href = link.href;
+  });
+});
 document
   .querySelectorAll("[data-close-dialog]")
   .forEach((button) => button.addEventListener("click", () => preview.close()));
@@ -220,142 +251,147 @@ document
   .querySelectorAll("[data-year]")
   .forEach((el) => (el.textContent = new Date().getFullYear()));
 
-const video = document.querySelector(".hero-video");
-const videoToggle = document.querySelector("#video-toggle");
-let playRequested = !reducedMotion.matches && !navigator.connection?.saveData;
-let heroVisible = true;
-function loadVideo() {
-  if (video.getAttribute("src")) return;
-  video.src = mobile.matches ? "/assets/hero-mobile.mp4" : "/assets/hero.mp4";
-  video.load();
-}
-function syncVideo() {
-  if (playRequested && heroVisible && !document.hidden) {
-    loadVideo();
-    video.play().catch(() => {
-      playRequested = false;
-      updateVideoButton();
-    });
-  } else video.pause();
-  updateVideoButton();
-}
-function updateVideoButton() {
-  const playing = playRequested && heroVisible && !document.hidden;
-  videoToggle.innerHTML = playing
-    ? 'Pause video <span aria-hidden="true">Ⅱ</span>'
-    : 'Play video <span aria-hidden="true">▷</span>';
-  videoToggle.setAttribute(
-    "aria-label",
-    playing ? "Pause background video" : "Play background video",
-  );
-}
-videoToggle.addEventListener("click", () => {
-  playRequested = !playRequested;
-  syncVideo();
-});
-video.addEventListener("error", () => {
-  playRequested = false;
-  videoToggle.textContent = "Video unavailable";
-  videoToggle.setAttribute(
-    "aria-label",
-    "Background video unavailable; still image displayed",
-  );
-  videoToggle.disabled = true;
-});
-new IntersectionObserver(
-  ([entry]) => {
-    heroVisible = entry.isIntersecting;
-    document
-      .querySelector(".site-header")
-      .classList.toggle("is-over-content", !heroVisible);
-    syncVideo();
-  },
-  { threshold: 0.05 },
-).observe(video);
-document.addEventListener("visibilitychange", syncVideo);
-reducedMotion.addEventListener("change", () => {
-  playRequested = !reducedMotion.matches && !navigator.connection?.saveData;
-  syncVideo();
-});
-
-const track = document.querySelector("#event-track");
-const cards = [...track.querySelectorAll(".event-card")];
-const prev = document.querySelector("#events-prev");
-const next = document.querySelector("#events-next");
-const barContainer = document.querySelector(".carousel-bars");
-let bars = [];
-const step = () => cards[0].getBoundingClientRect().width + 20;
-const maxScroll = () => track.scrollWidth - track.clientWidth;
-const currentCard = () =>
-  track.scrollLeft >= maxScroll() - 3
-    ? bars.length - 1
-    : Math.round(track.scrollLeft / step());
-function scrollToCard(index) {
-  track.scrollTo({
-    left: Math.min(maxScroll(), Math.max(0, index) * step()),
-    behavior: reducedMotion.matches ? "instant" : "smooth",
-  });
-}
-function updateCarousel() {
-  const overflow = track.scrollWidth - track.clientWidth;
-  prev.disabled = track.scrollLeft < 3;
-  next.disabled = track.scrollLeft >= overflow - 3;
-  const index = currentCard();
-  bars.forEach((bar, i) => {
-    bar.setAttribute("aria-current", String(index === i));
-    bar.disabled = overflow < 3;
-  });
-}
-prev.addEventListener("click", () => scrollToCard(currentCard() - 1));
-next.addEventListener("click", () => scrollToCard(currentCard() + 1));
-track.addEventListener("scroll", updateCarousel, { passive: true });
-track.addEventListener("keydown", (event) => {
-  if (event.target !== track) return;
-  if (["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) {
-    event.preventDefault();
-    scrollToCard(
-      event.key === "Home"
-        ? 0
-        : event.key === "End"
-          ? cards.length - 1
-          : currentCard() + (event.key === "ArrowLeft" ? -1 : 1),
+function initHomepage() {
+  const video = document.querySelector(".hero-video");
+  const videoToggle = document.querySelector("#video-toggle");
+  let playRequested = !reducedMotion.matches && !navigator.connection?.saveData;
+  let heroVisible = true;
+  function loadVideo() {
+    if (video.getAttribute("src")) return;
+    video.src = mobile.matches ? "/assets/hero-mobile.mp4" : "/assets/hero.mp4";
+    video.load();
+  }
+  function syncVideo() {
+    if (playRequested && heroVisible && !document.hidden) {
+      loadVideo();
+      video.play().catch(() => {
+        playRequested = false;
+        updateVideoButton();
+      });
+    } else video.pause();
+    updateVideoButton();
+  }
+  function updateVideoButton() {
+    const playing = playRequested && heroVisible && !document.hidden;
+    videoToggle.innerHTML = playing
+      ? 'Pause video <span aria-hidden="true">Ⅱ</span>'
+      : 'Play video <span aria-hidden="true">▷</span>';
+    videoToggle.setAttribute(
+      "aria-label",
+      playing ? "Pause background video" : "Play background video",
     );
   }
-});
-function resizeCarousel() {
-  // Ignore subpixel rounding at the end of a full card width.
-  const count = Math.max(1, Math.ceil((maxScroll() - 2) / step()) + 1);
-  barContainer.replaceChildren();
-  bars = Array.from({ length: count }, (_, i) => {
-    const button = document.createElement("button");
-    button.setAttribute("aria-label", `Event preview position ${i + 1}`);
-    button.addEventListener("click", () => scrollToCard(i));
-    barContainer.append(button);
-    return button;
+  videoToggle.addEventListener("click", () => {
+    playRequested = !playRequested;
+    syncVideo();
   });
-  updateCarousel();
-}
-new ResizeObserver(resizeCarousel).observe(track);
-resizeCarousel();
+  video.addEventListener("error", () => {
+    playRequested = false;
+    videoToggle.textContent = "Video unavailable";
+    videoToggle.setAttribute(
+      "aria-label",
+      "Background video unavailable; still image displayed",
+    );
+    videoToggle.disabled = true;
+  });
+  new IntersectionObserver(
+    ([entry]) => {
+      heroVisible = entry.isIntersecting;
+      document
+        .querySelector(".site-header")
+        .classList.toggle("is-over-content", !heroVisible);
+      syncVideo();
+    },
+    { threshold: 0.05 },
+  ).observe(video);
+  document.addEventListener("visibilitychange", syncVideo);
+  reducedMotion.addEventListener("change", () => {
+    playRequested = !reducedMotion.matches && !navigator.connection?.saveData;
+    syncVideo();
+  });
 
-const time = document.querySelector("#local-time");
-const zone = document.querySelector("#local-zone");
-function updateTime() {
-  const now = new Date();
-  time.dateTime = now.toISOString();
-  time.textContent = new Intl.DateTimeFormat("en-GB", {
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-  }).format(now);
-  zone.textContent = Intl.DateTimeFormat()
-    .resolvedOptions()
-    .timeZone.replaceAll("_", " ");
+  const track = document.querySelector("#event-track");
+  const cards = [...track.querySelectorAll(".event-card")];
+  const prev = document.querySelector("#events-prev");
+  const next = document.querySelector("#events-next");
+  const barContainer = document.querySelector(".carousel-bars");
+  let bars = [];
+  const step = () => cards[0].getBoundingClientRect().width + 20;
+  const maxScroll = () => track.scrollWidth - track.clientWidth;
+  const currentCard = () =>
+    track.scrollLeft >= maxScroll() - 3
+      ? bars.length - 1
+      : Math.round(track.scrollLeft / step());
+  function scrollToCard(index) {
+    track.scrollTo({
+      left: Math.min(maxScroll(), Math.max(0, index) * step()),
+      behavior: reducedMotion.matches ? "instant" : "smooth",
+    });
+  }
+  function updateCarousel() {
+    const overflow = track.scrollWidth - track.clientWidth;
+    prev.disabled = track.scrollLeft < 3;
+    next.disabled = track.scrollLeft >= overflow - 3;
+    const index = currentCard();
+    bars.forEach((bar, i) => {
+      bar.setAttribute("aria-current", String(index === i));
+      bar.disabled = overflow < 3;
+    });
+  }
+  prev.addEventListener("click", () => scrollToCard(currentCard() - 1));
+  next.addEventListener("click", () => scrollToCard(currentCard() + 1));
+  track.addEventListener("scroll", updateCarousel, { passive: true });
+  track.addEventListener("keydown", (event) => {
+    if (event.target !== track) return;
+    if (["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) {
+      event.preventDefault();
+      scrollToCard(
+        event.key === "Home"
+          ? 0
+          : event.key === "End"
+            ? cards.length - 1
+            : currentCard() + (event.key === "ArrowLeft" ? -1 : 1),
+      );
+    }
+  });
+  function resizeCarousel() {
+    // Ignore subpixel rounding at the end of a full card width.
+    const count = Math.max(1, Math.ceil((maxScroll() - 2) / step()) + 1);
+    barContainer.replaceChildren();
+    bars = Array.from({ length: count }, (_, i) => {
+      const button = document.createElement("button");
+      button.setAttribute("aria-label", `Event preview position ${i + 1}`);
+      button.addEventListener("click", () => scrollToCard(i));
+      barContainer.append(button);
+      return button;
+    });
+    updateCarousel();
+  }
+  new ResizeObserver(resizeCarousel).observe(track);
+  resizeCarousel();
+
+  const time = document.querySelector("#local-time");
+  const zone = document.querySelector("#local-zone");
+  function updateTime() {
+    const now = new Date();
+    time.dateTime = now.toISOString();
+    time.textContent = new Intl.DateTimeFormat("en-GB", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    }).format(now);
+    zone.textContent = Intl.DateTimeFormat()
+      .resolvedOptions()
+      .timeZone.replaceAll("_", " ");
+  }
+  updateTime();
+  setInterval(() => {
+    if (!document.hidden) updateTime();
+  }, 1000);
+  initSignupPreviews();
+  initGlobe(reducedMotion);
+  initIntro(reducedMotion, mobile);
 }
-updateTime();
-setInterval(() => {
-  if (!document.hidden) updateTime();
-}, 1000);
-initSignupPreviews();
-initGlobe(reducedMotion);
-initIntro(reducedMotion, mobile);
+if (document.querySelector(".hero-video")) initHomepage();
+initStoreLocator();
+if (document.querySelector(".events-page")) initEvents(reducedMotion);

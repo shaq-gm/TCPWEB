@@ -17,9 +17,11 @@ const types = {
 const server = http.createServer(async (req, res) => {
   try {
     const url = new URL(req.url, "http://localhost");
+    const pathname = ["/events", "/events/"].includes(url.pathname)
+      ? "/events/index.html" : url.pathname;
     const path = resolve(
       root,
-      `.${decodeURIComponent(url.pathname === "/" ? "/index.html" : url.pathname)}`,
+      `.${decodeURIComponent(pathname === "/" ? "/index.html" : pathname)}`,
     );
     if (!path.startsWith(root + sep)) {
       res.writeHead(403).end();
@@ -60,6 +62,7 @@ const server = http.createServer(async (req, res) => {
       .end("This page is part of a later stage. Return to the homepage.");
   }
 });
-server.listen(3100, "127.0.0.1", () =>
-  console.log("Coffee Party preview: http://127.0.0.1:3100"),
+const port = Number(process.env.PORT || 3100);
+server.listen(port, "127.0.0.1", () =>
+  console.log(`Coffee Party preview: http://127.0.0.1:${port}`),
 );

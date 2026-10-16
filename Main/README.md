@@ -1,6 +1,6 @@
-# Coffee Party — homepage preview
+# Coffee Party — website preview
 
-This independent replacement lives entirely in `Main`. The existing coming-soon website in `../site` is preserved. Only the homepage and reusable header/menu/footer are built. Nothing has been deployed.
+This independent replacement lives entirely in `Main`. The existing coming-soon website in `../site` is preserved. The homepage, Events listing and reusable header/menu/footer are built. Nothing has been deployed.
 
 ## Run locally
 
@@ -58,9 +58,9 @@ Anchor entry points such as `/#join` skip the opening hero animation. SMS delive
 
 ## Preview boundaries
 
-- No shop section or other page implementation.
+- The homepage has one Shopify-linked cold brew product and eight supplied stockist logos. The Store locator opens a searchable modal with all 22 supplied addresses; no separate page or map is used. Events is implemented; other pages and event slug pages remain deferred.
 - Four cards are labeled **Design preview**, with no invented dates, venues or ticket links.
-- Navigation retains the intended future URLs. Ordinary clicks open an explanatory preview dialog; direct navigation to those routes is intentionally not implemented. Replace the preview handlers when those pages are built.
+- Events and Tickets open the listing. Other planned URLs show explanatory preview dialogs; those routes remain unimplemented.
 - Footer categories collapse into native accordions on mobile. Unconfirmed emails and social handles are omitted. Legal links explain that approved content is pending.
 - Community signup is a disconnected UI with an explicit preview notice. There is no storage, API request or subscription claim. The existing Beehiiv integration remains in `../site` and has not been reused or altered.
 - Search indexing is disabled for this local preview. Set the final domain, sharing image and indexing policy before launch.
@@ -70,3 +70,29 @@ Anchor entry points such as `/#join` skip the opening hero animation. SMS delive
 See `REFERENCE-AUDIT.md` for the observed desktop/mobile values, adaptations and verification limits. Chivo Mono is self-hosted under its SIL Open Font License (`dist/assets/fonts/OFL.txt`). Arial/Helvetica substitutes for the reference's commercial Neue Haas font. No commercial reference font, imagery, copy or application code is bundled.
 
 Globe geography is the Natural Earth 1:110m country dataset distributed by [world-atlas](https://github.com/topojson/world-atlas), using public-domain Natural Earth data. Rendering uses [d3-geo](https://github.com/d3/d3-geo) and [topojson-client](https://github.com/topojson/topojson-client). Their license notices are in `THIRD-PARTY-NOTICES.txt`. esbuild bundles the browser module; ffmpeg-static is used only by the media preparation script.
+
+## Events listing
+
+Open /events (or /events/) for the full-height vertical gallery. Edit src/events.html for preview titles, dates and artwork, src/events.js for gallery behavior, and the Events block at the end of src/styles.css for presentation. The build writes dist/events/index.html and activates Events/Tickets links on both pages. Individual event routes remain deferred; artwork clicks explain the preview status.
+
+Desktop has synchronized title/date selectors and a looping gallery. Mobile shows captions under images and stops at each end. Wheel, drag/swipe and Up/Down/Page Up/Page Down/Home/End navigation are supported. The black entry reveal and slide motion honor reduced motion. The listing uses the shared menu and a black logo on white, with no footer, following the reference composition. All four events are labeled design previews and have unannounced dates.
+
+Restart an already-running preview server after changing scripts/serve.mjs. If 3100 is occupied, use a free port (PowerShell: $env:PORT='3101'; npm run dev). No deployment is included.
+
+
+## Coffee shop and stockists
+
+The `#shop` section sits between the globe and footer. Edit its product and stockist markup in `src/index.html`, styles in the coffee-shop block of `src/styles.css`, the modal markup in `src/index.html`, and search/filter behavior in `src/store-locator.js`. The single can (`can1.webp`) changes to the pack (`can2.webp`) on hover/keyboard focus; both represent one Shopify product. No product pagination or price is included.
+
+`npm run build` copies the two can originals to `dist/assets/` and PNGs from `Assests/STORE-logos/` to `dist/assets/store-logos/`. The eight supplied logos replace the initial Bloom placeholders, with accessible stockist names; desktop uses four columns and mobile uses two. Edit the image list in `src/index.html` when adding or replacing stockists. The Store locator button opens a dedicated native modal with address/postal-code search, nearest-first results, and brand/availability filters. Purchases go to the exact Shopify variant URL supplied by the user.
+
+
+## Store locator data and search
+
+Edit `src/stores.json` for the 22 locations, coordinates and availability states. Statuses: confirmed (six Summerhill branches), active (four other supplied stockists), reported (two deliveries needing reconciliation), rollout (ten Revitasize branches with receipt unverified). Updating a state updates the public availability note and confirmed-only filter. Coordinates were geocoded at supplied street numbers with Photon/OpenStreetMap; unit and floor text remains in addresses. No live inventory is claimed.
+
+The simplest architecture here is a local location list plus client-side distance calculation. `src/store-locator.js` calls https://photon.komoot.io/api/ for submitted Canadian address/city/postal searches only; no key or server integration is needed for the preview. It requests no GPS permissions and saves no search history. Visitors see which service receives their query, the matched location, approximate straight-line distances, and required OpenStreetMap attribution. Exact supplied addresses can resolve locally. Ambiguous results offer matching choices; no-match/unavailable feedback preserves list browsing.
+
+Photon’s public demo has reasonable-use/availability limits (https://github.com/komoot/photon#demo-server); review the endpoint/provider before public launch. For production, use a suitable hosted geocoder if traffic/uptime requires it. No new page, map, backend or deployment is included.
+
+Run `npm test` for distance/ranking and supplied-data integrity checks. Locator CSS is grouped after `.store-locator` in `src/styles.css`. Browser checks covered postal/address search, filters, no-match/empty states, reset, Escape/focus return and desktop/mobile layouts.
