@@ -1,3 +1,4 @@
+import { initCommunity } from './community.js';
 import { initCarousel } from "./carousel.js";
 import { initGlobe } from "./globe.js";
 import { initIntro } from "./intro.js";
@@ -347,3 +348,5 @@ initSignupPreviews();
 initStoreLocator();
 initPartnershipPreview();
 if (document.querySelector(".events-page")) initEvents(reducedMotion);
+
+initCommunity();

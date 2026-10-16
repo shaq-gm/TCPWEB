@@ -12,6 +12,7 @@ export function initPartnershipPreview() {
       status: section.querySelector('.showcase-status'),
     });
   });
+  initSponsorOverlay();
   initPartnerLogoWall();
   const form = document.querySelector('[data-partnership-preview]');
   if (!form) return;
@@ -131,5 +132,35 @@ function initPartnerLogoWall() {
   window.addEventListener('scroll', () => { if (near) schedule(); }, { passive: true });
   window.addEventListener('resize', schedule);
   reduced.addEventListener('change', schedule);
+  schedule();
+}
+
+// Pin the visible tail of the whole sponsor section for one viewport of overlap.
+// Measuring on resize keeps the CTA in the same scene at every breakpoint.
+function initSponsorOverlay() {
+  const scene = document.querySelector('.partner-sponsor-scene');
+  if (!scene || !('ResizeObserver' in window)) return;
+  const section = scene.querySelector('.partner-brand-wall');
+  const venues = document.querySelector('#venues');
+  const gallery = document.querySelector('#venue-partnerships');
+  const header = document.querySelector('.site-header');
+  const motion = matchMedia('(prefers-reduced-motion: reduce)');
+  let frame = 0;
+  function layout() {
+    scene.style.setProperty('--sponsor-height', `${section.getBoundingClientRect().height}px`);
+    scene.classList.toggle('is-layered', !motion.matches);
+  }
+  function paintHeader() {
+    frame = 0;
+    const nav = header.querySelector('.desktop-nav').getBoundingClientRect();
+    const line = (nav.top + nav.bottom) / 2;
+    header.classList.toggle('is-over-venues', venues.getBoundingClientRect().top <= line && gallery.getBoundingClientRect().bottom > line);
+  }
+  function schedule() { if (!frame) frame = requestAnimationFrame(paintHeader); }
+  new ResizeObserver(() => { layout(); schedule(); }).observe(section);
+  window.addEventListener('resize', () => { layout(); schedule(); });
+  window.addEventListener('scroll', schedule, { passive: true });
+  motion.addEventListener('change', layout);
+  layout();
   schedule();
 }

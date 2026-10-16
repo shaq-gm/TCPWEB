@@ -134,3 +134,12 @@ Open /community or /community/. Edit src/community.html and src/community.css; t
 ### Partnership video hero
 
 The page opens with a muted looping video and centered white headline. Existing hero.mp4/hero-mobile.mp4 and hero-poster.webp are reused. The description, CTA and opportunity links follow on white; the old panorama image is removed. The local partnership module handles pause/play, offscreen/hidden-tab suspension and poster defaults for reduced motion/data saving. A visitor can explicitly play from the poster. The shared white logo is retained on Partnerships; desktop nav becomes dark after leaving the hero. This does not use the homepage intro animation.
+
+
+### Sponsor-to-venue overlap
+
+`src/partnerships.js` measures `.partner-brand-wall` with ResizeObserver. Its `.partner-sponsor-scene` wrapper holds the entire visible sponsor composition while the black Venues panel scrolls over it, using CSS sticky positioning and an overlapping margin. This replaces the earlier approach where only the cup was sticky and the preceding section kept scrolling away. Reduced motion uses ordinary flow. Venues and Recent venue partnerships share a full-width black chapter with light text/controls; Artists is white again. Desktop nav stays legible over the black chapter. No scroll input is intercepted.
+
+### Community video/scroll revision
+
+Community now follows the annotated reference composition: full-height video hero, about section darkening on scroll with alternating images/text, sticky overlapping concept project rows, a Community Ventures carousel, signup previews and a full-width partnership video callout. Source behavior is in src/community.js, initialized only on Community. Both videos reuse supplied loops/posters and have independent controls and motion/data-saving defaults. Phones, short viewports and reduced motion use ordinary project flow; reduced motion has static black about styling. The project panels and two future venture directions are clearly concepts awaiting approved content. Cold brew is the existing real product. Shared carousel pagination and signup logic are reused. See WEBSITE-PLAN.md for QA and limits.

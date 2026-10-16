@@ -59,7 +59,7 @@ for (const page of ["index", "events", "partnerships", "community"]) {
   html = html.replace(/\sdata-planned="(?:Events|Tickets|Partnerships|Community)"/g, "");
   if (page === "community") html = html.replaceAll('href="/community"', 'href="/community" aria-current="page"');
   if (page !== "index") {
-    if (page !== "partnerships") html = html.replace('/assets/logo-white.svg', '/assets/logo-black.svg');
+    if (!["partnerships", "community"].includes(page)) html = html.replace('/assets/logo-white.svg', '/assets/logo-black.svg');
     await mkdir(`dist/${page}`, { recursive: true });
   }
   await writeFile(page === "index" ? "dist/index.html" : `dist/${page}/index.html`, html);

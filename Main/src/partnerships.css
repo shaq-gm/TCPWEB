@@ -176,9 +176,7 @@
 .partner-cup { display: block; width: 100%; height: 100%; object-fit: contain; transform-origin: 50% 50%; }
 .partner-sponsor-cta { position: relative; padding: 40px 0 85px; display: flex; justify-content: center; }
 .partner-sponsor-cta .partner-button { position: relative; z-index: 1; }
-/* The following section is the only opaque cover; the CTA has no cover layer. */
-.partner-brand-wall + #venues { position: relative; isolation: isolate; z-index: 1; }
-.partner-brand-wall + #venues::before { content: ''; position: absolute; inset: 0 calc(-1 * var(--edge)); background: #fff; z-index: -1; pointer-events: none; }
+
 @media (max-width: 991px) {
   .partner-cup-stage { width: min(320px, 38vw, 40svh); }
 }
@@ -202,3 +200,20 @@
   .partner-cup-stage { transform: none; }
   .partner-cup { transform: none; }
 }
+
+/* Hold the entire sponsor composition while the full-width venue surface covers it. */
+.partner-sponsor-scene { position: relative; z-index: 0; }
+.partner-sponsor-scene.is-layered { --sponsor-overlap: 100svh; height: calc(var(--sponsor-height) + var(--sponsor-overlap)); }
+.is-layered .partner-brand-wall { position: sticky; top: min(0px, calc(100svh - var(--sponsor-height))); }
+.partner-sponsor-scene.is-layered + #venues { margin-top: calc(-1 * var(--sponsor-overlap, 100svh)); }
+#venues, #venue-partnerships { position: relative; z-index: 1; margin-left: 0; margin-right: 0; padding-left: var(--edge); padding-right: var(--edge); background: #101010; color: #fff; border-color: #383838; }
+#venues .partner-copy p, .partnerships-page main #venue-partnerships .showcase-card p { color: #c5c5c5; }
+#venues .partner-button { border-color: #fff; color: #fff; }
+#venues .partner-button:hover { background: #fff; color: #101010; }
+#venues .showcase-media, #venue-partnerships .showcase-media { background: #1d1d1d; border-color: #444; }
+#venues .showcase-media::before, #venues .showcase-media::after, #venue-partnerships .showcase-media::before, #venue-partnerships .showcase-media::after { border-color: #666; }
+#venues .showcase-image-note, #venue-partnerships .showcase-image-note { color: #aaa; }
+#venue-partnerships .carousel-bars button { background: #666; }
+#venue-partnerships .carousel-bars button[aria-current="true"] { background: #fff; }
+#artists { position: relative; z-index: 1; background: #fff; color: var(--ink); }
+.partnerships-page .site-header.is-over-venues .desktop-nav { color: #fff; }
