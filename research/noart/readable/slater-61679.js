@@ -1,0 +1,197 @@
+function updatePlayerUI(e) {
+  let t = e.querySelector("[data-audio-el]"),
+    a = e.querySelector("[data-audio-toggle]");
+  if (!t || !a) return;
+  let l = a.querySelector(".icon-play"),
+    i = a.querySelector(".icon-pause"),
+    r = e.closest(".event-card"),
+    n = r ? r.querySelector(".vinyl-player") : null;
+  t.paused
+    ? (l && l.classList.remove("is-hidden"),
+      i && i.classList.add("is-hidden"),
+      n && n.classList.remove("is-playing"))
+    : (l && l.classList.add("is-hidden"),
+      i && i.classList.remove("is-hidden"),
+      n && n.classList.add("is-playing"));
+}
+function ensureAudioSrc(e) {
+  !e.src && e.dataset.src && (e.src = e.dataset.src);
+}
+function pauseAllAudio(e) {
+  document.querySelectorAll("[data-audio-player]").forEach(function (t) {
+    let a = t.querySelector("[data-audio-el]");
+    a && a !== e && !a.paused && (a.pause(), updatePlayerUI(t));
+  });
+}
+(document.querySelectorAll("[data-draggable]").forEach(function (e) {
+  let t = e.closest(".swiper-slide"),
+    a = e.closest(".event-card");
+  if ((a && a.id && e.setAttribute("data-source-card", a.id), t)) {
+    let a = Array.from(t.parentElement.children).indexOf(t);
+    e.setAttribute("data-slide-index", a);
+  }
+  document.body.appendChild(e);
+}),
+  "undefined" != typeof Draggable &&
+    Draggable.create("[data-draggable]", {
+      bounds: ".main-wrapper",
+      inertia: !0,
+    }),
+  (window.pauseAllAudio = function () {
+    pauseAllAudio(null);
+  }),
+  document.querySelectorAll("[data-audio-player]").forEach(function (e) {
+    let t = e.querySelector("[data-audio-el]"),
+      a = e.querySelector("[data-audio-toggle]");
+    t &&
+      a &&
+      ((t.preload = "none"),
+      a.addEventListener("click", function (e) {
+        (e.stopPropagation(),
+          e.preventDefault(),
+          t.paused
+            ? (ensureAudioSrc(t),
+              pauseAllAudio(t),
+              t.play().catch(function () {}))
+            : t.pause());
+      }),
+      t.addEventListener("play", function () {
+        updatePlayerUI(e);
+      }),
+      t.addEventListener("pause", function () {
+        updatePlayerUI(e);
+      }),
+      t.addEventListener("ended", function () {
+        ((t.currentTime = 0), updatePlayerUI(e));
+      }),
+      updatePlayerUI(e));
+  }),
+  document.addEventListener("click", function (e) {
+    let t = e.target.closest("[data-pop-up-close]");
+    if (!t) return;
+    let a = t.closest("[data-draggable]");
+    (a && a.classList.remove("is-open"),
+      window.pauseAllAudio && window.pauseAllAudio());
+  }));
+let cardSwipers = document.querySelectorAll("[data-label-swiper]");
+cardSwipers.forEach(function (e) {
+  function t(e) {
+    n.forEach((t) => (t.style.display = e.isLocked ? "none" : ""));
+  }
+  function a(e) {
+    e.slides.forEach(function (e) {
+      let t = e.querySelector("[data-slider-index]"),
+        a = e.getAttribute("data-swiper-slide-index");
+      t &&
+        null !== a &&
+        (t.textContent = "[" + String(parseInt(a) + 1).padStart(2, "0") + "]");
+    });
+  }
+  function l() {
+    document
+      .querySelectorAll("[data-draggable][data-slide-index]")
+      .forEach(function (e) {
+        e.classList.remove("is-open");
+      });
+  }
+  let i = e.closest(".slider_wrapper");
+  if (!i) return;
+  let r = i.closest("section") || i.parentElement,
+    n = r ? r.querySelectorAll(".swiper_navigation_buttons") : [],
+    d = r ? Array.from(r.querySelectorAll("[swiper-button-prev]")) : [],
+    s = r ? Array.from(r.querySelectorAll("[swiper-button-next]")) : [],
+    o = r ? Array.from(r.querySelectorAll("[swiper-button-shuffle]")) : [],
+    u = e.querySelector(".cl_slider_list.swiper-wrapper");
+  if (!u || 0 === u.children.length)
+    return (
+      (i.style.display = "none"),
+      void n.forEach((e) => (e.style.display = "none"))
+    );
+  e.addEventListener("click", function (e) {
+    let t = e.target.closest(".event-card_cta");
+    if (!t) return;
+    let a = t.closest(".swiper-slide");
+    if (!a || !a.classList.contains("swiper-slide-active")) return;
+    let i = a.getAttribute("data-swiper-slide-index");
+    if (null === i) return;
+    let r = document.querySelector(
+      '[data-draggable][data-slide-index="' + i + '"]',
+    );
+    r && (l(), r.classList.add("is-open"));
+  });
+  let c = new Swiper(e, {
+    watchOverflow: !0,
+    centeredSlides: !0,
+    loop: !0,
+    slideToClickedSlide: !0,
+    mousewheel: {
+      forceToAxis: !1,
+      releaseOnEdges: !0,
+      thresholdDelta: 20,
+      thresholdTime: 300,
+    },
+    on: {
+      init: function (e) {
+        (t(e), a(e));
+      },
+      resize: t,
+      update: function (e) {
+        (t(e), a(e));
+      },
+      slideChange: function () {
+        (l(), window.pauseAllAudio && window.pauseAllAudio());
+      },
+      slideChangeTransitionStart: function () {
+        window.pauseAllAudio && window.pauseAllAudio();
+      },
+    },
+    pagination: {
+      el: i.querySelector(".swiper_pagination"),
+      clickable: !0,
+      type: "fraction",
+    },
+    navigation: { nextEl: s, prevEl: d },
+    breakpoints: {
+      0: { slidesPerView: 1.5, spaceBetween: 0 },
+      479: { slidesPerView: 1.2, spaceBetween: 0 },
+      768: { slidesPerView: 4, spaceBetween: 20 },
+      992: { slidesPerView: 4, spaceBetween: 20 },
+    },
+  });
+  if (r) {
+    let t = 0;
+    r.addEventListener(
+      "wheel",
+      function (a) {
+        if (e.contains(a.target)) return;
+        let l = Math.abs(a.deltaX) > Math.abs(a.deltaY),
+          i = l ? a.deltaX : a.deltaY;
+        if (Math.abs(i) < 20) return;
+        let r = Date.now();
+        r - t < 400 ||
+          ((t = r),
+          i > 0 ? c.slideNext() : i < 0 && c.slidePrev(),
+          l && a.preventDefault());
+      },
+      { passive: !1 },
+    );
+  }
+  o.forEach(function (e) {
+    e.addEventListener("click", function (e) {
+      (e.preventDefault(), e.stopPropagation());
+      let t = new Set();
+      c.slides.forEach(function (e) {
+        let a = e.getAttribute("data-swiper-slide-index");
+        null !== a && t.add(a);
+      });
+      let a = t.size;
+      if (a <= 1) return;
+      let l,
+        i = c.realIndex;
+      do {
+        l = Math.floor(Math.random() * a);
+      } while (l === i);
+      c.slideToLoop(l, 600);
+    });
+  });
+});
