@@ -1,23 +1,25 @@
 
 
-.partnerships-page .site-header, .partnerships-page .desktop-nav { color: var(--ink); }
+.partnerships-page .site-header, .partnerships-page .desktop-nav { color: white; }
+.partnerships-page .site-header.is-over-content .desktop-nav { color: var(--ink); }
 .partnerships-page .desktop-nav a[href="/partnerships"]:before { background: #ff2b29; }
 .partnerships-page main { overflow: clip; }
 .partnerships-page main p { font: 400 17px/1.65 Arial, Helvetica, sans-serif; text-transform: none; }
 .partnerships-page main h2 { font-size: clamp(36px, 4.1vw, 66px); line-height: 1; }
-.partner-intro { padding: 155px var(--edge) 65px; text-align: center; }
-.partner-intro .eyebrow { justify-content: center; }
-.partner-intro h1 { font: 700 clamp(48px, 6.8vw, 112px)/.96 Arial, Helvetica, sans-serif; letter-spacing: -.06em; margin: 28px auto 32px; }
-.partner-intro h1 span { color: #777; }
+.partner-hero { position: relative; isolation: isolate; height: 90svh; min-height: 540px; display: grid; place-items: center; background: #222 url('/assets/hero-poster.webp') center/cover; color: white; padding: 115px var(--edge) 95px; }
+.partner-hero::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,.45); z-index: -1; }
+.partner-hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+.partner-hero-copy { max-width: 1000px; text-align: center; }
+.partner-hero-copy .eyebrow { justify-content: center; }
+.partner-hero h1 { font: 700 clamp(40px, 5.4vw, 86px)/1 Arial, Helvetica, sans-serif; letter-spacing: -.055em; margin: 25px auto 0; }
+.partner-video-toggle { position: absolute; bottom: 24px; right: var(--edge); border: 1px solid #ffffff90; color: white; padding: 12px 15px; font-size: 11px; display: inline-flex; gap: 20px; align-items: center; background: #0005; }
+.partner-intro { padding: 85px var(--edge) 65px; text-align: center; }
 .partner-intro .partner-lead { max-width: 670px; margin: 0 auto 18px; font-size: clamp(20px, 2vw, 28px); line-height: 1.35; }
 .partner-intro-detail { max-width: 640px; margin: 0 auto 28px; color: #555; }
 .partner-button { border: 1px solid var(--ink); min-height: 54px; padding: 17px 21px; display: inline-flex; align-items: center; justify-content: space-between; gap: 35px; font: 400 12px/1.4 var(--mono); text-transform: uppercase; transition: color .2s, background .2s; }
 .partner-button:hover { color: white; background: var(--ink); }
 .partner-jump-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 28px; margin: 38px auto 0; font-size: 11px; }
 .partner-jump-links a { padding-bottom: 5px; border-bottom: 1px solid #aaa; }
-.partner-panorama { margin: 0 var(--edge); position: relative; height: clamp(300px, 42vw, 620px); background: #222; }
-.partner-panorama img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 48%; filter: brightness(.7); }
-.partner-panorama > span { position: absolute; bottom: 30px; left: 30px; color: white; font-size: clamp(13px, 1.8vw, 26px); }
 .partner-split, .partner-fuel { margin: 0 var(--edge); padding: 105px 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 7%; align-items: center; border-bottom: 1px solid var(--line); }
 .partner-editorial-image { height: clamp(540px, 48vw, 700px); min-height: 0; }
 .partner-editorial-image img { width: 100%; height: 100%; object-fit: cover; }
@@ -39,14 +41,6 @@
 .partner-collab h3 { font: 500 16px/1.5 var(--mono); margin-top: 10px; }
 .partner-collab h3 span { display: block; color: #666; font-size: 12px; }
 .partnerships-page main .partner-coming-soon { margin-top: 15px; font: 400 11px/1.5 var(--mono); text-transform: uppercase; color: #666; }
-.partner-carousel-controls { display: flex; gap: 10px; }
-.partner-carousel-controls button { border: 1px solid var(--ink); width: 48px; height: 48px; font-size: 22px; }
-.partner-carousel-controls button:hover:enabled { background: var(--ink); color: white; }
-.partner-carousel-intro { max-width: 630px; color: #555; margin: -10px 0 28px; }
-.partner-logo-track { list-style: none; padding: 0 0 18px; margin: 0; display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: thin; overscroll-behavior-x: contain; }
-.partner-logo-track li { flex: 0 0 calc((100% - 64px)/5); scroll-snap-align: start; min-width: 0; height: 170px; border: 1px solid #ddd; display: flex; align-items: center; justify-content: center; padding: 28px; }
-.partner-logo-track img { width: 100%; height: 90px; object-fit: contain; }
-.partnerships-page main .partner-carousel-status { margin-top: 12px; font: 400 11px/1.4 var(--mono); color: #666; }
 .partner-dance { margin: 80px var(--edge) 0; background: #101010; color: white; padding: 65px; }
 .partnerships-page main .partner-dance h2 { font-size: clamp(40px, 6.6vw, 105px); margin: 35px 0; }
 .partner-dance > div { max-width: 620px; margin-left: auto; }
@@ -84,17 +78,16 @@
 .partner-form-action { margin-top: 4px; }
 .partnerships-page main .partner-form-action p, .partnerships-page main .partner-feedback { font: 400 11px/1.5 var(--mono); color: #666; margin-top: 16px; }
 @media (max-width: 991px) {
-  .partner-logo-track li { flex-basis: calc((100% - 32px)/3); }
   .partner-split, .partner-fuel { gap: 5%; }
   .partner-collab-logo { height: 210px; }
 }
 @media (max-width: 700px) {
   .partnerships-page main h2 { font-size: clamp(30px, 8vw, 50px); overflow-wrap: anywhere; }
-  .partner-intro { padding-top: 125px; padding-bottom: 45px; }
-  .partner-intro h1 { font-size: clamp(42px, 8.7vw, 61px); margin: 24px 0; }
+  .partner-hero { height: 80svh; min-height: 520px; }
+  .partner-hero h1 { font-size: clamp(36px, 8.8vw, 60px); }
+  .partner-intro { padding-top: 55px; padding-bottom: 45px; }
   .partner-intro .partner-lead { font-size: 22px; }
   .partner-jump-links { gap: 14px 20px; }
-  .partner-panorama { height: 360px; }
   .partner-panorama > span { left: 20px; bottom: 22px; }
   .partner-split, .partner-fuel { grid-template-columns: 1fr; gap: 32px; padding: 50px 0; }
   .partner-editorial-image { min-height: 0; height: 340px; }
@@ -103,11 +96,6 @@
   .partner-can img { height: 320px; }
   .partner-section { padding: 50px 0; }
   .partner-section-heading { align-items: start; flex-direction: column; gap: 22px; }
-  .partner-brand-carousel .partner-section-heading { flex-direction: row; align-items: end; gap: 14px; }
-  .partner-brand-carousel h2 { font-size: 33px !important; }
-  .partner-carousel-controls { gap: 6px; }
-  .partner-carousel-controls button { width: 38px; height: 38px; }
-  .partner-logo-track li { flex-basis: calc((100% - 16px)/2); height: 140px; padding: 22px; }
   .partner-collab-grid, .partner-press-grid, .partner-faq, .partner-start ol, .partner-inquiry { grid-template-columns: 1fr; }
   .partner-collab-grid, .partner-press-grid { gap: 36px; }
   .partner-collab-logo { height: 240px; }
@@ -141,6 +129,11 @@
 .showcase-card .text-link { display: inline-flex; font-size: 11px; margin-top: 16px; }
 .showcase-press-card > .eyebrow { margin-top: 16px; }
 .showcase-press-card h3 { text-transform: none; font: 500 17px/1.35 Arial, Helvetica, sans-serif; }
+.press-image-link { display: block; }
+.press-media .showcase-photo { z-index: 0; }
+.press-media::before, .press-media::after { display: none; }
+.partnerships-page main .showcase-press-card .press-image-credit { font-size: 10px; line-height: 1.4; margin: 7px 0 16px; color: #777; }
+.partnerships-page main .showcase-press-card .press-meta { font: 400 10px/1.5 var(--mono); margin-top: 8px; text-transform: uppercase; }
 .showcase-portraits .showcase-card { flex-basis: calc((100% - 80px) / 5.4); }
 .showcase-portraits .showcase-media { aspect-ratio: .84; }
 .partner-feature-slot { height: auto; aspect-ratio: 1.4; }
@@ -160,4 +153,52 @@
   .showcase-brand-mark { height: 80px; }
   .showcase-outlet { font-size: 26px; }
   #venues, #artists { padding: 45px 0; }
+}
+
+/* Sponsor composition: one surface for logos, cup and CTA; Venues sits above it. */
+.partner-brand-wall { position: relative; z-index: 0; padding-bottom: 0; }
+.partner-wall-intro { max-width: 630px; color: #555; margin: -10px 0 40px; }
+.partner-logo-wall { position: relative; isolation: isolate; background: #fff; }
+.partner-logo-grid { position: relative; list-style: none; margin: 0; padding: 32px 0 100px; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); row-gap: 24px; align-items: center; }
+.partner-logo-grid li { min-width: 0; height: clamp(96px, 10vw, 148px); padding: clamp(12px, 2vw, 30px); display: grid; place-items: center; }
+.partner-logo-grid li:nth-child(4n + 1) { grid-column: 1; transform: translateY(64px); }
+.partner-logo-grid li:nth-child(4n + 2) { grid-column: 2; }
+.partner-logo-grid li:nth-child(4n + 3) { grid-column: 6; }
+.partner-logo-grid li:nth-child(4n) { grid-column: 7; transform: translateY(64px); }
+.partner-logo-grid img { width: 100%; height: 76px; object-fit: contain; }
+/* Reference geometry: wrapper begins 175vh earlier; viewport-height sticky stage.
+   Ending the wrapper with the CTA lets the cup rise with that entire surface. */
+.partner-cup-lane { position: absolute; inset: 0; pointer-events: none; }
+.partner-cup-sticky { position: relative; top: 20px; display: flex; align-items: center; justify-content: center; }
+.has-cup-motion .partner-cup-lane { top: -175vh; }
+.has-cup-motion .partner-cup-sticky { position: sticky; top: 0; height: 100vh; }
+.partner-cup-stage { position: relative; width: min(360px, 38vw, 40svh); aspect-ratio: 1; transform-origin: 50% 50%; }
+.partner-cup { display: block; width: 100%; height: 100%; object-fit: contain; transform-origin: 50% 50%; }
+.partner-sponsor-cta { position: relative; padding: 40px 0 85px; display: flex; justify-content: center; }
+.partner-sponsor-cta .partner-button { position: relative; z-index: 1; }
+/* The following section is the only opaque cover; the CTA has no cover layer. */
+.partner-brand-wall + #venues { position: relative; isolation: isolate; z-index: 1; }
+.partner-brand-wall + #venues::before { content: ''; position: absolute; inset: 0 calc(-1 * var(--edge)); background: #fff; z-index: -1; pointer-events: none; }
+@media (max-width: 991px) {
+  .partner-cup-stage { width: min(320px, 38vw, 40svh); }
+}
+@media (max-width: 767px) {
+  .partner-wall-intro { margin-bottom: 28px; }
+  .partner-cup-stage { width: min(260px, 52vw, 40svh); }
+  .partner-logo-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 8px 0 70px; row-gap: 22px; }
+  .partner-logo-grid li:nth-child(n) { grid-column: auto; transform: none; height: 100px; padding: 16px; }
+  .partner-logo-grid li:nth-child(3n + 2) { transform: translateY(45px); }
+  .partner-logo-grid img { height: 64px; }
+  .partner-sponsor-cta { padding: 40px 0 60px; }
+}
+@media (max-width: 479px) {
+  .partner-cup-stage { width: min(220px, 58vw, 36svh); }
+  /* Reference phone layout leaves a large open cup area before the CTA. */
+  .partner-sponsor-cta { padding-top: 300px; padding-bottom: 80px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .partner-cup-lane { inset: 0; }
+  .partner-cup-sticky { position: relative; top: 20px; height: auto; }
+  .partner-cup-stage { transform: none; }
+  .partner-cup { transform: none; }
 }

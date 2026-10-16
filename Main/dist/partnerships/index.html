@@ -12,7 +12,7 @@
 <header class="site-header" id="site-header">
   <a class="header-logo" href="/" aria-label="Coffee Party home"
     ><img
-      src="/assets/logo-black.svg"
+      src="/assets/logo-white.svg"
       width="859"
       height="103"
       alt="The Coffee Party"
@@ -23,7 +23,7 @@
       >Partner</a
     >
     <a class="square-link" href="/our-story" data-planned="Our Story">About</a>
-    <a class="square-link" href="/community" data-planned="Community"
+    <a class="square-link" href="/community"
       >Community</a
     >
     <a class="square-link" href="/projects" data-planned="Projects">Projects</a>
@@ -54,7 +54,7 @@
       >Partner</a
     >
     <a class="square-link" href="/our-story" data-planned="Our Story">About</a>
-    <a class="square-link" href="/community" data-planned="Community"
+    <a class="square-link" href="/community"
       >Community</a
     >
     <a class="square-link" href="/projects" data-planned="Projects">Projects</a>
@@ -79,15 +79,19 @@
 </dialog>
 
 <main id="main">
-<section class="partner-intro" aria-labelledby="partner-title">
-  <span class="eyebrow">Coffee. Music. People.</span>
+<section class="partner-hero" aria-labelledby="partner-title">
+  <video class="partner-hero-video" muted loop playsinline preload="none" poster="/assets/hero-poster.webp" aria-hidden="true"></video>
+  <div class="partner-hero-copy"><span class="eyebrow">Coffee. Music. People.</span>
   <h1 id="partner-title">A different kind<br />of party.<br /><span>A deeper connection.</span></h1>
+  </div>
+  <button class="partner-video-toggle" type="button" aria-label="Play background video" aria-pressed="false" hidden>Play video <span aria-hidden="true">▷</span></button>
+</section>
+<section class="partner-intro" aria-label="Partner with The Coffee Party">
   <p class="partner-lead">The Coffee Party brings brands and people together through coffee, music and daytime experiences.</p>
   <p class="partner-intro-detail">From a first sip to a shared dance floor, we create space for people to connect. Explore brand partnerships, event sponsorships, product sampling and creative collaborations that become part of the experience.</p>
   <a class="partner-button" href="#inquiry">Let’s get started <span aria-hidden="true">↗</span></a>
   <nav class="partner-jump-links" aria-label="Partnership opportunities"><a href="#brand-partnerships">Brands</a><a href="#sampling">Product sampling</a><a href="#venues">Venues</a><a href="#artists">Artists</a><a href="#press">In the press</a></nav>
 </section>
-<div class="partner-panorama"><img src="/assets/hero-poster.webp" width="576" height="1024" alt="People gathering at a Coffee Party event" fetchpriority="high" /><span>Coffee first. Connection always.</span></div>
 <section class="partner-split" id="brand-partnerships" aria-labelledby="brand-title">
   <div class="partner-editorial-image"><img src="/assets/gathering.webp" alt="A gathering from the Coffee Party film" loading="lazy" /></div>
   <div class="partner-copy"><span class="eyebrow">Dance with us</span><h2 id="brand-title">Brand partnerships.<br />Made for real life.</h2>
@@ -110,10 +114,12 @@
   <div class="partner-editorial-image"><img src="/assets/daylight.webp" alt="A daytime moment from the Coffee Party film" loading="lazy" /></div>
   <div class="partner-copy"><span class="eyebrow">Get served</span><h2 id="sampling-title">Partner product<br />sampling.</h2><p>A sample is more meaningful when it belongs to the moment. The Coffee Party offers a natural setting to explore product discovery alongside coffee, music and conversation, giving guests a chance to experience something for themselves.</p><p>Food, beverage, beauty, lifestyle and wellness brands can get in touch to discuss a sampling idea. Together, we can consider how the product is introduced, where it sits in the guest journey and what a useful interaction looks like.</p><p>Before confirming a sampling partnership, we’ll discuss the event, product suitability, quantities, service needs and on-site setup. Tell us what you’d like people to discover; we’ll explore an approach that works for both your brand and the gathering.</p><a class="partner-button" href="#inquiry">Talk about product sampling <span aria-hidden="true">↗</span></a></div>
 </section>
-<section class="partner-section partner-brand-carousel" aria-labelledby="brands-title">
-  <div class="partner-section-heading"><div><span class="eyebrow">More connections</span><h2 id="brands-title">Brand collaborators.</h2></div><div class="partner-carousel-controls"><button type="button" data-brand-prev aria-label="Previous brand collaborators" aria-controls="brand-carousel" disabled>←</button><button type="button" data-brand-next aria-label="Next brand collaborators" aria-controls="brand-carousel" disabled>→</button></div></div>
-  <p class="partner-carousel-intro">Explore more of the brands connected to the Coffee Party story, from food and beverage to lifestyle and culture.</p>
-  <ul class="partner-logo-track" id="brand-carousel" tabindex="0" aria-label="Brand collaborators. Scroll horizontally or use arrow keys."><li><img src="/assets/brand-logos/mlse.png" alt="MLSE" loading="lazy" /></li>
+<section class="partner-section partner-brand-wall" aria-labelledby="brands-title">
+  <div class="partner-section-heading"><div><span class="eyebrow">More connections</span><h2 id="brands-title">Brand collaborators.</h2></div></div>
+  <p class="partner-wall-intro">Explore more of the brands connected to the Coffee Party story, from food and beverage to lifestyle and culture.</p>
+  <div class="partner-logo-wall">
+    <div class="partner-cup-lane" aria-hidden="true"><div class="partner-cup-sticky"><div class="partner-cup-stage"><img class="partner-cup" src="/assets/partner-cup.webp" alt="" width="900" height="900" loading="lazy" decoding="async" /></div></div></div>
+    <ul class="partner-logo-grid" aria-label="Brand collaborators"><li><img src="/assets/brand-logos/mlse.png" alt="MLSE" loading="lazy" /></li>
 <li><img src="/assets/brand-logos/mlb.png" alt="Major League Baseball" loading="lazy" /></li>
 <li><img src="/assets/brand-logos/red-bull.png" alt="Red Bull" loading="lazy" /></li>
 <li><img src="/assets/brand-logos/heineken-0.0.png" alt="Heineken 0.0" loading="lazy" /></li>
@@ -131,7 +137,9 @@
 <li><img src="/assets/brand-logos/azur.png" alt="Azur" loading="lazy" /></li>
 <li><img src="/assets/brand-logos/coffee-meets-bagel.png" alt="Coffee Meets Bagel" loading="lazy" /></li>
 <li><img src="/assets/brand-logos/redtag.png" alt="redtag.ca" loading="lazy" /></li>
-<li><img src="/assets/brand-logos/ryde.png" alt="Ryde" loading="lazy" /></li></ul><p class="partner-carousel-status" aria-live="polite"></p>
+<li><img src="/assets/brand-logos/ryde.png" alt="Ryde" loading="lazy" /></li></ul>
+  <div class="partner-sponsor-cta"><a class="partner-button" href="#inquiry">Become a sponsor <span aria-hidden="true">↗</span></a></div>
+  </div>
 </section>
 <section class="partner-split" id="venues" aria-labelledby="venues-title">
   <div class="partner-editorial-image partner-feature-slot"><div class="showcase-media" role="img" aria-label="Venue feature image placeholder"><!-- Replace the placeholder with an img.showcase-photo using the approved image and descriptive alt text. --><span class="showcase-image-note">Image to be added</span></div></div>
@@ -154,7 +162,158 @@
 <section class="partner-dance" aria-labelledby="dance-title"><span class="eyebrow">Dance without waiting for the night</span><h2 id="dance-title">More daylight.<br />More connection.<br />More reasons to move.</h2><div><p>There’s something different about meeting on a dance floor while the day is still ahead of you. The Coffee Party makes room for coffee, music and conversation in one shared experience.</p><p>For partners, the opportunity is to be part of that experience in a thoughtful way. Bring an idea that makes the gathering better, and let’s explore where it can go.</p><a class="partner-button" href="#inquiry">Let’s get started <span aria-hidden="true">↗</span></a></div></section>
 <section class="partner-showcase " id="press" data-showcase aria-labelledby="press-title">
   <span class="eyebrow">In the press</span><h2 id="press-title">People are talking</h2>
-  <div class="showcase-track" id="press-track" tabindex="0" role="region" aria-roledescription="carousel" aria-label="People are talking. Use Left, Right, Home or End to browse."><article class="showcase-card showcase-press-card"><div class="showcase-media" role="img" aria-label="TorontoToday coverage image placeholder"><!-- Replace the placeholder with an img.showcase-photo using the approved image and descriptive alt text. --><span class="showcase-image-note">Image to be added</span><span class="showcase-outlet">TorontoToday</span></div><span class="eyebrow">TorontoToday</span><h3>Inside a Coffee Party in Liberty Village</h3><p>Reporting from the gathering at NODO Liberty, with coffee, pastries and live house music.</p><a class="text-link" href="https://www.torontotoday.ca/local/community-events/coffee-lovers-loosen-up-at-daytime-party-series-in-liberty-village-10131668" target="_blank" rel="noopener">Read the coverage <span aria-hidden="true">↗</span></a></article><article class="showcase-card showcase-press-card"><div class="showcase-media" role="img" aria-label="Streets of Toronto coverage image placeholder"><!-- Replace the placeholder with an img.showcase-photo using the approved image and descriptive alt text. --><span class="showcase-image-note">Image to be added</span><span class="showcase-outlet">Streets of Toronto</span></div><span class="eyebrow">Streets of Toronto</span><h3>Why Toronto is showing up early</h3><p>A look at The Coffee Party and the city’s growing appetite for daytime events.</p><a class="text-link" href="https://streetsoftoronto.com/toronto-culture/coffee-parties-toronto-2/" target="_blank" rel="noopener">Read the coverage <span aria-hidden="true">↗</span></a></article><article class="showcase-card showcase-press-card"><div class="showcase-media" role="img" aria-label="Secret Toronto coverage image placeholder"><!-- Replace the placeholder with an img.showcase-photo using the approved image and descriptive alt text. --><span class="showcase-image-note">Image to be added</span><span class="showcase-outlet">Secret Toronto</span></div><span class="eyebrow">Secret Toronto</span><h3>Coffee, music and a daytime dance floor</h3><p>Coverage of The Coffee Party as part of Toronto’s daytime social scene.</p><a class="text-link" href="https://secrettoronto.co/the-coffee-party-toronto/" target="_blank" rel="noopener">Read the coverage <span aria-hidden="true">↗</span></a></article></div>
+  <div class="showcase-track" id="press-track" tabindex="0" role="region" aria-roledescription="carousel" aria-label="People are talking. Use Left, Right, Home or End to browse.">
+    <article class="showcase-card showcase-press-card" data-press-id="outlander-madrid">
+    <a class="press-image-link" href="https://outlandermag.com/blogs/talk-of-the-land/f1-came-back-to-madrid-and-race-weekend-started-with-coffee" target="_blank" rel="noopener" aria-label="Outlander Magazine: Race weekend started with coffee">
+      <div class="showcase-media press-media"><img class="showcase-photo" src="/assets/press/outlander-madrid.webp" width="960" height="694" alt="A Coffee Party Times poster announcing race weekend in Madrid" loading="lazy" decoding="async" /></div>
+    </a>
+    <p class="press-image-credit">Image: Outlander Magazine article image</p>
+    <span class="eyebrow">Outlander Magazine</span>
+    <p class="press-meta">Online · September 14, 2026</p>
+    <h3>Race weekend started with coffee</h3><p>A report from Madrid, including F1 Paddock Club × The Coffee Party at Acid Bakehouse.</p>
+    <a class="text-link" href="https://outlandermag.com/blogs/talk-of-the-land/f1-came-back-to-madrid-and-race-weekend-started-with-coffee" target="_blank" rel="noopener" aria-label="Read the article: Outlander Magazine, Race weekend started with coffee">Read the article <span aria-hidden="true">↗</span></a>
+  </article>
+<article class="showcase-card showcase-press-card" data-press-id="toronto-com-finale">
+    <a class="press-image-link" href="https://www.toronto.com/things-to-do/coffee-party-toronto-summer-finale-stackt-market/article_c0bab52b-f956-588e-a754-4b85ba757ed7.html" target="_blank" rel="noopener" aria-label="Toronto.com: Toronto’s Coffee Party summer finale">
+      <div class="showcase-media press-media"><img class="showcase-photo" src="/assets/press/toronto-com-finale.webp" width="960" height="504" alt="A DJ performing beneath The Coffee Party wordmark" loading="lazy" decoding="async" /></div>
+    </a>
+    <p class="press-image-credit">Image: Toronto.com article image</p>
+    <span class="eyebrow">Toronto.com</span>
+    <p class="press-meta">Online · August 23, 2026</p>
+    <h3>Toronto’s Coffee Party summer finale</h3><p>The season-finale gathering at STACKT Market.</p>
+    <a class="text-link" href="https://www.toronto.com/things-to-do/coffee-party-toronto-summer-finale-stackt-market/article_c0bab52b-f956-588e-a754-4b85ba757ed7.html" target="_blank" rel="noopener" aria-label="Read the article: Toronto.com, Toronto’s Coffee Party summer finale">Read the article <span aria-hidden="true">↗</span></a>
+  </article>
+<article class="showcase-card showcase-press-card" data-press-id="ontario-post">
+    <a class="press-image-link" href="https://ontariopost.ca/article/toronto-s-viral-coffee-party-returns-with-daytime-house-music-and-summer-energy" target="_blank" rel="noopener" aria-label="The Ontario Post: Toronto’s viral Coffee Party returns">
+      <div class="showcase-media press-media"><img class="showcase-photo" src="/assets/press/ontario-post.webp" width="960" height="504" alt="The Ontario Post article preview showing a daytime Coffee Party crowd" loading="lazy" decoding="async" /></div>
+    </a>
+    <p class="press-image-credit">Image: The Ontario Post article image</p>
+    <span class="eyebrow">The Ontario Post</span>
+    <p class="press-meta">Online · August 23, 2026</p>
+    <h3>Toronto’s viral Coffee Party returns</h3><p>Daytime house music, coffee culture and summer energy in Toronto.</p>
+    <a class="text-link" href="https://ontariopost.ca/article/toronto-s-viral-coffee-party-returns-with-daytime-house-music-and-summer-energy" target="_blank" rel="noopener" aria-label="Read the article: The Ontario Post, Toronto’s viral Coffee Party returns">Read the article <span aria-hidden="true">↗</span></a>
+  </article>
+<article class="showcase-card showcase-press-card" data-press-id="toronto-com-festival">
+    <a class="press-image-link" href="https://www.toronto.com/things-to-do/the-coffee-party-festival-toronto-2026-stackt-market/article_729c25c5-de6c-5185-bd03-c9814a610cd3.html" target="_blank" rel="noopener" aria-label="Toronto.com: The Coffee Party Festival at STACKT Market">
+      <div class="showcase-media press-media"><img class="showcase-photo" src="/assets/press/toronto-com-festival.webp" width="960" height="504" alt="A crowd at the outdoor Coffee Party festival at STACKT Market" loading="lazy" decoding="async" /></div>
+    </a>
+    <p class="press-image-credit">Image: Toronto.com article image</p>
+    <span class="eyebrow">Toronto.com</span>
+    <p class="press-meta">Online · April 21, 2026</p>
+    <h3>The Coffee Party Festival at STACKT Market</h3><p>Coverage of the 2026 Coffee Party festival in Toronto.</p>
+    <a class="text-link" href="https://www.toronto.com/things-to-do/the-coffee-party-festival-toronto-2026-stackt-market/article_729c25c5-de6c-5185-bd03-c9814a610cd3.html" target="_blank" rel="noopener" aria-label="Read the article: Toronto.com, The Coffee Party Festival at STACKT Market">Read the article <span aria-hidden="true">↗</span></a>
+  </article>
+<article class="showcase-card showcase-press-card" data-press-id="montreal-express">
+    <a class="press-image-link" href="https://www.montrealexpress.ca/levenement-viral-de-la-fete-du-cafe-daytime-a-toronto-devient-mondial-apres-son-succes-local/" target="_blank" rel="noopener" aria-label="Montréal Express: De Toronto à une scène internationale">
+      <div class="showcase-media press-media"><img class="showcase-photo" src="/assets/press/montreal-express.webp" width="960" height="504" alt="The Coffee Party DJ booth and guests in the Montréal Express article" loading="lazy" decoding="async" /></div>
+    </a>
+    <p class="press-image-credit">Image: Montréal Express article image</p>
+    <span class="eyebrow">Montréal Express</span>
+    <p class="press-meta">French-language coverage · July 3, 2025</p>
+    <h3>De Toronto à une scène internationale</h3><p>French-language coverage of The Coffee Party’s expansion beyond Toronto.</p>
+    <a class="text-link" href="https://www.montrealexpress.ca/levenement-viral-de-la-fete-du-cafe-daytime-a-toronto-devient-mondial-apres-son-succes-local/" target="_blank" rel="noopener" aria-label="Read the article: Montréal Express, De Toronto à une scène internationale">Read the article <span aria-hidden="true">↗</span></a>
+  </article>
+<article class="showcase-card showcase-press-card" data-press-id="timeout-miami">
+    <a class="press-image-link" href="https://www.timeout.com/miami/things-to-do/the-coffee-party-miami" target="_blank" rel="noopener" aria-label="Time Out Miami: The Coffee Party Miami">
+      <div class="showcase-media press-media"><img class="showcase-photo" src="/assets/press/timeout-miami.webp" width="960" height="640" alt="Performers at Joia Beach in the Time Out Miami listing image" loading="lazy" decoding="async" /></div>
+    </a>
+    <p class="press-image-credit">Image: Alexander Tamargo / Time Out</p>
+    <span class="eyebrow">Time Out Miami</span>
+    <p class="press-meta">Event listing · July 1, 2025</p>
+    <h3>The Coffee Party Miami</h3><p>A listing for the July 4 daytime party at Joia Beach, with coffee and house music.</p>
+    <a class="text-link" href="https://www.timeout.com/miami/things-to-do/the-coffee-party-miami" target="_blank" rel="noopener" aria-label="Read the article: Time Out Miami, The Coffee Party Miami">Read the article <span aria-hidden="true">↗</span></a>
+  </article>
+<article class="showcase-card showcase-press-card" data-press-id="cbc-current">
+    <a class="press-image-link" href="https://www.cbc.ca/radio/thecurrent/nightlife-for-day-parties-1.7563379" target="_blank" rel="noopener" aria-label="CBC Radio · The Current: Trading nightlife for daytime parties">
+      <div class="showcase-media press-media"><img class="showcase-photo" src="/assets/press/cbc-current.webp" width="620" height="349" alt="Guests dancing together in the Coffee Party image published by CBC" loading="lazy" decoding="async" /></div>
+    </a>
+    <p class="press-image-credit">Image: Submitted by Zohaib Aziz / CBC</p>
+    <span class="eyebrow">CBC Radio · The Current</span>
+    <p class="press-meta">Radio · June 20, 2025</p>
+    <h3>Trading nightlife for daytime parties</h3><p>Matt Galloway speaks with Coffee Party co-founder Zohaib Aziz about daytime partying.</p>
+    <a class="text-link" href="https://www.cbc.ca/radio/thecurrent/nightlife-for-day-parties-1.7563379" target="_blank" rel="noopener" aria-label="Listen to the interview: CBC Radio · The Current, Trading nightlife for daytime parties">Listen to the interview <span aria-hidden="true">↗</span></a>
+  </article>
+<article class="showcase-card showcase-press-card" data-press-id="secret-toronto-festival">
+    <a class="press-image-link" href="https://secrettoronto.co/the-coffee-party-festival-toronto-stackt/" target="_blank" rel="noopener" aria-label="Secret Toronto: The Coffee Party takes over STACKT">
+      <div class="showcase-media press-media"><img class="showcase-photo" src="/assets/press/secret-toronto-festival.webp" width="960" height="640" alt="A Coffee Party crowd with raised hands and white balloons" loading="lazy" decoding="async" /></div>
+    </a>
+    <p class="press-image-credit">Image: Secret Toronto article image</p>
+    <span class="eyebrow">Secret Toronto</span>
+    <p class="press-meta">Online · June 12, 2025</p>
+    <h3>The Coffee Party takes over STACKT</h3><p>A preview of the daytime festival at Toronto’s STACKT Market.</p>
+    <a class="text-link" href="https://secrettoronto.co/the-coffee-party-festival-toronto-stackt/" target="_blank" rel="noopener" aria-label="Read the article: Secret Toronto, The Coffee Party takes over STACKT">Read the article <span aria-hidden="true">↗</span></a>
+  </article>
+<article class="showcase-card showcase-press-card" data-press-id="secret-toronto-party">
+    <a class="press-image-link" href="https://secrettoronto.co/the-coffee-party-toronto/" target="_blank" rel="noopener" aria-label="Secret Toronto: Toronto’s newest daytime party craze">
+      <div class="showcase-media press-media"><img class="showcase-photo" src="/assets/press/secret-toronto-party.webp" width="960" height="640" alt="Guests enjoying a daytime Coffee Party with music and coffee" loading="lazy" decoding="async" /></div>
+    </a>
+    <p class="press-image-credit">Image: Secret Toronto article image</p>
+    <span class="eyebrow">Secret Toronto</span>
+    <p class="press-meta">Online · April 9, 2025</p>
+    <h3>Toronto’s newest daytime party craze</h3><p>The Coffee Party joins Toronto’s growing daytime social scene.</p>
+    <a class="text-link" href="https://secrettoronto.co/the-coffee-party-toronto/" target="_blank" rel="noopener" aria-label="Read the article: Secret Toronto, Toronto’s newest daytime party craze">Read the article <span aria-hidden="true">↗</span></a>
+  </article>
+<article class="showcase-card showcase-press-card" data-press-id="blogto-festival">
+    <a class="press-image-link" href="https://www.blogto.com/radar/2025/03/coffee-party-toronto/" target="_blank" rel="noopener" aria-label="blogTO: The Coffee Party festival announcement">
+      <div class="showcase-media press-media"><img class="showcase-photo" src="/assets/press/blogto-festival.webp" width="960" height="504" alt="Guests gathering around the DJ booth at a Coffee Party" loading="lazy" decoding="async" /></div>
+    </a>
+    <p class="press-image-credit">Image: blogTO article image</p>
+    <span class="eyebrow">blogTO</span>
+    <p class="press-meta">Online · March 2025</p>
+    <h3>The Coffee Party festival announcement</h3><p>Coverage of the next chapter for Toronto’s daytime coffee-and-music gathering.</p>
+    <a class="text-link" href="https://www.blogto.com/radar/2025/03/coffee-party-toronto/" target="_blank" rel="noopener" aria-label="Read the article: blogTO, The Coffee Party festival announcement">Read the article <span aria-hidden="true">↗</span></a>
+  </article>
+<article class="showcase-card showcase-press-card" data-press-id="cp24-dark-horse">
+    <a class="press-image-link" href="https://www.cp24.com/video/2025/03/19/the-coffee-party-at-dark-horse/" target="_blank" rel="noopener" aria-label="CP24: The Coffee Party at Dark Horse">
+      <div class="showcase-media press-media"><img class="showcase-photo" src="/assets/press/cp24-dark-horse.webp" width="960" height="504" alt="Jee-Yun Lee interviewing two guests wearing Coffee Party shirts at Dark Horse" loading="lazy" decoding="async" /></div>
+    </a>
+    <p class="press-image-credit">Image: CP24 video thumbnail</p>
+    <span class="eyebrow">CP24</span>
+    <p class="press-meta">TV · March 19, 2025</p>
+    <h3>The Coffee Party at Dark Horse</h3><p>Jee-Yun Lee reports from a coffee party at Dark Horse on Richmond Street West.</p>
+    <a class="text-link" href="https://www.cp24.com/video/2025/03/19/the-coffee-party-at-dark-horse/" target="_blank" rel="noopener" aria-label="Watch the segment: CP24, The Coffee Party at Dark Horse">Watch the segment <span aria-hidden="true">↗</span></a>
+  </article>
+<article class="showcase-card showcase-press-card" data-press-id="streets-toronto">
+    <a class="press-image-link" href="https://streetsoftoronto.com/toronto-culture/coffee-parties-toronto-2/" target="_blank" rel="noopener" aria-label="Streets of Toronto: The Toronto party that starts at 10 AM">
+      <div class="showcase-media press-media"><img class="showcase-photo" src="/assets/press/streets-toronto.webp" width="960" height="540" alt="A DJ playing to a crowd at a Coffee Party gathering" loading="lazy" decoding="async" /></div>
+    </a>
+    <p class="press-image-credit">Image: Streets of Toronto article image</p>
+    <span class="eyebrow">Streets of Toronto</span>
+    <p class="press-meta">Online · February 27, 2025</p>
+    <h3>The Toronto party that starts at 10 AM</h3><p>Why people are showing up early for coffee, music and community.</p>
+    <a class="text-link" href="https://streetsoftoronto.com/toronto-culture/coffee-parties-toronto-2/" target="_blank" rel="noopener" aria-label="Read the article: Streets of Toronto, The Toronto party that starts at 10 AM">Read the article <span aria-hidden="true">↗</span></a>
+  </article>
+<article class="showcase-card showcase-press-card" data-press-id="blogto-party">
+    <a class="press-image-link" href="https://www.blogto.com/radar/2025/02/the-coffee-party-toronto/" target="_blank" rel="noopener" aria-label="blogTO: Toronto’s hottest new party series">
+      <div class="showcase-media press-media"><img class="showcase-photo" src="/assets/press/blogto-party.webp" width="960" height="504" alt="A daytime Coffee Party crowd with white balloons" loading="lazy" decoding="async" /></div>
+    </a>
+    <p class="press-image-credit">Image: blogTO article image</p>
+    <span class="eyebrow">blogTO</span>
+    <p class="press-meta">Online · February 2025</p>
+    <h3>Toronto’s hottest new party series</h3><p>A look at The Coffee Party and a different way to start the day.</p>
+    <a class="text-link" href="https://www.blogto.com/radar/2025/02/the-coffee-party-toronto/" target="_blank" rel="noopener" aria-label="Read the article: blogTO, Toronto’s hottest new party series">Read the article <span aria-hidden="true">↗</span></a>
+  </article>
+<article class="showcase-card showcase-press-card" data-press-id="torontotoday">
+    <a class="press-image-link" href="https://www.torontotoday.ca/local/community-events/coffee-lovers-loosen-up-at-daytime-party-series-in-liberty-village-10131668" target="_blank" rel="noopener" aria-label="TorontoToday: Coffee lovers loosen up in Liberty Village">
+      <div class="showcase-media press-media"><img class="showcase-photo" src="/assets/press/torontotoday.webp" width="960" height="640" alt="A barista serving guests at NODO Liberty" loading="lazy" decoding="async" /></div>
+    </a>
+    <p class="press-image-credit">Image: Alex Flood / TorontoToday</p>
+    <span class="eyebrow">TorontoToday</span>
+    <p class="press-meta">Online · January 25, 2025</p>
+    <h3>Coffee lovers loosen up in Liberty Village</h3><p>Inside the NODO Liberty gathering, with coffee, pastries and live house music.</p>
+    <a class="text-link" href="https://www.torontotoday.ca/local/community-events/coffee-lovers-loosen-up-at-daytime-party-series-in-liberty-village-10131668" target="_blank" rel="noopener" aria-label="Read the article: TorontoToday, Coffee lovers loosen up in Liberty Village">Read the article <span aria-hidden="true">↗</span></a>
+  </article>
+<article class="showcase-card showcase-press-card" data-press-id="now-toronto">
+    <a class="press-image-link" href="https://nowtoronto.com/lifestyle/breakfast-with-a-side-of-beats-new-party-series-in-toronto-brewing-caffeine-music-and-connections/" target="_blank" rel="noopener" aria-label="NOW Toronto: Breakfast with a side of beats">
+      <div class="showcase-media press-media"><img class="showcase-photo" src="/assets/press/now-toronto.webp" width="960" height="489" alt="Coffee Party DJs and guests in the NOW Toronto article image" loading="lazy" decoding="async" /></div>
+    </a>
+    <p class="press-image-credit">Image: The Coffee Party / TikTok, via NOW Toronto</p>
+    <span class="eyebrow">NOW Toronto</span>
+    <p class="press-meta">Online · December 4, 2024</p>
+    <h3>Breakfast with a side of beats</h3><p>An introduction to the Toronto series bringing coffee, music and conversation together.</p>
+    <a class="text-link" href="https://nowtoronto.com/lifestyle/breakfast-with-a-side-of-beats-new-party-series-in-toronto-brewing-caffeine-music-and-connections/" target="_blank" rel="noopener" aria-label="Read the article: NOW Toronto, Breakfast with a side of beats">Read the article <span aria-hidden="true">↗</span></a>
+  </article>
+  </div>
   <div class="carousel-controls"><button class="text-link" type="button" data-showcase-prev aria-label="Previous people are talking" aria-controls="press-track" disabled>‹ Prev</button><div class="carousel-bars" aria-label="Choose a showcase position"></div><button class="text-link" type="button" data-showcase-next aria-label="Next people are talking" aria-controls="press-track" disabled>Next ›</button></div><p class="sr-only showcase-status" role="status" aria-live="polite"></p>
 </section>
 <section class="partner-section partner-faq" aria-labelledby="faq-title"><div><span class="eyebrow">A few things to know</span><h2 id="faq-title">Partnership<br />questions, answered.</h2></div><div>
@@ -212,7 +371,7 @@
     <details class="footer-group" open>
       <summary>[Discover]<span aria-hidden="true">+</span></summary>
       <div>
-        <a href="/community" data-planned="Community">Community</a
+        <a href="/community">Community</a
         ><a href="/projects" data-planned="Projects">Projects</a
         ><a href="/press" data-planned="Press">Press</a>
       </div>

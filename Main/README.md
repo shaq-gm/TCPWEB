@@ -1,6 +1,6 @@
 # Coffee Party — website preview
 
-This independent replacement lives entirely in `Main`. The existing coming-soon website in `../site` is preserved. The homepage, Events listing, Partnerships page and reusable header/menu/footer are built. Nothing has been deployed.
+This independent replacement lives entirely in `Main`. The existing coming-soon website in `../site` is preserved. The homepage, Events listing, Partnerships and Community pages and reusable header/menu/footer are built. Nothing has been deployed.
 
 ## Run locally
 
@@ -58,7 +58,7 @@ Anchor entry points such as `/#join` skip the opening hero animation. SMS delive
 
 ## Preview boundaries
 
-- The homepage has one Shopify-linked cold brew product and eight supplied stockist logos. The Store locator opens a searchable modal with all 22 supplied addresses; no separate page or map is used. Events and Partnerships are implemented; other pages and event slug pages remain deferred.
+- The homepage has one Shopify-linked cold brew product and eight supplied stockist logos. The Store locator opens a searchable modal with all 22 supplied addresses; no separate page or map is used. Events, Partnerships and Community are implemented; other pages and event slug pages remain deferred.
 - Four cards are labeled **Design preview**, with no invented dates, venues or ticket links.
 - Events and Tickets open the listing; Partner opens `/partnerships`. Other planned URLs show explanatory preview dialogs; those routes remain unimplemented.
 - Footer categories collapse into native accordions on mobile. Unconfirmed emails and social handles are omitted. Legal links explain that approved content is pending.
@@ -101,9 +101,9 @@ Run `npm test` for distance/ranking and supplied-data integrity checks. Locator 
 
 `/partnerships` is an expanded editorial page inspired by Daybreaker's section structure, using Coffee Party's shared header/footer and original copy. Sources are `src/partnerships.html`, `src/partnerships.css` and `src/partnerships.js`.
 
-The sequence covers an introduction and Let's get started action, Dance with us / brand partnerships, Fueling the fun with the supplied cold brew can, recent collaborations (F1 Paddock Club, World Baseball Classic, Toronto Raptors), partner product sampling, a carousel of the other 19 supplied brand logos, dedicated venues and artists sections, Dance without waiting for the night, sourced press coverage, five FAQs, a three-step introduction process and Get in touch.
+The sequence covers an introduction and Let's get started action, Dance with us / brand partnerships, Fueling the fun with the supplied cold brew can, recent collaborations (F1 Paddock Club, World Baseball Classic, Toronto Raptors), partner product sampling, a staggered wall of the other 19 supplied brand logos, dedicated venues and artists sections, Dance without waiting for the night, sourced press coverage, five FAQs, a three-step introduction process and Get in touch.
 
-The logo carousel supports previous/next, native horizontal scrolling/swiping, arrows and Home/End. It has disabled end controls and a live visible-range label, and uses instant movement for reduced motion. The three featured collaborators have no subpage links yet; those stories are explicitly deferred. General event stills come from supplied footage and do not claim to depict a named collaboration.
+The collaborator logo wall uses four side columns around a transparent cup on desktop/tablet, and three staggered logo columns below a smaller cup on phones (below 768px). The cup grows in place when the wall top crosses the viewport center: scale 0 to 1 over 800ms with a slight overshoot, reversing over 400ms above that boundary. A 100vh sticky centered stage in a wrapper starting at -175vh matches the reference geometry; it ends with the wall. The image also grows subtly from 1 to 1.1 through the scroll. There is no translation, exit fade or rotation. Become a sponsor is inside the wall with a transparent surrounding area and links to #inquiry; Venues is the following white foreground surface. Sizing adjusts at 991/767/479px, with extra phone space before the CTA below 480px. Reduced motion and missing animation JS keep a static stage. The wall remains white without column rules. The build uses the existing ffmpeg dependency to generate `dist/assets/partner-cup.webp` from `../Assests/cup.png`, preserving the original. The three featured collaborators have no subpage links yet; those stories are explicitly deferred. General event stills come from supplied footage and do not claim to depict a named collaboration.
 
 Copy explains partnership opportunities, the initial process, and practical topics for brands, venues and artists. SEO/AEO preparation includes a descriptive title/description, semantic headings, static readable copy and five FAQ answers with matching FAQPage JSON-LD. Keep visible FAQ copy and JSON-LD synchronized when editing. No reach statistics, guaranteed results, case-study deliverables or current sponsor tiers are invented. The local preview retains `noindex, nofollow`; domain/canonical, indexing and submission configuration belong to launch preparation, and discovery/rankings have not been measured.
 
@@ -120,3 +120,17 @@ Edit `src/partnerships.html` to supply images/names. Inside each `.showcase-medi
 ### Shared pagination
 
 Homepage events and the four image-led partnership showcases share `src/carousel.js` and the existing `.carousel-controls` / `.carousel-bars` styles. The partnership showcase progress lines/right arrows have been replaced by centered Prev/Next text and clickable position bars. Counts adapt to viewport width and overflow; keyboard, scroll, disabled ends and reduced motion remain supported. The separate 19-brand logo strip keeps its own controls.
+
+### Press coverage data and images
+
+The People are talking carousel contains all 15 supplied article/segment links. Edit titles, dates, summaries, actions, image alt text and credits in `src/press.json`; `scripts/build.mjs` generates the static cards at `<!-- press:cards -->`. Optimized local thumbnails live in `assets/press/`, with provenance in `assets/press/SOURCES.md`. Add a WebP named for the entry id when adding an item. The build validates unique safe ids and HTTPS destinations and copies the images into dist/assets/press. Photos are lazy-loaded; no publisher image hotlinks are used at runtime. Source inspection/preparation scripts require Python/Pillow and are optional; ordinary npm builds use committed local files.
+
+CP24's thumbnail visibly shows Coffee Party-branded shirts; its text does not name the interviewees. The Ontario Post summary is based on publisher metadata, as its article body was not exposed in the retrieved page. Dates use publisher values when available and the supplied month/year otherwise.
+
+## Community
+
+Open /community or /community/. Edit src/community.html and src/community.css; the build inserts src/components/community-signup.html for the two disconnected forms. The page follows the shared visual language, with philosophy, values, local connections, initiative/Projects cross-links and a #join destination. Confirmed city lists and named initiatives await approved content; no programs or locations are invented. Images reuse supplied-film stills. Shared signup initialization serves both the homepage and Community; no API, storage or subscription integration is present. Projects still displays its preview notice. See WEBSITE-PLAN.md for verification and remaining content.
+
+### Partnership video hero
+
+The page opens with a muted looping video and centered white headline. Existing hero.mp4/hero-mobile.mp4 and hero-poster.webp are reused. The description, CTA and opportunity links follow on white; the old panorama image is removed. The local partnership module handles pause/play, offscreen/hidden-tab suspension and poster defaults for reduced motion/data saving. A visitor can explicitly play from the poster. The shared white logo is retained on Partnerships; desktop nav becomes dark after leaving the hero. This does not use the homepage intro animation.

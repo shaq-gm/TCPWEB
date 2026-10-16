@@ -1,0 +1,110 @@
+<section class="signup" id="join" aria-labelledby="signup-heading">
+        <div class="signup-heading">
+          <span class="eyebrow">Coffee Party community</span>
+          <h2 id="signup-heading">Stay in the loop.</h2>
+        </div>
+        <p class="community-signup-note">UI preview only. SMS and newsletter signups aren’t connected yet. Nothing is submitted.</p>
+        <div class="signup-grid">
+          <div class="signup-panel">
+            <div class="signup-panel-header">
+              <span class="signup-index">[01 / SMS]</span>
+              <h3 id="sms-heading">
+                Community-first<br />invites and messages.
+              </h3>
+            </div>
+            <form
+              class="signup-form"
+              data-signup-preview="sms"
+              aria-labelledby="sms-heading"
+              novalidate
+            >
+              <fieldset disabled>
+                <legend class="sr-only">SMS signup preview</legend>
+                <div class="signup-fields">
+                  <label class="signup-field" for="signup-phone"
+                    >Phone number
+                    <input
+                      id="signup-phone"
+                      name="phone"
+                      type="tel"
+                      inputmode="tel"
+                      autocomplete="tel"
+                      placeholder="+1 416 555 0123"
+                      maxlength="32"
+                      required
+                      aria-describedby="phone-hint sms-feedback"
+                    />
+                  </label>
+                  <p class="signup-hint" id="phone-hint">
+                    Include your country code.
+                  </p>
+                </div>
+                <button class="signup-submit" type="submit">
+                  Get first invites <span aria-hidden="true">↗</span>
+                </button>
+                <p
+                  class="signup-feedback"
+                  id="sms-feedback"
+                  role="status"
+                  aria-live="polite"
+                  aria-atomic="true"></p>
+              </fieldset>
+            </form>
+          </div>
+          <div class="signup-panel">
+            <div class="signup-panel-header">
+              <span class="signup-index">[02 / Newsletter]</span>
+              <h3 id="newsletter-heading">Updates from<br />your city.</h3>
+            </div>
+            <form
+              class="signup-form"
+              data-signup-preview="newsletter"
+              aria-labelledby="newsletter-heading"
+              novalidate
+            >
+              <fieldset disabled>
+                <legend class="sr-only">Newsletter signup preview</legend>
+                <div class="signup-fields signup-fields-pair">
+                  <label class="signup-field" for="signup-city"
+                    >Your city
+                    <input
+                      id="signup-city"
+                      name="city"
+                      type="text"
+                      autocomplete="address-level2"
+                      autocapitalize="words"
+                      placeholder="Type your city"
+                      maxlength="100"
+                      required
+                      aria-describedby="newsletter-feedback"
+                    />
+                  </label>
+                  <label class="signup-field" for="signup-email"
+                    >Email address
+                    <input
+                      id="signup-email"
+                      name="email"
+                      type="email"
+                      inputmode="email"
+                      autocomplete="email"
+                      placeholder="you@example.com"
+                      maxlength="254"
+                      required
+                      aria-describedby="newsletter-feedback"
+                    />
+                  </label>
+                </div>
+                <button class="signup-submit" type="submit">
+                  Subscribe <span aria-hidden="true">↗</span>
+                </button>
+                <p
+                  class="signup-feedback"
+                  id="newsletter-feedback"
+                  role="status"
+                  aria-live="polite"
+                  aria-atomic="true"></p>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </section>

@@ -18,7 +18,7 @@ const types = {
 const server = http.createServer(async (req, res) => {
   try {
     const url = new URL(req.url, "http://localhost");
-    const route = url.pathname.match(/^\/(events|partnerships)\/?$/);
+    const route = url.pathname.match(/^\/(events|partnerships|community)\/?$/);
     const pathname = route ? `/${route[1]}/index.html` : url.pathname;
     const path = resolve(
       root,

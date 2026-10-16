@@ -166,3 +166,42 @@ Build/syntax passed. Desktop/mobile visual checks and 320/390px overflow checks 
 ## Uniform carousel pagination — October 16, 2026
 
 Extracted homepage pagination into src/carousel.js and reused it in all four partnership showcases with the original homepage CSS classes. Removed showcase-specific progress-line/right-arrow markup/styles. Desktop checked venue Next/active marker/direct marker selection; 390px marker recount and 320/390px overflow checks passed. Homepage Next still reaches the final position and disables itself, with the active marker updated. Syntax/build passed and checked homepage browser warning/error logs were empty. Other browsers, touch hardware and screen readers remain untested.
+
+
+## Collaborator logo wall - October 16, 2026
+
+Nick Ho's sponsor wall uses seven columns at 768px and above, with logos on columns 1, 2, 6 and 7; outer columns are offset. Below 768px it uses three filled columns with the middle column offset. Inspected in the live reference DOM/computed layout during planning.
+
+Implemented the agreed adaptation with the existing 19 strip logos and supplied cup PNG: four side columns and a central sticky cup on desktop; a separate cup area above a three-column logo grid on phones. Light surface and vertical rules follow the reference idea; logos retain supplied colors. Cup motion is a modest vertical offset with entry/exit fades, bounded to the wall; no rotation/3D. Reduced motion has a static CSS fallback and source-reviewed JS reset. Build creates a 37 KB transparent WebP through the existing ffmpeg dependency.
+
+Build/syntax passed. Desktop/390px visual checks, 320/390/767/768/1024/1440px overflow and cup-bound checks, including a 500px-tall tablet viewport, passed. All 19 logo images loaded. Scroll/reverse/exit checked; cup opacity reached 0 at the Venues transition. Existing venue keyboard End reached its end and disabled Next. Checked browser error/warning logs were empty. OS reduced-motion, JavaScript-disabled browsing, screen readers, real touch hardware and other browsers remain untested. Local screenshots are in reports/partner-logo-wall-desktop.png and partner-logo-wall-mobile.png.
+
+## Populated press carousel — October 16, 2026
+
+Added all 15 supplied press destinations with locally optimized publisher article/segment thumbnails, visible credits, dates, types and original summaries. Source data is src/press.json; source/image provenance is assets/press/SOURCES.md. Build produces static cards and copies local WebPs. Checked the image contact sheet, source metadata/body where accessible, CP24/NOW browser pages, and all local image HTTP responses. CBC names Zohaib Aziz; CP24 thumbnail shows Coffee Party shirts but text does not name interviewees; Ontario Post exposes metadata rather than body.
+
+Syntax/build passed, 15 unique cards/all supplied URLs verified, all 15 images returned 200 image/webp (1,006,108 bytes combined). Browser checked populated desktop/mobile carousel and End/disabled Next; no overflow at 320/390px. Playback, other browsers, real touch and screen readers remain untested.
+
+## Community — October 16, 2026
+
+Consulted https://www.daybreaker.com/community/ for philosophy, local communities, projects and join section organization. Adapted with original temporary copy, existing Coffee Party typography/header/footer, supplied-film stills and static editorial layouts. No reference statistics, cities, initiative names, imagery or visual theme copied. City/network and initiative announcements remain pending.
+
+Syntax/build passed. Desktop/390px visually reviewed; 320/768/1440px DOM layout checks found no horizontal page overflow or clipped main text. All three photos loaded after entering view. Both signup previews showed the required no-submission message with URL unchanged, join anchor cleared the header, Projects notice worked, and mobile menu opened/Escape dismissed it. Warning/error logs were empty. Both route variants loaded. Shared signup setup moved out of homepage-only initialization. No page motion added. Other browsers, screen readers and real touch remain untested.
+
+
+## Layered cup exit and sponsor CTA - October 16, 2026
+
+User clarified that subsequent sections should slide over the cup. Reference DOM inspection confirmed an extended absolute wrapper around a sticky helmet, and a Become partner link targeting #contact. Extended the local sticky lane beyond the wall; the sponsor CTA and Venues have opaque white foreground surfaces covering the full-opacity cup as they scroll upward. Removed the exit opacity/scale reduction; kept entrance pop. Phone logo grid provides the equivalent white cover over the smaller cup. Added Become a sponsor linking to #inquiry.
+
+Syntax/build and whitespace checks passed. Desktop screenshot and element hit testing confirmed the CTA covering the cup at opacity 1; mobile screenshot confirmed the grid covering the cup. CTA link reached #inquiry. No horizontal overflow at desktop/390/320/768px, and no checked browser warning/error logs. Reduced motion source path preserved; OS motion preference, real touch and other browsers untested. Screenshot: reports/partner-logo-wall-overlay-exit.png.
+
+## Partnership video hero — October 16, 2026
+
+Reference top visually inspected: wide video with centered white statement and the introductory content underneath. Implemented with supplied Coffee Party loops, original headline and a dark contrast layer; old panorama removed. Existing intro paragraph/CTA/links are directly below on white. Uses white shared branding over video and dark nav over content. Playback control, muted/loop state, offscreen pause, section order and 320/390px clipping/overflow checked. Syntax/build passed. Reduced-motion/data-saving and failure code reviewed but OS/browser settings were not exercised; other browsers and real touch hardware remain untested.
+
+
+## Centered scale entrance and integrated sponsor CTA - October 16, 2026
+
+Inspected actual Nick Ho public animation configuration: top-center trigger, scale 0 to 1 in 0.8s with back.out(1.4), reverse 0.4s power2.in, plus scrubbed scale 1 to 1.1. CSS uses a -175vh absolute wrapper ending at the section bottom, 100vh sticky stage centered at top 0, and 991/767/479px responsive changes. Used those values in an independent native Web Animations implementation; no reference library/media bundled. Removed all entrance translation and the CTA cover panel. CTA now shares the logo-wall parent and transparent surface; Venues remains above the entire sponsor section. Phone CTA spacing adapts the reference's open bottom area for the smaller supplied cup.
+
+Syntax/build and whitespace checks passed. Browser confirmed hidden/grown scale across the center trigger, matrices with zero translation, transparent CTA area and shared parent. Desktop/390px phone screenshots reviewed. No overflow at 320/390/479/480/767/768/991/992/1024px, including a 500px-tall viewport. CTA destination remains #inquiry. Checked browser logs empty. Reduced-motion and no-JS paths reviewed in source; OS preference, real touch and other browsers untested. Screenshots: reports/partner-cup-integrated-cta-desktop.png and partner-cup-integrated-cta-mobile.png.

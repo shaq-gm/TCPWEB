@@ -339,11 +339,11 @@ function initHomepage() {
   setInterval(() => {
     if (!document.hidden) updateTime();
   }, 1000);
-  initSignupPreviews();
   initGlobe(reducedMotion);
   initIntro(reducedMotion, mobile);
 }
 if (document.querySelector(".hero-video")) initHomepage();
+initSignupPreviews();
 initStoreLocator();
 initPartnershipPreview();
 if (document.querySelector(".events-page")) initEvents(reducedMotion);
