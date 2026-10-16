@@ -10,6 +10,7 @@ const types = {
   ".json": "application/json",
   ".svg": "image/svg+xml",
   ".webp": "image/webp",
+  ".png": "image/png",
   ".mp4": "video/mp4",
   ".ttf": "font/ttf",
   ".txt": "text/plain",
@@ -17,8 +18,8 @@ const types = {
 const server = http.createServer(async (req, res) => {
   try {
     const url = new URL(req.url, "http://localhost");
-    const pathname = ["/events", "/events/"].includes(url.pathname)
-      ? "/events/index.html" : url.pathname;
+    const route = url.pathname.match(/^\/(events|partnerships)\/?$/);
+    const pathname = route ? `/${route[1]}/index.html` : url.pathname;
     const path = resolve(
       root,
       `.${decodeURIComponent(pathname === "/" ? "/index.html" : pathname)}`,

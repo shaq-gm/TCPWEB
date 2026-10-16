@@ -1,8 +1,10 @@
+import { initCarousel } from "./carousel.js";
 import { initGlobe } from "./globe.js";
 import { initIntro } from "./intro.js";
 import { initSignupPreviews } from "./signup.js";
 import { initEvents } from "./events.js";
 import { initStoreLocator } from "./store-locator.js";
+import { initPartnershipPreview } from "./partnerships.js";
 
 const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
 const coffeeMedia = document.querySelector(".coffee-product-media");
@@ -310,65 +312,14 @@ function initHomepage() {
     syncVideo();
   });
 
-  const track = document.querySelector("#event-track");
-  const cards = [...track.querySelectorAll(".event-card")];
-  const prev = document.querySelector("#events-prev");
-  const next = document.querySelector("#events-next");
-  const barContainer = document.querySelector(".carousel-bars");
-  let bars = [];
-  const step = () => cards[0].getBoundingClientRect().width + 20;
-  const maxScroll = () => track.scrollWidth - track.clientWidth;
-  const currentCard = () =>
-    track.scrollLeft >= maxScroll() - 3
-      ? bars.length - 1
-      : Math.round(track.scrollLeft / step());
-  function scrollToCard(index) {
-    track.scrollTo({
-      left: Math.min(maxScroll(), Math.max(0, index) * step()),
-      behavior: reducedMotion.matches ? "instant" : "smooth",
-    });
-  }
-  function updateCarousel() {
-    const overflow = track.scrollWidth - track.clientWidth;
-    prev.disabled = track.scrollLeft < 3;
-    next.disabled = track.scrollLeft >= overflow - 3;
-    const index = currentCard();
-    bars.forEach((bar, i) => {
-      bar.setAttribute("aria-current", String(index === i));
-      bar.disabled = overflow < 3;
-    });
-  }
-  prev.addEventListener("click", () => scrollToCard(currentCard() - 1));
-  next.addEventListener("click", () => scrollToCard(currentCard() + 1));
-  track.addEventListener("scroll", updateCarousel, { passive: true });
-  track.addEventListener("keydown", (event) => {
-    if (event.target !== track) return;
-    if (["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) {
-      event.preventDefault();
-      scrollToCard(
-        event.key === "Home"
-          ? 0
-          : event.key === "End"
-            ? cards.length - 1
-            : currentCard() + (event.key === "ArrowLeft" ? -1 : 1),
-      );
-    }
+  initCarousel({
+    track: document.querySelector('#event-track'),
+    prev: document.querySelector('#events-prev'),
+    next: document.querySelector('#events-next'),
+    barContainer: document.querySelector('.carousel-bars'),
+    reducedMotion,
+    label: 'Event preview',
   });
-  function resizeCarousel() {
-    // Ignore subpixel rounding at the end of a full card width.
-    const count = Math.max(1, Math.ceil((maxScroll() - 2) / step()) + 1);
-    barContainer.replaceChildren();
-    bars = Array.from({ length: count }, (_, i) => {
-      const button = document.createElement("button");
-      button.setAttribute("aria-label", `Event preview position ${i + 1}`);
-      button.addEventListener("click", () => scrollToCard(i));
-      barContainer.append(button);
-      return button;
-    });
-    updateCarousel();
-  }
-  new ResizeObserver(resizeCarousel).observe(track);
-  resizeCarousel();
 
   const time = document.querySelector("#local-time");
   const zone = document.querySelector("#local-zone");
@@ -394,4 +345,5 @@ function initHomepage() {
 }
 if (document.querySelector(".hero-video")) initHomepage();
 initStoreLocator();
+initPartnershipPreview();
 if (document.querySelector(".events-page")) initEvents(reducedMotion);

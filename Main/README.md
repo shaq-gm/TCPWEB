@@ -1,6 +1,6 @@
 # Coffee Party — website preview
 
-This independent replacement lives entirely in `Main`. The existing coming-soon website in `../site` is preserved. The homepage, Events listing and reusable header/menu/footer are built. Nothing has been deployed.
+This independent replacement lives entirely in `Main`. The existing coming-soon website in `../site` is preserved. The homepage, Events listing, Partnerships page and reusable header/menu/footer are built. Nothing has been deployed.
 
 ## Run locally
 
@@ -58,9 +58,9 @@ Anchor entry points such as `/#join` skip the opening hero animation. SMS delive
 
 ## Preview boundaries
 
-- The homepage has one Shopify-linked cold brew product and eight supplied stockist logos. The Store locator opens a searchable modal with all 22 supplied addresses; no separate page or map is used. Events is implemented; other pages and event slug pages remain deferred.
+- The homepage has one Shopify-linked cold brew product and eight supplied stockist logos. The Store locator opens a searchable modal with all 22 supplied addresses; no separate page or map is used. Events and Partnerships are implemented; other pages and event slug pages remain deferred.
 - Four cards are labeled **Design preview**, with no invented dates, venues or ticket links.
-- Events and Tickets open the listing. Other planned URLs show explanatory preview dialogs; those routes remain unimplemented.
+- Events and Tickets open the listing; Partner opens `/partnerships`. Other planned URLs show explanatory preview dialogs; those routes remain unimplemented.
 - Footer categories collapse into native accordions on mobile. Unconfirmed emails and social handles are omitted. Legal links explain that approved content is pending.
 - Community signup is a disconnected UI with an explicit preview notice. There is no storage, API request or subscription claim. The existing Beehiiv integration remains in `../site` and has not been reused or altered.
 - Search indexing is disabled for this local preview. Set the final domain, sharing image and indexing policy before launch.
@@ -96,3 +96,27 @@ The simplest architecture here is a local location list plus client-side distanc
 Photon’s public demo has reasonable-use/availability limits (https://github.com/komoot/photon#demo-server); review the endpoint/provider before public launch. For production, use a suitable hosted geocoder if traffic/uptime requires it. No new page, map, backend or deployment is included.
 
 Run `npm test` for distance/ranking and supplied-data integrity checks. Locator CSS is grouped after `.store-locator` in `src/styles.css`. Browser checks covered postal/address search, filters, no-match/empty states, reset, Escape/focus return and desktop/mobile layouts.
+
+## Partnerships
+
+`/partnerships` is an expanded editorial page inspired by Daybreaker's section structure, using Coffee Party's shared header/footer and original copy. Sources are `src/partnerships.html`, `src/partnerships.css` and `src/partnerships.js`.
+
+The sequence covers an introduction and Let's get started action, Dance with us / brand partnerships, Fueling the fun with the supplied cold brew can, recent collaborations (F1 Paddock Club, World Baseball Classic, Toronto Raptors), partner product sampling, a carousel of the other 19 supplied brand logos, dedicated venues and artists sections, Dance without waiting for the night, sourced press coverage, five FAQs, a three-step introduction process and Get in touch.
+
+The logo carousel supports previous/next, native horizontal scrolling/swiping, arrows and Home/End. It has disabled end controls and a live visible-range label, and uses instant movement for reduced motion. The three featured collaborators have no subpage links yet; those stories are explicitly deferred. General event stills come from supplied footage and do not claim to depict a named collaboration.
+
+Copy explains partnership opportunities, the initial process, and practical topics for brands, venues and artists. SEO/AEO preparation includes a descriptive title/description, semantic headings, static readable copy and five FAQ answers with matching FAQPage JSON-LD. Keep visible FAQ copy and JSON-LD synchronized when editing. No reach statistics, guaranteed results, case-study deliverables or current sponsor tiers are invented. The local preview retains `noindex, nofollow`; domain/canonical, indexing and submission configuration belong to launch preparation, and discovery/rankings have not been measured.
+
+Press cards link to verified coverage from TorontoToday, Streets of Toronto and Secret Toronto. Summaries are original; no borrowed press photographs or outlet logos are used.
+
+Get in touch still has only full name, company and email plus Request a callback. It sends/stores nothing, and shows an explicit preview notice. Fieldsets remain disabled if the handler cannot load. No backend or deployment was added. Supplied originals remain untouched.
+
+### Showcase images and carousels — October 16, 2026
+
+Four independent image-led carousels now cover recent brand collabs (3), venue partnerships (4 pending slots), artist partnerships (6 pending portrait slots) and press coverage (3). The venue and artist introductions also have wide image placeholders. These follow the user's marked Daybreaker screenshots: media above captions, partial next card, progress rule and bottom-right arrows. The existing 19-brand logo carousel remains separate.
+
+Edit `src/partnerships.html` to supply images/names. Inside each `.showcase-media`, replace the placeholder note with `<img class="showcase-photo" src="/assets/APPROVED-FILE" alt="DESCRIPTIVE TEXT" loading="lazy" />`; remove the enclosing placeholder `role`/`aria-label`, and keep logo/outlet overlays only if legible. Landscape cards use a 1.6 aspect ratio; artist portraits use .84; venue/artist feature frames use 1.4. Copy any new media through the build pipeline. No unknown venue/artist identities or reel URLs are fabricated.
+
+### Shared pagination
+
+Homepage events and the four image-led partnership showcases share `src/carousel.js` and the existing `.carousel-controls` / `.carousel-bars` styles. The partnership showcase progress lines/right arrows have been replaced by centered Prev/Next text and clickable position bars. Counts adapt to viewport width and overflow; keyboard, scroll, disabled ends and reduced motion remain supported. The separate 19-brand logo strip keeps its own controls.

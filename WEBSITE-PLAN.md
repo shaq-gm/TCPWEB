@@ -1,7 +1,7 @@
 # Coffee Party website: shared project brief
 
-Updated: October 15, 2026
-Status: homepage approved for progression; homepage, shared components and the Events listing are implemented in `Main/` as a local design preview. SMS/newsletter forms remain preview-only. Event slug/detail pages are explicitly deferred at the user’s request; other pages and provider integrations remain unbuilt.
+Updated: October 16, 2026
+Status: homepage approved for progression; homepage, shared components, Events listing and Partnerships page are implemented in `Main/` as a local design preview. SMS/newsletter forms remain preview-only. Event slug/detail pages are explicitly deferred at the user’s request; other pages and provider integrations remain unbuilt.
 
 ## Start here in a new chat
 
@@ -70,7 +70,7 @@ The shop/stockist section was explicitly added by the user on October 15, supers
 - Product sampling.
 - Venue collaborations.
 - Artists / performers.
-- Inquiry section `/partnerships#inquiry`, with inquiry type covering the relevant collaboration categories.
+- Get in touch section `/partnerships#inquiry`: full name, company and email, followed by Request a callback. UI only. No inquiry-type select, long message, phone field or additional questionnaire; this supersedes the original multi-category form proposal.
 - Optional later detail route `/partnerships/[slug]` for substantial brand experiences (e.g. Formula One or Raptors), using approved facts and assets. Keep short examples as sections/cards initially.
 
 ### Projects `/projects`
@@ -180,7 +180,7 @@ Completed: planning, reference desktop/mobile audit, homepage implementation, sh
 - Shared outlined footer with desktop link groups and mobile accordions. Join the party links to the new homepage signup UI. No signup success is implied, and Beehiiv remains untouched.
 - Two independent signup preview forms below Upcoming Events: phone number for SMS, free-text city and email for newsletter. Visible labels, 16px inputs, keyboard focus, native required/email validation, a country-code/phone-format check and inline status messages are implemented. Forms are disabled until their local submit handler is attached so a missing script cannot accidentally submit details in a URL. No backend, storage, analytics or provider connection was added.
 - Local globe geography, drag/keyboard rotation, motion control, sample-marker information and All/Upcoming filters. Toronto, Barcelona and London are visibly labeled sample coordinates, not confirmed Coffee Party destinations. Upcoming correctly shows no announced locations.
-- Events and Tickets links now open `/events` and `/events#upcoming`. Other future URLs retain preview notices; Our Story, Partnerships, Projects, Community, Press, Contact and legal pages remain unbuilt.
+- Events and Tickets links now open `/events` and `/events#upcoming`. Other future URLs retain preview notices; Our Story, Projects, Community, Press, Contact and legal pages remain unbuilt. Partnerships is now implemented (see the latest stage below).
 - Reduced-motion defaults, poster/text fallbacks and offscreen/hidden-tab motion suspension.
 - The intro runs once per tab session, matching the reference; a fresh tab replays it. Its percentage tracks the sequence, not network bytes. Reduced motion skips the intro and menu scale animations. Escape, outside clicks and menu links wait for the animated menu exit before restoring focus or opening the preview notice.
 
@@ -214,7 +214,7 @@ The header now switches to the Menu button at 991px, and the desktop links fill 
 
 Signup UI checks: desktop at 1440px shows two equal columns with aligned input rows/buttons; 390px and 320px show stacked forms without horizontal overflow. Required phone, missing country code, whitespace-only city and invalid email cases were rejected. Valid SMS and newsletter entries produced their own explicit preview notices and left the URL unchanged. The footer anchor was exercised. Anchor entry points skip the hero intro so signup deep links are immediately usable. Syntax/build checks passed and browser error/warning logs were empty during checked interactions. Signup-specific behavior is in `Main/src/signup.js`; no real signup or delivery test was performed.
 
-Next: review the Events listing and provide confirmed artwork, event names, dates, locations and ticket destinations. Individual event slug pages remain deferred. Proceed to Partnerships or another page when requested; preserve the completed homepage, shared components and coming-soon site.
+Next: review the Events listing and provide confirmed artwork, event names, dates, locations and ticket destinations. Individual event slug pages remain deferred. Partnerships is now implemented; proceed to another page when requested; preserve the completed homepage, shared components and coming-soon site.
 
 ## Events listing — completed October 15, 2026
 
@@ -270,3 +270,69 @@ All 22 store coordinates were looked up once through Photon/OpenStreetMap at the
 Provider documentation: https://github.com/komoot/photon and https://github.com/komoot/photon/blob/master/docs/api-v1.md. The public demo permits reasonable use but offers no availability guarantee and may throttle. Review a production geocoding service before a public/high-traffic launch; the endpoint is isolated in the locator module. If an address cannot be matched or the service fails/times out, visitors can still browse/filter the full list. Requests are cancellable, search is submit-only, and stale responses cannot replace newer results.
 
 Verification: syntax checks, production build and four unit tests (`npm test`) passed. Tests cover independent reference distances, numeric ordering/missing coordinates, the real Annex/Barrie distance ordering and the 22-location/status/coordinate integrity. Browser verified all 22 results; live M5R 3G7 and lowercase/no-space m5r3g7 searches ranked Summerhill Annex first; an exact Rosedale address resolved locally; a Toronto City Hall address returned disambiguation choices; invalid text showed the no-match fallback. Revitasize filter returned ten branches and combining it with confirmed stockists showed an empty state. Reset, Escape/focus return, desktop and 390px mobile layout, plus 320px/short-height scroll behavior were checked without horizontal overflow. Browser error/warning logs were empty in checked live searches. Forced network outage, real mobile keyboard/touch hardware, screen reader and other browsers remain untested; failure/abort paths were reviewed in source. No deployment.
+
+## Partnerships — completed October 15, 2026
+
+Implemented `/partnerships` in `Main/` with the existing Coffee Party typography, white/black surfaces, fine rules, shared header/menu/footer and responsive spacing. Header and footer Partner links now resolve to the page across the homepage, Events and Partnerships. The preview server supports both `/partnerships` and `/partnerships/`.
+
+- The introduction leads to a supplied-brand logo grid, four concise collaboration categories (brand partnerships, product sampling, spaces/venues, artists/performers), and Get in touch at `#inquiry`. Approved case-study stories remain deferred; no sponsorship tiers, dates, results or current-status claims were invented.
+- Displays 22 distinct brands from `Assests/brand-logos/`. Duplicate variants of F1 Paddock Club, Toronto Raptors, Coffee Meets Bagel and Ultra Violette are omitted from display. Uses the black F1 variant for legibility on white; other artwork retains supplied colors/proportions. Build copies PNGs into `Main/dist/assets/brand-logos/`; originals are unchanged. Grid uses six columns on desktop, four on tablet and three on mobile.
+- At the user's request, Cercle Festival's https://festival.cercle.io/partners informs only the minimal contact concept, not its layout or style. Get in touch has Full name, Company, Email and Request a callback. No message box, category selector, phone field or long questionnaire. This supersedes the earlier inquiry-type proposal.
+- UI only: local required/email checks and explicit “This is a UI preview. Nothing has been submitted.” feedback. No API, backend, storage or real callback request. Fieldset stays disabled until the local submit-prevention handler attaches. Mobile stacks the heading and fields; inputs use visible labels, autocomplete and 16px text.
+- Sources: `Main/src/partnerships.html`, `partnerships.css`, `partnerships.js`; build/preview scripts updated. Generated output is in `Main/dist/partnerships/` plus shared bundle and assets. Main README updated. No deployment.
+
+Verification: `npm run check` and `npm run build` passed. Browser verified all 22 logos loaded, the inquiry anchor, required-field rejection, valid preview feedback and unchanged URL on attempted submission. Desktop and mobile layouts visually reviewed; no horizontal overflow at 320, 390, 768 and 1440px. Browser error/warning logs were empty during checked interactions. Source review confirms the callback handler makes no requests and stores no data. Screenshot: ignored `Main/reports/partnership-inquiry-desktop.png`. Other browsers, real touch hardware and screen readers remain untested. Current preview: http://127.0.0.1:3103/partnerships (restart an older server to pick up the new route).
+
+Next: review Partnerships; supply approved collaboration stories/statuses before launch. Community, Our Story, Projects and supporting/legal pages remain future work. Event detail routes remain explicitly deferred.
+
+## Partnerships expansion — completed October 16, 2026
+
+The user rejected the short first version and requested a fuller page based on https://www.daybreaker.com/partnerships/. This supersedes the initial compact introduction/logo grid/four-category layout. The shared Coffee Party header/footer, black/white surfaces and mono labels remain, with sentence-case sans-serif body copy for comfortable long-form reading.
+
+Implemented sequence:
+1. Centered introduction explaining Coffee Party partnerships, Let's get started CTA and on-page opportunity links, followed by supplied event imagery.
+2. Dance with us / Brand partnerships: original copy explaining event sponsorships, activations, product launches, creative fit and initial planning.
+3. Fueling the fun: the supplied Coffee Party cold brew can and exact existing Shopify product destination, replacing the reference's current-tour-partner concept.
+4. Recent brand collaborators: F1 Paddock Club, World Baseball Classic and Toronto Raptors. Logo-led cards with story-coming-soon text; subpages remain explicitly deferred. No fabricated campaign results or case studies.
+5. Partner product sampling: detailed copy about product discovery, suitability, quantities, service and setup discussions, plus inquiry CTA.
+6. Other brand collaborators: all remaining 19 distinct supplied logos in a horizontal carousel, with previous/next controls, keyboard arrows, Home/End, native swipe/scroll, end states and visible-range announcement. No autoplay; reduced motion uses instant movement.
+7. Separate Venues and Artists sections, each with event imagery, three paragraphs and an inquiry CTA. Explains what to discuss with venue operators, artists and representatives without inventing a past roster.
+8. Dance without waiting for the night: a contrasting black editorial panel about daytime connection.
+9. In the press: verified Coffee Party coverage from TorontoToday, Streets of Toronto and Secret Toronto, using original short summaries and direct article links. No reference-site coverage is attributed to Coffee Party.
+10. Five visible FAQs with matching FAQPage JSON-LD, a Let's get started three-step process and the existing simple three-field Get in touch preview.
+
+SEO/AEO work: original explanatory copy, a descriptive page title and meta description, clear semantic headings, anchor navigation and concise question/answer content that can be read without client rendering. No keyword stuffing, fabricated performance numbers, guaranteed partnership outcomes or unsupported sponsor-status claims. Keep the static FAQ JSON-LD synchronized with visible answers. The local preview remains `noindex, nofollow`; indexing, canonical/domain configuration and search/AI discovery measurement remain launch work. No ranking or AI-citation improvement is claimed.
+
+Reference visually inspected in the browser; copied only the organizational idea, not Daybreaker copy, imagery, partner lists, reach claims or visual theme. General Coffee Party stills are reused from supplied footage; they are not presented as photographs of the named collaborations. Higher-resolution, varied event photography remains desirable.
+
+Verification: syntax/build checks and tracked whitespace checks passed. Desktop and 390px mobile visually reviewed; 320px text-clipping inspection found and fixed two long headings. No horizontal page overflow at 320, 390 or 768px. Carousel next advanced to brands 6–10 of 19; End reached 15–19 and disabled Next. FAQ expanded correctly. The callback preview still displayed “This is a UI preview. Nothing has been submitted.” and kept its URL unchanged; no backend was added. Five FAQ JSON-LD entries parsed. Checked browser warning/error logs were empty. Other browsers, screen readers, real touch hardware, production search indexing and AI retrieval remain untested.
+
+Press source URLs:
+- https://www.torontotoday.ca/local/community-events/coffee-lovers-loosen-up-at-daytime-party-series-in-liberty-village-10131668
+- https://streetsoftoronto.com/toronto-culture/coffee-parties-toronto-2/
+- https://secrettoronto.co/the-coffee-party-toronto/
+
+All changes remain in Main; supplied originals and the coming-soon site are untouched. No deployment. Next: review the expanded Partnerships page; supply approved collaboration stories/images before building the three case-study subpages.
+
+## Image-led partnership showcases — completed October 16, 2026
+
+The latest user screenshots clarify the required presentation: recent brand collaborations, venue showcases, artist showcases and press should use horizontal image-led carousels with captions, a thin progress line and bottom-right arrows, following Daybreaker's structure. This supersedes the static three-card brand/press rows and adds the missing venue/artist showcases.
+
+- Recent brand collabs: the three requested brands (F1 Paddock Club, World Baseball Classic, Toronto Raptors) now have landscape photograph spaces with supplied logo overlays, captions and story-coming-soon text. No subpages or fake reel actions.
+- Venues: a landscape feature-image placeholder sits left of the venue introduction. A separate Recent venue partnerships carousel immediately follows, with four landscape image/name slots. Names/details are explicitly pending rather than borrowed from Daybreaker.
+- Artists: a feature-image placeholder and introduction, followed by Recent artist partnerships with six portrait image/name slots. No unconfirmed artist names or stock photographs were invented.
+- Press: People are talking uses landscape image spaces with outlet-name overlays, retaining the three verified coverage summaries and direct article links.
+- Each showcase has independent previous/next controls, a position/visible-width progress bar, native horizontal swipe/scroll, Left/Right/Home/End navigation, disabled ends and a screen-reader status. No autoplay. Reduced motion uses instant scrolling. Mobile shows a partial next card.
+- All image spaces are deliberate styled placeholders, not missing/broken image URLs. Each media frame includes an HTML comment describing replacement with an approved `img.showcase-photo`; provide descriptive alt text and remove the placeholder label/role when adding an actual image. Use `.showcase-brand-mark` for logos and retain appropriate contrast over the chosen photo. Replace the four venue and six artist captions when approved names/images are supplied.
+
+Changes are confined to Main partnership HTML/CSS/JS and generated output. The cold brew section, other-brand logo carousel, long-form copy, FAQs and disconnected callback form remain. No deployment.
+
+Verification for the showcase update: syntax and production build passed. Browser confirmed four independent carousels with 3 brand, 4 venue, 6 artist and 3 press cards. Venue Next advanced to cards 2–4; keyboard End reached the right boundary and disabled Next in all four; Home returned the brand carousel to its start. Desktop and 390px mobile visually reviewed. No horizontal page overflow at desktop, 390px or 320px, and no clipped showcase headings/captions at 320px. Checked warning/error logs were empty. Progress lines and responsive image frames were reviewed. Real touch hardware, screen readers and other browsers remain untested. Preview screenshot: Main/reports/partnership-showcases-desktop.png. Approved venue/artist names and all feature/card photography are still to be supplied.
+
+## Shared carousel pagination — completed October 16, 2026
+
+At the user's request, replaced the long progress bars and bottom-right standalone arrows in Recent brand collabs, Recent venue partnerships, Recent artist partnerships and People are talking with the homepage's centered `‹ Prev`, clickable vertical position markers and `Next ›` controls. Uses the existing `.carousel-controls`, `.carousel-bars` and `.text-link` styles rather than a separate partnership treatment.
+
+Extracted the homepage carousel behavior into `Main/src/carousel.js`; both the homepage event carousel and the four partnership showcases now call the same `initCarousel` helper. Marker counts respond to the scrollable distance/card width; buttons and marker state update on native scroll, resize and keyboard navigation. Home/End, disabled ends and reduced-motion behavior are preserved. Removed the obsolete showcase progress/arrow CSS and markup. The separate 19-brand logo strip retains its own controls, outside the four sections named in this request.
+
+Verification: syntax and production build passed. Desktop browser verified centered controls, Next advancing the venue carousel and its active marker, and direct marker selection. Marker count updated at 390px, with no page overflow at 390 or 320px. Homepage regression check confirmed Next advances to the last event position, updates the marker and disables Next. Browser warning/error logs were empty in that check. Screen readers, touch hardware and other browsers remain untested. No deployment.

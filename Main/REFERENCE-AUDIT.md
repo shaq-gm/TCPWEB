@@ -142,3 +142,27 @@ Live No Art inspection confirmed a product data-cursor-text of shop now and a #f
 ## Searchable locator modal — October 15, 2026
 
 Added a dedicated native dialog using existing typography, white/black surfaces, fine borders, square label marker and outlined/solid controls. All 22 user-supplied addresses are in src/stores.json, with explicit pending delivery/rollout states. Store coordinates are Photon/OpenStreetMap address-level matches; there is no map. Public geocoder API documentation and demo usage terms were checked. Browser search of M5R 3G7 and m5r3g7 ranked Summerhill Annex closest; local exact Rosedale address resolved at zero distance; ambiguous City Hall query offered choices. Invalid input showed a no-match message without removing browsing. Brand/availability intersection, empty state, reset and Escape focus restoration checked. Desktop and 390px mobile layouts visually reviewed, 320px short-height modal checked for overflow/scrolling. Syntax/build and four meaningful distance/ranking/data tests passed; checked browser warning/error logs were empty. Forced outages, real touch/keyboard hardware, screen reader and other browsers remain untested. Photon public demo availability is not guaranteed; review provider before public launch.
+
+## Partnerships — October 15, 2026
+
+The supplied Cercle Festival partners page and user's screenshot informed the three-field callback request concept only. The Coffee Party page retains its shared typography/surfaces/buttons and uses no reference photographs or claims. New route includes 22 distinct supplied logos and no invented collaboration case studies. Duplicated artwork variants are displayed once.
+
+Syntax/build checks passed. Browser inspected desktop and 390px mobile, plus 320/768/1440px overflow checks. All 22 logos loaded. Inquiry anchor, required-field rejection and valid UI-only feedback were exercised; the URL stayed unchanged on submit and warning/error logs were empty. Handler source has no service/storage calls. Other browsers, screen readers and touch hardware remain untested. Preview screenshot saved under ignored reports/partnership-inquiry-desktop.png.
+
+## Expanded Partnerships — October 16, 2026
+
+Daybreaker partnership reference inspected for content sequence and alternating editorial rows. The revised page includes brand, sampling, can, collaborations, venue, artist, press, FAQ, process and inquiry sections using original Coffee Party copy. Shared site style is preserved, with sentence-case long-form body text. Three requested collaboration cards use supplied logos; case-study pages are deferred. Other 19 logos use an accessible native-scroll carousel with buttons and keyboard support. No reference claims or media were copied.
+
+Press coverage verified at TorontoToday, Streets of Toronto and Secret Toronto; direct sources are linked on-page and in WEBSITE-PLAN.md. FAQPage structured data matches five visible answers. Preview noindex stays enabled; this is content preparation, not evidence of search visibility or AI citations.
+
+Build/syntax passed. Desktop/mobile visual checks, 320px clipping correction, 320/390/768px overflow checks, carousel next/end and FAQ expansion were verified. The callback UI still submits nothing. Browser warning/error logs were empty. Cross-browser, screen-reader, real touch and search retrieval checks remain untested.
+
+## Image-led showcases — October 16, 2026
+
+Latest marked screenshots requested dedicated image-led brand/venue/artist/press carousels. Added all four with styled image spaces, captions, native scroll/snap, progress lines, arrow buttons, keyboard navigation and end-state disabling. Brand and press slots retain known identity/links; four venue and six artist slots explicitly await names and imagery. Venue/artist feature-image spaces use a landscape layout to the left of the copy. No reference images, partner names or fake reel links were imported.
+
+Build/syntax passed. Desktop/mobile visual checks and 320/390px overflow checks passed. Venue Next and all four keyboard End states verified; Home returned the brand row to the start. Browser error/warning logs were empty. Real touch, screen-reader and cross-browser behavior remain untested.
+
+## Uniform carousel pagination — October 16, 2026
+
+Extracted homepage pagination into src/carousel.js and reused it in all four partnership showcases with the original homepage CSS classes. Removed showcase-specific progress-line/right-arrow markup/styles. Desktop checked venue Next/active marker/direct marker selection; 390px marker recount and 320/390px overflow checks passed. Homepage Next still reaches the final position and disables itself, with the active marker updated. Syntax/build passed and checked homepage browser warning/error logs were empty. Other browsers, touch hardware and screen readers remain untested.
