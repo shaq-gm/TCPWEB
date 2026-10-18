@@ -17,10 +17,18 @@ export function initPartnershipPreview() {
       status: section.querySelector('.showcase-status'),
     });
   });
+  initArtistAutoplay();
   initSponsorOverlay();
   initPartnerLogoWall();
   const form = document.querySelector('[data-partnership-preview]');
   if (!form) return;
+  const purpose = form.querySelector('[name="purpose"]');
+  document.querySelectorAll('[data-inquiry-purpose]').forEach(link => {
+    link.addEventListener('click', () => {
+      purpose.value = link.dataset.inquiryPurpose;
+      purpose.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+  });
   const feedback = form.querySelector('[role="status"]');
   form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -185,6 +193,8 @@ function initSponsorOverlay() {
     const line = (nav.top + nav.bottom) / 2;
     const bounds = panel.getBoundingClientRect();
     header.classList.toggle('is-over-contact', bounds.top <= line && bounds.bottom > line);
+    const artists = document.querySelector('#artist-partnerships')?.getBoundingClientRect();
+    header.classList.toggle('is-over-artists', !!artists && artists.top <= line && artists.bottom > line);
   }
   function schedule() { if (!frame) frame = requestAnimationFrame(paintHeader); }
   new ResizeObserver(() => { layout(); schedule(); }).observe(section);
@@ -230,6 +240,44 @@ function initVenueAutoplay(gallery) {
   document.addEventListener('visibilitychange', schedule);
   motion.addEventListener('change', () => { if (motion.matches) paused = true; update(); });
   new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; schedule(); }, { threshold: .35 }).observe(gallery);
+  window.addEventListener('pagehide', () => clearTimeout(timer), { once: true });
+  update();
+}
+
+function initArtistAutoplay() {
+  const section = document.querySelector('#artist-partnerships');
+  if (!section) return;
+  const track = section.querySelector('.showcase-track');
+  const toggle = section.querySelector('[data-artist-pause]');
+  const motion = matchMedia('(prefers-reduced-motion: reduce)');
+  let paused = motion.matches, visible = false, hovering = false, focused = false, timer;
+  function schedule() {
+    clearTimeout(timer);
+    if (paused || !visible || hovering || focused || document.hidden) return;
+    timer = setTimeout(() => {
+      const next = section.querySelector('[data-showcase-next]');
+      if (next.disabled) section.querySelector('.carousel-bars button')?.click();
+      else next.click();
+    }, 3000);
+  }
+  function update() {
+    toggle.querySelector('path').setAttribute('d', paused ? 'M4 2l9 6-9 6z' : 'M4 3h3v10H4zM9 3h3v10H9z');
+    toggle.setAttribute('aria-label', paused ? 'Play artist carousel' : 'Pause artist carousel');
+    toggle.setAttribute('aria-pressed', String(paused));
+    section.querySelector('.showcase-status').setAttribute('aria-live', paused || focused ? 'polite' : 'off');
+    schedule();
+  }
+  toggle.addEventListener('click', () => { paused = !paused; update(); });
+  section.addEventListener('click', schedule);
+  section.addEventListener('keydown', schedule);
+  track.addEventListener('scroll', schedule, { passive: true });
+  section.addEventListener('pointerenter', () => { hovering = true; schedule(); });
+  section.addEventListener('pointerleave', () => { hovering = false; schedule(); });
+  section.addEventListener('focusin', () => { focused = true; update(); });
+  section.addEventListener('focusout', event => { if (!section.contains(event.relatedTarget)) { focused = false; update(); } });
+  document.addEventListener('visibilitychange', schedule);
+  motion.addEventListener('change', () => { if (motion.matches) paused = true; update(); });
+  new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; schedule(); }, { threshold: .35 }).observe(track);
   window.addEventListener('pagehide', () => clearTimeout(timer), { once: true });
   update();
 }

@@ -266,3 +266,34 @@
 
 .venue-gallery .about-gallery-controls { grid-column: 2; }
 .venue-gallery [data-gallery-pause] { display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
+
+.artist-partnership-heading { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 6%; align-items: start; margin-bottom: 38px; }
+.partnerships-page main .artist-partnership-heading h2 { margin-bottom: 0; }
+.artist-partnership-intro p { margin: 0 0 24px; color: #454545; max-width: 580px; }
+@media (max-width: 700px) {
+  .artist-partnership-heading { grid-template-columns: 1fr; gap: 24px; margin-bottom: 30px; }
+}
+
+/* A dark music section separates the artist invitation from venues. */
+#artist-partnerships { margin: 0; padding-left: var(--edge); padding-right: var(--edge); background: #101010; color: #fff; border-color: #383838; }
+#artist-partnerships .artist-partnership-intro p { color: #d2d2d2; }
+#artist-partnerships .partner-button { border-color: #fff; color: #fff; }
+#artist-partnerships .partner-button:hover { background: #fff; color: #101010; }
+#artist-partnerships .showcase-media { background: #202020; border-color: #383838; }
+#artist-partnerships .showcase-media::before, #artist-partnerships .showcase-media::after { border-color: #555; }
+#artist-partnerships .showcase-photo { z-index: 0; object-position: center 22%; }
+#artist-partnerships .showcase-media:has(.showcase-photo)::before,
+#artist-partnerships .showcase-media:has(.showcase-photo)::after { content: none; }
+#artist-partnerships .showcase-image-note { color: #aaa; }
+#artist-partnerships .carousel-bars button { background: #777; }
+#artist-partnerships .carousel-bars button[aria-current="true"] { background: #fff; }
+#artist-partnerships [data-artist-pause] { display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
+.partnerships-page .site-header.is-over-artists .desktop-nav { color: #fff; }
+
+.partner-form select { width: 100%; min-width: 0; border: 0; border-bottom: 1px solid #858585; border-radius: 0; padding: 8px 28px 16px 0; font: 400 16px/1.4 var(--mono); text-transform: none; }
+.partner-contact-panel .partner-form select { background-color: #101010; color: #fff; color-scheme: dark; }
+.partner-form select:focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
+.partner-contact-panel .partner-inquiry { border-top: 0; }
+@media (max-width: 700px) {
+  #venues { row-gap: 32px; padding-bottom: 56px; }
+}

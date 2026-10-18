@@ -133,13 +133,13 @@ export function initIntro(reducedMotion, mobile) {
     );
     const entering = [
       ...document.querySelectorAll(
-        ".site-header, .hero-intro, .hero-next, .motion-control, .viewport-marks",
+        ".site-header, .hero-intro, .hero-next, .motion-control",
       ),
     ];
     const arrivals = entering.map((element) =>
       animate(
         element,
-        element.matches(".motion-control, .viewport-marks")
+        element.matches(".motion-control")
           ? [{ opacity: 0 }, { opacity: 1 }]
           : [
               {

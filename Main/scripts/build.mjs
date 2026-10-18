@@ -47,6 +47,21 @@ for (const file of await readdir("../Assests/brand-logos")) {
   if (/\.png$/i.test(file))
     await copyFile(`../Assests/brand-logos/${file}`, `dist/assets/brand-logos/${file}`);
 }
+await mkdir("dist/assets/artists", { recursive: true });
+for (const file of await readdir("../Assests/Artists")) {
+  if (!/\.jpe?g$/i.test(file)) continue;
+  const destination = file
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/\.jpe?g$/i, ".webp");
+  execFileSync(ffmpeg, [
+    "-y", "-i", `../Assests/Artists/${file}`,
+    "-vf", "scale='min(800,iw)':-2",
+    "-c:v", "libwebp", "-quality", "82", "-compression_level", "6",
+    `dist/assets/artists/${destination}`,
+  ], { stdio: "pipe", windowsHide: true });
+}
 for (const page of ["index", "events", "partnerships", "community", "our-story"]) {
   let html = await readFile(`src/${page}.html`, "utf8");
   html = html.replace("<!-- press:cards -->", pressCards.join("\n"));

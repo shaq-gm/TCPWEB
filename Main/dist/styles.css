@@ -238,50 +238,6 @@ canvas:focus-visible,
 .menu-toggle {
   display: none;
 }
-.viewport-marks {
-  position: fixed;
-  inset: 20px;
-  z-index: 19;
-  mix-blend-mode: difference;
-  color: white;
-  pointer-events: none;
-}
-.viewport-marks i {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  border-top: 1px solid currentColor;
-  border-left: 1px solid currentColor;
-}
-.viewport-marks i:nth-child(1) {
-  top: 0;
-  left: 0;
-}
-.viewport-marks i:nth-child(2) {
-  top: 0;
-  right: 0;
-  transform: rotate(90deg);
-}
-.viewport-marks i:nth-child(3) {
-  top: 50%;
-  left: 0;
-  transform: rotate(-90deg);
-}
-.viewport-marks i:nth-child(4) {
-  top: 50%;
-  right: 0;
-  transform: rotate(90deg);
-}
-.viewport-marks i:nth-child(5) {
-  bottom: 0;
-  left: 0;
-  transform: rotate(-90deg);
-}
-.viewport-marks i:nth-child(6) {
-  bottom: 0;
-  right: 0;
-  transform: rotate(180deg);
-}
 .hero {
   height: 100svh;
   min-height: 580px;
@@ -324,8 +280,7 @@ canvas:focus-visible,
 .intro-pending .site-header,
 .intro-pending .hero-intro,
 .intro-pending .hero-next,
-.intro-pending .motion-control,
-.intro-pending .viewport-marks {
+.intro-pending .motion-control {
   opacity: 0;
   pointer-events: none;
 }
@@ -1436,9 +1391,6 @@ dialog::backdrop {
   }
   html {
     scroll-padding-top: 75px;
-  }
-  .viewport-marks {
-    display: none;
   }
   .hero {
     min-height: 620px;
